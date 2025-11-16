@@ -36,6 +36,9 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.gb_0 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.gb_0.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,6 +82,7 @@
             // 
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 22);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(140, 620);
@@ -87,6 +91,9 @@
             // 
             // gb_0
             // 
+            this.gb_0.Controls.Add(this.flowLayoutPanel4);
+            this.gb_0.Controls.Add(this.flowLayoutPanel3);
+            this.gb_0.Controls.Add(this.flowLayoutPanel2);
             this.gb_0.Controls.Add(this.flowLayoutPanel1);
             this.gb_0.Font = new System.Drawing.Font("標楷體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.gb_0.Location = new System.Drawing.Point(268, 12);
@@ -96,6 +103,33 @@
             this.gb_0.TabStop = false;
             this.gb_0.Text = "today";
             this.gb_0.Enter += new System.EventHandler(this.gb_0_Enter);
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.AutoScroll = true;
+            this.flowLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(152, 21);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(140, 620);
+            this.flowLayoutPanel2.TabIndex = 9;
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.AutoScroll = true;
+            this.flowLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(298, 21);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(140, 620);
+            this.flowLayoutPanel3.TabIndex = 10;
+            // 
+            // flowLayoutPanel4
+            // 
+            this.flowLayoutPanel4.AutoScroll = true;
+            this.flowLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(444, 21);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(140, 620);
+            this.flowLayoutPanel4.TabIndex = 11;
             // 
             // Form1
             // 
@@ -125,6 +159,9 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.GroupBox gb_0;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     }
 }
 

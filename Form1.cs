@@ -19,14 +19,15 @@ namespace project
             InitializeComponent();
             init_form();
         }
-        class TASK
+        class TASK_template
         {
-            public TASK(UInt16 suject, UInt16 classification, String task_describe, DateTime deadline)
+            public TASK_template(UInt16 suject, UInt16 classification, String task_describe, int[] deadline)
             {
                 this.suject = suject;
                 this.classification = classification;
                 this.task_describe = task_describe;
-                this.deadline = deadline;
+                //this.deadline = deadline;
+                this.deadline = DateTime.Now;
             }
             public UInt16 suject;
             public UInt16 classification;
@@ -36,7 +37,7 @@ namespace project
         }
         class TB_TASK : TextBox
         {
-            public TB_TASK(FlowLayoutPanel contain_flpanel, TASK input)
+            public TB_TASK(FlowLayoutPanel contain_flpanel, TASK_template input, String[] table_suject, String[] table_classification)
             {
                 this.Width = contain_flpanel.Width - 20 - (contain_flpanel.Margin.Left + contain_flpanel.Margin.Right);
                 this.BorderStyle = BorderStyle.None;
@@ -48,18 +49,26 @@ namespace project
                 this.Cursor = Cursors.Default;
                 this.ForeColor = Color.Black;
 
-                String text_index = tex_tset(input);
+                String text_index = text_set(input, table_suject, table_classification);
 
+                int str_long = table_suject[input.suject].Length;
+                if (str_long > 5)
+                {
+                    this.Font = new Font("標楷體", (this.Width-7)/(str_long+2));
+                }
+                else
+                {
+                    this.Font = new Font("標楷體", 16);
+                }
                 this.ReadOnly = true;
-                this.Font = new Font("標楷體", 16);
                 this.Text = text_index;
                 this.Height = this.FontHeight * 3 + 2;
             }
 
-            private String tex_tset(TASK input)
+            private String text_set(TASK_template input, String[] table_suject, String[] table_classification)
             {
                 String result = "";
-                result = $"{input.suject}\r\n{input.classification}\r\n{input.task_describe}";
+                result = $"{table_suject[input.suject]}\r\n{table_classification[input.classification]}\r\n{input.task_describe}";
                 return result;
             }
         }
@@ -67,7 +76,7 @@ namespace project
         private void init_form()
         {
             this.table_suject = new String[] { "計算機結構", "視窗程式設計" };
-            this.table_suject = new String[] { "計算機結構", "視窗程式設計" };
+            this.table_classification = new String[] { "考試", "報告", "作業" };
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
@@ -87,11 +96,12 @@ namespace project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            for(int i = 0; i < 10; i++)
+            for(UInt16 i = 0; i < 10; i++)
             {
                 String index = $"{i}\r\ntest {i}\r\ntest {i}";
-                Task new_task = new Task(0, 0, "test");
-                TB_TASK btn = new TB_TASK(flowLayoutPanel1, new_task);
+                int[] task_deadline = new int[3] { 0, 1, 2 };
+                TASK_template new_task = new TASK_template((ushort)((UInt16)i%2), (ushort)((UInt16)i % 3), "test", new int[3] { 0, 1, 2 });
+                TB_TASK btn = new TB_TASK(flowLayoutPanel1, new_task, this.table_suject, this.table_classification);
                 flowLayoutPanel1.Controls.Add(btn);
             }
         }
