@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using project.Component;
 
 namespace project
 {
@@ -14,82 +15,37 @@ namespace project
     {
         String[] table_suject;
         String[] table_classification;
+        String[] table_fl_text;
         public Form1()
         {
             InitializeComponent();
             init_form();
         }
-        class TASK_template
-        {
-            public TASK_template(UInt16 suject, UInt16 classification, String task_describe, int[] deadline)
-            {
-                this.suject = suject;
-                this.classification = classification;
-                this.task_describe = task_describe;
-                //this.deadline = deadline;
-                this.deadline = DateTime.Now;
-            }
-            public UInt16 suject;
-            public UInt16 classification;
-            public String task_describe = "";
-            public DateTime deadline;
-            public bool done = false;
-        }
-        class TB_TASK : TextBox
-        {
-            public TB_TASK(FlowLayoutPanel contain_flpanel, TASK_template input, String[] table_suject, String[] table_classification)
-            {
-                this.Width = contain_flpanel.Width - 20 - (contain_flpanel.Margin.Left + contain_flpanel.Margin.Right);
-                this.BorderStyle = BorderStyle.None;
-
-                //this.ScrollBars = ScrollBars.Vertical;
-                this.Multiline = true;
-                this.TextAlign = HorizontalAlignment.Center;
-                this.Enabled = false;
-                this.Cursor = Cursors.Default;
-                this.ForeColor = Color.Black;
-
-                String text_index = text_set(input, table_suject, table_classification);
-
-                int str_long = table_suject[input.suject].Length;
-                if (str_long > 5)
-                {
-                    this.Font = new Font("標楷體", (this.Width-7)/(str_long+2));
-                }
-                else
-                {
-                    this.Font = new Font("標楷體", 16);
-                }
-                this.ReadOnly = true;
-                this.Text = text_index;
-                this.Height = this.FontHeight * 3 + 2;
-            }
-
-            private String text_set(TASK_template input, String[] table_suject, String[] table_classification)
-            {
-                String result = "";
-                result = $"{table_suject[input.suject]}\r\n{table_classification[input.classification]}\r\n{input.task_describe}";
-                return result;
-            }
-        }
+        
 
         private void init_form()
         {
             this.table_suject = new String[] { "計算機結構", "視窗程式設計" };
             this.table_classification = new String[] { "考試", "報告", "作業" };
+            this.table_fl_text = new string[] { "今天", "明天", ""};
+            for (int i = 0; i < 3; i++)
+            {
+                FL_Panel new_panel = new FL_Panel(flpanel_calendar, $"FL_{i}", $"test_test", 3);
+                new_panel.add_to_FLPanel();
+
+                for (UInt16 i = 0; i < 10; i++)
+                {
+                    String index = $"{i}\r\ntest {i}\r\ntest {i}";
+                    int[] task_deadline = new int[3] { 0, 1, 2 };
+                    TO_DO_TASK new_task = new TO_DO_TASK((ushort)((UInt16)i % 2), (ushort)((UInt16)i % 3), "test", new int[3] { 0, 1, 2 });
+                    new_task.add_to_panel(new_panel, this.table_suject, this.table_classification);
+                    /*TB_TASK current_task = new TB_TASK(flowLayoutPanel1, new_task, this.table_suject, this.table_classification);
+                    current_task.add_to_form();*/
+                }
+            }
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
-        {
-
-        }
-
-        private void gb_0_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
@@ -100,9 +56,10 @@ namespace project
             {
                 String index = $"{i}\r\ntest {i}\r\ntest {i}";
                 int[] task_deadline = new int[3] { 0, 1, 2 };
-                TASK_template new_task = new TASK_template((ushort)((UInt16)i%2), (ushort)((UInt16)i % 3), "test", new int[3] { 0, 1, 2 });
-                TB_TASK btn = new TB_TASK(flowLayoutPanel1, new_task, this.table_suject, this.table_classification);
-                flowLayoutPanel1.Controls.Add(btn);
+                TO_DO_TASK new_task = new TO_DO_TASK((ushort)((UInt16)i%2), (ushort)((UInt16)i % 3), "test", new int[3] { 0, 1, 2 });
+                new_task.add_to_panel(flowLayoutPanel1, this.table_suject, this.table_classification);
+                /*TB_TASK current_task = new TB_TASK(flowLayoutPanel1, new_task, this.table_suject, this.table_classification);
+                current_task.add_to_form();*/
             }
         }
 

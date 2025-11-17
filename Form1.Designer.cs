@@ -35,11 +35,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.gb_0 = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
-            this.gb_0.SuspendLayout();
+            this.flpanel_calendar = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpanel_calendar.SuspendLayout();
             this.SuspendLayout();
             // 
             // gb_all_s
@@ -83,60 +80,25 @@
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(6, 22);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(140, 620);
-            this.flowLayoutPanel1.TabIndex = 8;
-            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(140, 659);
+            this.flowLayoutPanel1.TabIndex = 2;
             // 
-            // gb_0
+            // flpanel_calendar
             // 
-            this.gb_0.Controls.Add(this.flowLayoutPanel4);
-            this.gb_0.Controls.Add(this.flowLayoutPanel3);
-            this.gb_0.Controls.Add(this.flowLayoutPanel2);
-            this.gb_0.Controls.Add(this.flowLayoutPanel1);
-            this.gb_0.Font = new System.Drawing.Font("標楷體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.gb_0.Location = new System.Drawing.Point(268, 12);
-            this.gb_0.Name = "gb_0";
-            this.gb_0.Size = new System.Drawing.Size(984, 647);
-            this.gb_0.TabIndex = 1;
-            this.gb_0.TabStop = false;
-            this.gb_0.Text = "today";
-            this.gb_0.Enter += new System.EventHandler(this.gb_0_Enter);
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.AutoScroll = true;
-            this.flowLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(152, 21);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(140, 620);
-            this.flowLayoutPanel2.TabIndex = 9;
-            // 
-            // flowLayoutPanel3
-            // 
-            this.flowLayoutPanel3.AutoScroll = true;
-            this.flowLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(298, 21);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(140, 620);
-            this.flowLayoutPanel3.TabIndex = 10;
-            // 
-            // flowLayoutPanel4
-            // 
-            this.flowLayoutPanel4.AutoScroll = true;
-            this.flowLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(444, 21);
-            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(140, 620);
-            this.flowLayoutPanel4.TabIndex = 11;
+            this.flpanel_calendar.Controls.Add(this.flowLayoutPanel1);
+            this.flpanel_calendar.Location = new System.Drawing.Point(268, 12);
+            this.flpanel_calendar.Name = "flpanel_calendar";
+            this.flpanel_calendar.Size = new System.Drawing.Size(984, 657);
+            this.flpanel_calendar.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.gb_0);
+            this.Controls.Add(this.flpanel_calendar);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.monthCalendar1);
@@ -144,7 +106,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.gb_0.ResumeLayout(false);
+            this.flpanel_calendar.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,10 +120,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.GroupBox gb_0;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel flpanel_calendar;
     }
 }
 
