@@ -97,10 +97,11 @@ namespace project.Component
         {
             this.Font = new Font("標楷體", 15);
             this.target_FLPanel = target_FLPanel;
-            this.Width = target_FLPanel.Width / show_num - (target_FLPanel.Padding.Left + target_FLPanel.Padding.Right);
+            this.Width = this.target_FLPanel.Width / show_num - ((this.target_FLPanel.Padding.Left + this.target_FLPanel.Padding.Right) * 2);
             this.Name = name;
             this.Text = show_text;
-            this.Height = target_FLPanel.Height - 27;
+            this.Height = this.target_FLPanel.Height - 27;
+            this.AutoScroll = true;
         }
 
         public void add_to_FLPanel()
