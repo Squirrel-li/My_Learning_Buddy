@@ -7,17 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using project.util;
 
 namespace project
 {
-    public partial class user_control_settings_gen : UserControl
+    public partial class user_control_settings_task : UserControl
     {
-        public user_control_settings_gen()
+        public user_control_settings_task()
         {
             InitializeComponent();
         }
 
-        private void settings_user_control_gen_Load(object sender, EventArgs e)
+        private void user_control_settings_task_Load(object sender, EventArgs e)
         {
 
         }

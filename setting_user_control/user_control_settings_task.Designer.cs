@@ -1,6 +1,6 @@
 ﻿namespace project
 {
-    partial class user_control_settings_pomo
+    partial class user_control_settings_task
     {
         /// <summary> 
         /// 設計工具所需的變數。
@@ -28,32 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbl_title = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // lbl_title
-            // 
-            this.lbl_title.AutoSize = true;
-            this.lbl_title.Location = new System.Drawing.Point(3, 0);
-            this.lbl_title.Name = "lbl_title";
-            this.lbl_title.Size = new System.Drawing.Size(33, 12);
-            this.lbl_title.TabIndex = 0;
-            this.lbl_title.Text = "label1";
-            // 
-            // user_control_settings_pomo
+            // user_control_settings_task
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lbl_title);
-            this.Name = "user_control_settings_pomo";
-            this.Size = new System.Drawing.Size(520, 406);
+            this.Name = "user_control_settings_task";
+            this.Size = new System.Drawing.Size(404, 301);
+            this.Load += new System.EventHandler(this.user_control_settings_task_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lbl_title;
     }
 }

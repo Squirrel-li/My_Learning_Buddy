@@ -7,14 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using project.util;
 
 namespace project
 {
-    public partial class user_control_settings_task : UserControl
+    public partial class user_control_settings_pomo : UserControl
     {
-        public user_control_settings_task()
+        public user_control_settings_pomo()
         {
             InitializeComponent();
+        }
+
+        private void user_control_settings_pomo_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
