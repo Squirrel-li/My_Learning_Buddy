@@ -21,8 +21,8 @@ namespace project.Component
             this.suject = suject;
             this.classification = classification;
             this.task_describe = task_describe;
-            //this.deadline = deadline;
-            this.deadline = DateTime.Now;
+            this.deadline = deadline;
+            //this.deadline = DateTime.Now;
         }
 
         public void add_to_panel(FlowLayoutPanel contain_flpanel)

@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using project.Component;
-using System.Collections.Generic;
 
 namespace project
 {
@@ -50,7 +49,7 @@ namespace project
                 }
                 else
                 {
-                    titel = $"{i} 天後待辦";
+                    titel = $"{i}天後";
                 }
                 FL_Panel new_panel = new FL_Panel(this.flpanel_calendar, $"FL_{i}", $"{titel}", panel_num);
                 new_panel.add_to_FLPanel();
@@ -91,36 +90,47 @@ namespace project
 
         private void btn_addTask_Click(object sender, EventArgs e)
         {
-            if (cb_subject.SelectedIndex == -1 && cb_classification.SelectedIndex == -1)
+            if (cb_subject.Text == String.Empty || cb_classification.Text == String.Empty)
             {
-                lbl_tabToDoMes.Text = "請選擇科目、類別";
-                return;
+                lbl_tabToDoMes.Text = "請填入要新增的內容";
             }
-            if (cb_subject.SelectedIndex == -1)
+            else
             {
-                lbl_tabToDoMes.Text = "請選擇科目";
-                return;
+                if (!cb_subject.Items.Contains(cb_subject.Text))
+                {
+                    cb_subject.Items.Add(cb_subject.Text);
+                    table_suject.Add(cb_subject.Text);
+                    lbl_debug.Text += "cb_subject：\n";
+                    foreach (var item in cb_subject.Items)
+                    {
+                        lbl_debug.Text += item.ToString() + "\n";
+                    }
+                }
+                if (!cb_classification.Items.Contains(cb_classification.Text))
+                {
+                    cb_classification.Items.Add(cb_classification.Text);
+                    table_suject.Add(cb_classification.Text);
+                    lbl_debug.Text += "cb_classification：\n";
+                    foreach (var item in cb_classification.Items)
+                    {
+                        lbl_debug.Text += item.ToString() + "\n";
+                    }
+                }
+
+                String subject = cb_subject.Text;
+                String classification = cb_classification.Text;
+                String task_describe = tb_taskDescribe.Text;
+                DateTime dateTime = DateTime.Now;
+
+                TO_DO_TASK new_task = new TO_DO_TASK(subject, classification, task_describe, dateTime);
+
+                FL_Panel targetPanel = find_pnaelinlanel(this.flpanel_calendar, "FL_0");
+                if (targetPanel == null)
+                {
+                    throw new Exception("cant find panel");
+                }
+                new_task.add_to_panel(targetPanel);
             }
-            if (cb_classification.SelectedIndex == -1)
-            {
-                lbl_tabToDoMes.Text = "請選擇類別";
-                return;
-            }
-
-            String subject = this.table_suject[cb_subject.SelectedIndex];
-            String classification = this.table_classification[cb_classification.SelectedIndex];
-            String task_describe = tb_taskDescribe.Text;
-            DateTime dateTime = DateTime.Now;
-
-            TO_DO_TASK new_task = new TO_DO_TASK(subject, classification, task_describe, dateTime);
-
-            FL_Panel targetPanel = find_pnaelinlanel(this.flpanel_calendar, "FL_0");
-            if (targetPanel == null)
-            {
-                throw new Exception("cant find panel");
-            }
-            new_task.add_to_panel(targetPanel);
-
         }
 
         private FL_Panel find_pnaelinlanel(FlowLayoutPanel sourcePanel, String tag)
@@ -146,79 +156,82 @@ namespace project
         {
             if (tc_modifySet.SelectedIndex == 0)
             {
-                if (cb_subject.SelectedIndex == -1)
+                cb_subject.Items.Clear();
+                cb_classification.Items.Clear();
+                foreach (var item in table_suject)
                 {
-                    cb_subject.SelectedIndex = 0;
+                    cb_subject.Items.Add(item);
                 }
-                if (cb_classification.SelectedIndex == -1)
+                foreach (var item in table_classification)
                 {
-                    cb_classification.SelectedIndex = 0;
+                    cb_classification.Items.Add(item);
                 }
-                tb_taskDescribe.Text = "無敘述";
             }
-            if (tc_modifySet.SelectedIndex == 1)
+            else if (tc_modifySet.SelectedIndex == 1)
             {
-                lb_SubjShow.Items.Clear();
-                lb_classShow.Items.Clear();
-                foreach (String subject in table_suject)
+                cb_controlSubject.Items.Clear();
+                cb_controlClass.Items.Clear();
+                foreach (var item in table_suject)
                 {
-                    lb_SubjShow.Items.Add(subject);
+                    cb_controlSubject.Items.Add(item);
                 }
-                foreach (String classification in table_classification)
+                foreach (var item in table_classification)
                 {
-                    lb_classShow.Items.Add(classification);
+                    cb_controlClass.Items.Add(item);
                 }
             }
         }
 
         private void btn_addSubj_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(tb_addSubj.Text))
-            {
-
-                foreach (String subject in table_suject)
-                {
-                    if (tb_addSubj.Text == subject)
-                    {
-                        lbl_tabModfiyMes.Text = "內容已存在";
-                        return;
-                    }
-                }
-
-                this.table_suject.Add(tb_addSubj.Text);
-                lb_SubjShow.Items.Clear();
-                foreach (String subject in table_suject)
-                {
-                    lb_SubjShow.Items.Add(subject);
-                }
-            }
-            else
+            if (cb_controlSubject.Text == string.Empty)
             {
                 lbl_tabModfiyMes.Text = "請填入要新增的內容";
+            }
+            if (!cb_controlSubject.Items.Contains(cb_controlSubject.Text))
+            {
+                cb_controlSubject.Items.Add(cb_controlSubject.Text);
+                table_suject.Add(cb_controlSubject.Text);
             }
         }
 
         private void btn_delSubj_Click(object sender, EventArgs e)
         {
-
+            if (cb_controlSubject.Text == string.Empty)
+            {
+                lbl_tabModfiyMes.Text = "請選擇要刪除的內容";
+            }
+            if (cb_controlSubject.Items.Contains(cb_controlSubject.Text))
+            {
+                table_suject.Remove(cb_controlSubject.Text);
+                cb_controlSubject.Items.Remove(cb_controlSubject.Text);
+            }
         }
 
         private void btn_addClass_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(tb_addClass.Text))
+            if (cb_controlClass.Text == string.Empty)
             {
-                this.table_classification.Add(tb_addClass.Text);
-                lb_classShow.Items.Clear();
-                foreach (String classification in table_classification)
-                {
-                    lb_classShow.Items.Add(classification);
-                }
+                lbl_tabModfiyMes.Text = "請填入要新增的內容";
+            }
+            if (!cb_controlClass.Items.Contains(cb_controlClass.Text))
+            {
+                cb_controlClass.Items.Add(cb_controlClass.Text);
+                table_suject.Add(cb_controlClass.Text);
             }
         }
 
         private void btn_delClass_Click(object sender, EventArgs e)
         {
-
+            if (cb_controlClass.Text == string.Empty)
+            {
+                lbl_tabModfiyMes.Text = "請選擇要刪除的內容";
+            }
+            if (cb_controlClass.Items.Contains(cb_controlClass.Text))
+            {
+                table_classification.Remove(cb_controlClass.Text);
+                cb_controlClass.Items.Remove(cb_controlClass.Text);
+            }
         }
     }
 }
