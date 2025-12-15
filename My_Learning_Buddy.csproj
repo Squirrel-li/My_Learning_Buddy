@@ -85,7 +85,6 @@
     <Compile Include="setting_user_control\user_control_settings_task.Designer.cs">
       <DependentUpon>user_control_settings_task.cs</DependentUpon>
     </Compile>
-    <Compile Include="util\Class1.cs" />
     <EmbeddedResource Include="Forms\Form_mainPage.resx">
       <DependentUpon>Form_mainPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -128,7 +127,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="XMLFile1.xml" />
+    <Folder Include="util\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

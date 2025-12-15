@@ -75,7 +75,7 @@
             // lbl_set_name
             // 
             this.lbl_set_name.AutoSize = true;
-            this.lbl_set_name.Font = new System.Drawing.Font("標楷體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lbl_set_name.Font = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.lbl_set_name.Location = new System.Drawing.Point(93, 14);
             this.lbl_set_name.Name = "lbl_set_name";
             this.lbl_set_name.Size = new System.Drawing.Size(69, 19);

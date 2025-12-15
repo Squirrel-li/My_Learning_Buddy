@@ -41,7 +41,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("新細明體", 20F);
+            this.textBox1.Font = new System.Drawing.Font("微軟正黑體", 20F);
             this.textBox1.Location = new System.Drawing.Point(12, 12);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;

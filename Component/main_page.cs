@@ -10,19 +10,17 @@ using project;
 
 namespace project.Component
 {
-    internal class main_page
+    class ToDoTask
     {
-    }
-    class TO_DO_TASK
-    {
-        // 任務
-        public TO_DO_TASK(String suject, String classification, String task_describe, DateTime deadline)
+        public ToDoTask(String subject, String classification, String task_describe, DateTime deadline, Color themeColor)
         {
-            this.suject = suject;
+            this.subject = subject;
             this.classification = classification;
-            this.task_describe = task_describe;
+            this.taskDescribe = task_describe;
             this.deadline = deadline;
-            //this.deadline = DateTime.Now;
+            this.themeColor = themeColor;
+
+            this.done = false;
         }
 
         public void add_to_panel(FlowLayoutPanel contain_flpanel)
@@ -31,44 +29,73 @@ namespace project.Component
             current_task.add_to_panel();
         }
 
-        public String suject;
-        public String classification;
-        public String task_describe = "";
-        public DateTime deadline;
-        public bool done = false;
+        public String subject { get; set; }
+        public String classification { get; set; }
+        public String taskDescribe { get; set; }
+        public DateTime deadline { get; set; }
+        public bool done { get; set; }
+        public Color themeColor { get; set; }
     }
 
     //顯示的任務 text_box
     class TB_TASK : TextBox
     {
         private FlowLayoutPanel target_panel;
-        public TB_TASK(FlowLayoutPanel contain_flpanel, TO_DO_TASK input)
+        private ToDoTask task;
+        public DateTime Deadline => task?.deadline ?? DateTime.MaxValue;
+        public TB_TASK(FlowLayoutPanel contain_flpanel, ToDoTask input)
         {
             this.target_panel = contain_flpanel;
+            this.task = input;
             //.Width = contain_flpanel.Width - 20 - (contain_flpanel.Margin.Left + contain_flpanel.Margin.Right);
-            this.BorderStyle = BorderStyle.None;
+            this.BorderStyle = BorderStyle.FixedSingle;
 
             //this.ScrollBars = ScrollBars.Vertical;
             this.Multiline = true;
             this.TextAlign = HorizontalAlignment.Center;
-            this.Enabled = false;
+            this.Enabled = true;
             this.Cursor = Cursors.Default;
             this.ForeColor = Color.Black;
+            this.BackColor = input.themeColor;
 
             String text_index = text_set(input);
 
-            this.Font = new Font("標楷體", 16);
-            this.ReadOnly = true;
+            this.Font = new Font("微軟正黑體", 12);
+            this.ReadOnly = false;
             this.Text = text_index;
-            this.Height = this.FontHeight * 3 + 2;
-            this.Width = target_panel.Width - 12;
+            this.Height = this.FontHeight * 4 + 2;
+            this.Width = target_panel.Width - 12 - 15;
         }
 
         public void add_to_panel()
         {
             try
             {
+                // 依截止日期排序插入
+                int insertionIndex = this.target_panel.Controls.Count;
+
+                // 根據截止日期找到插入位置
+                for (int i = 1; i < this.target_panel.Controls.Count; i++)
+                {
+                    var c = this.target_panel.Controls[i];
+                    if (c is TB_TASK otherTask)
+                    {
+                        if (otherTask.Deadline > this.Deadline)
+                        {
+                            insertionIndex = i;
+                            break;
+                        }
+                    }
+                }
+
+                // 確保索引不小於1，因為索引0可能是標題
+                if (insertionIndex < 1)
+                    insertionIndex = 1;
+
+                // 插入控件
                 this.target_panel.Controls.Add(this);
+                // 調整控件順序
+                this.target_panel.Controls.SetChildIndex(this, insertionIndex);
             }
             catch (Exception ex)
             {
@@ -76,12 +103,19 @@ namespace project.Component
             }
         }
 
-        private String text_set(TO_DO_TASK input)
+        private String text_set(ToDoTask input)
         {
             String result = "";
-            result = $"{input.suject}\r\n" +
-                        $"{input.classification}\r\n";
-            result += (string.IsNullOrEmpty(input.task_describe)) ? "無敘述" : $"{input.task_describe}";
+            result = $"{input.subject}\r\n";
+
+            if (input.deadline.Date == DateTime.Now.Date)
+                result += "今天 ";
+            else
+                result += $"{input.deadline:yyyy/MM/dd} ";
+
+            result += $"{input.deadline:HH:mm}\r\n";
+            result += $"{input.classification}\r\n";
+            result += (string.IsNullOrEmpty(input.taskDescribe)) ? "無敘述" : $"{input.taskDescribe}";
             return result;
         }
     }
@@ -91,58 +125,34 @@ namespace project.Component
         FlowLayoutPanel target_FLPanel;
         public FL_Panel(FlowLayoutPanel target_FLPanel, String name, String show_text, UInt16 show_num)
         {
-            this.Font = new Font("標楷體", 15);
             this.target_FLPanel = target_FLPanel;
-            
 
             int usable = target_FLPanel.Width - 9;
-
             int margin = this.Margin.Left + this.Margin.Right;
-
             int finalWidth = (usable - (show_num - 1) * margin) / show_num;
             this.Width = finalWidth;
 
+            this.AutoScroll = true;
             this.FlowDirection = FlowDirection.TopDown;
             this.WrapContents = false;
-            this.AutoScroll = true;
             this.AutoSize = false;
 
-
+            this.Font = new Font("微軟正黑體", 15);
             this.Name = name;
             this.Height = target_FLPanel.Height - 9;
             this.Tag = name;
-            this.BorderStyle = BorderStyle.FixedSingle;
-            /*String debug_mess = "";
-            debug_mess += $"this.Padding {this.Padding.Top}\n";
-            debug_mess += $"this.Padding {this.Padding.Bottom}\n";
-            debug_mess += $"this.Margin {this.Margin.Top}\n";
-            debug_mess += $"this.Margin {this.Margin.Bottom}\n";
-            debug_mess += $"target_FLPanel.Padding {target_FLPanel.Padding.Top}\n";
-            debug_mess += $"target_FLPanel.Padding {target_FLPanel.Padding.Bottom}\n";
-            debug_mess += $"target_FLPanel.Margin {target_FLPanel.Margin.Top}\n";
-            debug_mess += $"target_FLPanel.Margin {target_FLPanel.Margin.Bottom}\n";
-            Label lbl_debug = new Label()
-            {
-                Text = debug_mess,
-                Height = 100,
-                Width = this.Width - 20,
-                Font = new Font("標楷體", 9),
-                TextAlign = ContentAlignment.MiddleCenter
-            };
-            this.Controls.Add(lbl_debug);*/
 
             Label lbl_title = new Label()
             {
                 Text = show_text,
-                Height = 20,
-                Width = this.Width - 12,
-                Font = new Font("標楷體", 15),
-                TextAlign = ContentAlignment.MiddleCenter
+                Height = 25,
+                Width = this.Width - 12 - 15,
+                Font = new Font("微軟正黑體", 15),
+                TextAlign = ContentAlignment.BottomCenter,
             };
 
             this.Controls.Add(lbl_title);
         }
-
 
         public void add_to_FLPanel()
         {
