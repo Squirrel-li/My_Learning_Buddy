@@ -1,40 +1,54 @@
-﻿using project.Component;
+﻿using AntdUI;
+using project.Component;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
+
+
 namespace project
 {
     public partial class Form_mainPage : Form
     {
-        List<String> tableSuject = new List<String>();
+        private readonly Dictionary<Color, Image> _colorIconCache = new Dictionary<Color, Image>();
+        // Tables
+        List<String> tableSubject = new List<String>();
         List<String> tableClassification = new List<String>();
         List<String> tableFLPanelText = new List<String>();
-        // store color + label
-        List<ColorItem> tableColor = new List<ColorItem>();
         List<ToDoTask> tableToDoTask = new List<ToDoTask>();
+
+        // Color Table
+        List<ColorItem> tableColor = new List<ColorItem>();
         ushort panelNum = 5;
 
-        // helper for storing color with display label
+        public JsonManager jsonManager = new JsonManager();
+
+        private bool debug = true;
+
+
         private class ColorItem
         {
             public Color Color { get; }
             public string Label { get; }
-            public ColorItem(Color color, string label)
+            public string hexColorCodes { get; }
+            public ColorItem(String hexColorCodes, string label)
             {
-                Color = color;
+                this.hexColorCodes = hexColorCodes;
+                Color = ColorTranslator.FromHtml(hexColorCodes);
                 Label = label;
             }
             public override string ToString()
             {
-                return Label;
+                return hexColorCodes;
             }
         }
 
@@ -45,8 +59,18 @@ namespace project
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Debug label clear
-            this.lbl_debug.Text = "";
+            if (debug)
+            {
+                lbl_debug.Visible = true;
+                lbl_debug.Text = "Debug 模式開啟\n\r";
+                lbl_tabModfiyMes.Text = "tabModfiyMes";
+                lbl_tabToDoMes.Text = "tabToDoMes";
+            }
+            else
+            {
+                lbl_tabModfiyMes.Text = "";
+                lbl_tabToDoMes.Text = "";
+            }
 
             // Init Tables and combobox data
             InitTables();
@@ -58,28 +82,36 @@ namespace project
             // Load TO-DO Task data
             loadToDoTask();
 
-            InitCBox();
+            initSelectColor();
+            select_subject.SelectedIndex = 0;
+            select_classification.SelectedIndex = 0;
         }
 
         private void InitTables()
         {
-            this.tableSuject = new List<String> { "計算機結構", "視窗程式設計" };
-            this.tableClassification = new List<String> { "考試", "報告", "作業" };
-            this.tableFLPanelText = new List<String> { "今日活動", "明日活動", "久遠以後" };
+            this.tableSubject = jsonManager.Get_table_subject();
+            this.tableClassification = jsonManager.Get_tableClassification();
+            this.tableFLPanelText = jsonManager.Get_tableFLPanelText();
+            if (this.tableFLPanelText.Count == 0)
+            {
+                this.tableFLPanelText = new List<String> { "今日活動", "明日活動", "久遠以後" };
+            }
+
+
             this.tableColor = new List<ColorItem>
             {
-                new ColorItem(ColorTranslator.FromHtml("#FFADAD"), "柔粉紅"), // Soft Red
-                new ColorItem(ColorTranslator.FromHtml("#FFD6A5"), "蜜桃橘"), // Peach
-                new ColorItem(ColorTranslator.FromHtml("#FDFFB6"), "淡檸檬"), // Pale Yellow
-                new ColorItem(ColorTranslator.FromHtml("#CAFFBF"), "茶綠"), // Tea Green
-                new ColorItem(ColorTranslator.FromHtml("#9BF6FF"), "淡青"), // Cyan
-                new ColorItem(ColorTranslator.FromHtml("#A0C4FF"), "嬰兒藍"), // Baby Blue
-                new ColorItem(ColorTranslator.FromHtml("#BDB2FF"), "淡紫"), // Lavender
-                new ColorItem(ColorTranslator.FromHtml("#FFC6FF"), "淡粉紫") // Pink
+                new ColorItem("#FFADAD", "柔粉紅"), // Soft Red
+                new ColorItem("#FFD6A5", "蜜桃橘"), // Peach
+                new ColorItem("#FDFFB6", "淡檸檬"), // Pale Yellow
+                new ColorItem("#CAFFBF", "茶綠"), // Tea Green
+                new ColorItem("#9BF6FF", "淡青"), // Cyan
+                new ColorItem("#A0C4FF", "嬰兒藍"), // Baby Blue
+                new ColorItem("#BDB2FF", "淡紫"), // Lavender
+                new ColorItem("#FFC6FF", "淡粉紫") // Pink
             };
 
-            initComboBoxIndex(this.cb_subject, tableSuject);
-            initComboBoxIndex(this.cb_classification, tableClassification);
+            initSelectIndex(this.select_subject, tableSubject);
+            initSelectIndex(this.select_classification, tableClassification);
         }
 
         private void InitFLPanel(ushort panelNum)
@@ -105,71 +137,69 @@ namespace project
             }
         }
 
-        private void InitCBox()
+        private void initSelectIndex(AntdUI.Select selectInput, List<String> table)
         {
-            cb_selectColor.DropDownStyle = ComboBoxStyle.DropDownList;
-            cb_selectColor.DrawMode = DrawMode.OwnerDrawFixed;
-            cb_selectColor.Items.Clear(); // 確保清空舊選項
-
-            // 將 tableColor 的顏色加入下拉選單（存放 ColorItem）
-            foreach (var ci in tableColor)
-            {
-                cb_selectColor.Items.Add(ci);
-            }
-
-            cb_selectColor.SelectedIndex = (cb_selectColor.Items.Count > 0) ? 0 : -1;
-        }
-
-        private void initComboBoxIndex(ComboBox cbInput, List<String> table)
-        {
-            cbInput.Items.Clear();
+            selectInput.Items.Clear();
             foreach (String classification in table) 
             {
-                AddComboBoxIndex(cbInput, classification);
+                AddSelectIndex(selectInput, classification);
             }
-            cbInput.SelectedIndex = 1;
         }
+
+        private void initSelectColor()
+        {
+            select_selectColor.Items.Clear();
+            foreach (var colorItem in tableColor)
+            {
+                // 將 ColorItem 直接作為 SelectItem 的 Tag，並僅設置 Text 與 Value
+                select_selectColor.Items.Add(new AntdUI.SelectItem(
+                    colorItem.Label, // Text
+                    colorItem.Color  // Value
+                )
+                {
+                    Icon = GetColorDotIcon(colorItem.Color),
+                    Tag = colorItem
+                });
+            }
+            select_selectColor.SelectedIndex = 0;
+        }
+
 
         private void loadToDoTask()
         {
-            String subject = "subject";
-            String classification = "classification";
-            String taskDescribe = "taskDescribe";
-            DateTime dateTime = DateTime.Now;
+            this.tableToDoTask = jsonManager.Get_tableToDoTask();
 
-            ToDoTask new_toDoTask = new ToDoTask(subject, classification, taskDescribe, dateTime, ColorTranslator.FromHtml("#FFADAD"));
-            this.tableToDoTask.Add(new_toDoTask);
-
-            // 先快取所有 FL_Panel，避免每次查找都掃描 Controls
+            foreach (var toDoTask in this.tableToDoTask)
             {
-                lbl_debug.Text = "";
-                for (int t = 0; t < this.tableToDoTask.Count; t++)
-                if (!toDoTask.done)
+                FL_Panel targetPanel = null;
+                int dayDiff = (toDoTask.deadline.Date - DateTime.Today).Days;
+                if (!toDoTask.finish)
                 {
                     if (0 > dayDiff)
                     {
                         targetPanel = find_pnaelinlanel(this.flpanel_calendar, "FL_0") ?? throw new Exception("cant find panel");
-                        new_toDoTask.add_to_panel(targetPanel);
+                        toDoTask.add_to_panel(targetPanel);
                     }
                     else if (panelNum - 1 > dayDiff && dayDiff >= 0)
                     {
                         targetPanel = find_pnaelinlanel(this.flpanel_calendar, $"FL_{dayDiff}") ?? throw new Exception("cant find panel");
-                        new_toDoTask.add_to_panel(targetPanel);
+                        toDoTask.add_to_panel(targetPanel);
                     }
                     else if (dayDiff >= panelNum - 1)
                     {
                         targetPanel = find_pnaelinlanel(this.flpanel_calendar, $"FL_{panelNum - 1}") ?? throw new Exception("cant find panel");
-                        new_toDoTask.add_to_panel(targetPanel);
+                        toDoTask.add_to_panel(targetPanel);
                     }
                 }
             }
         }
 
-        public void AddComboBoxIndex(ComboBox cbInput, String index)
+        public void AddSelectIndex(AntdUI.Select SelectInput, String index)
         {
-            cbInput.BeginUpdate();
-            cbInput.Items.Add(index);
-            cbInput.EndUpdate();
+            SelectInput.BeginInvoke((MethodInvoker)delegate
+            {
+                SelectInput.Items.Add(index);
+            });
         }
 
         private void cb_color_DrawItem(object sender, DrawItemEventArgs e)
@@ -179,7 +209,7 @@ namespace project
             e.DrawBackground();
 
             // 取出 ColorItem
-            var item = cb_selectColor.Items[e.Index] as ColorItem;
+            var item = select_selectColor.Items[e.Index] as ColorItem;
             Color color = (item != null) ? item.Color : Color.Transparent;
 
             int d = e.Bounds.Height - 6;
@@ -215,54 +245,65 @@ namespace project
 
         private void btn_addTask_Click(object sender, EventArgs e)
         {
-            if (cb_subject.Text == String.Empty || cb_classification.Text == String.Empty)
+            if (select_subject.Text == String.Empty || select_classification.Text == String.Empty)
             {
                 lbl_tabToDoMes.Text = "請填入要新增的內容";
             }
             else
             {
-                if (!cb_subject.Items.Contains(cb_subject.Text))
+                if (!select_subject.Items.Contains(select_subject.Text))
                 {
-                    cb_subject.Items.Add(cb_subject.Text);
-                    tableSuject.Add(cb_subject.Text);
-                    lbl_debug.Text += "cb_subject：\n";
-                    foreach (var item in cb_subject.Items)
+                    AddSelectIndex(select_subject, select_subject.Text);
+                    tableSubject.Add(select_subject.Text);
+                    lbl_debug.Text += "select_subject：\n";
+                    foreach (var item in select_subject.Items)
                     {
                         lbl_debug.Text += item.ToString() + "\n";
                     }
+                    this.jsonManager.Save_table_subject(tableSubject);
                 }
-                if (!cb_classification.Items.Contains(cb_classification.Text))
+                if (!select_classification.Items.Contains(select_classification.Text))
                 {
-                    cb_classification.Items.Add(cb_classification.Text);
-                    tableSuject.Add(cb_classification.Text);
-                    lbl_debug.Text += "cb_classification：\n";
-                    foreach (var item in cb_classification.Items)
+                    AddSelectIndex(select_classification, select_classification.Text);
+                    tableSubject.Add(select_classification.Text);
+                    lbl_debug.Text += "select_classification：\n";
+                    foreach (var item in select_classification.Items)
                     {
                         lbl_debug.Text += item.ToString() + "\n";
                     }
+                    this.jsonManager.Save_tableClassification(tableClassification);
                 }
 
-                String subject = cb_subject.Text;
-                String classification = cb_classification.Text;
-                String taskDescribe = tb_taskDescribe.Text;
+                String subject = select_subject.Text;
+                String classification = select_classification.Text;
+                String taskDescribe = input_taskDescribe.Text;
 
                 // use the DateTimePicker value
-                DateTime dateTime = this.dateTimeP_select.Value;
+                DateTime dateTime;
+                if (dateTimeP_select.Value == null)
+                {
+                    dateTime = DateTime.Now;
+                }
+                else
+                {
+                    dateTime = dateTimeP_select.Value?? throw new Exception("dateTimeP_select.Value is null");
+                }
 
                 // 取得選到的 Color
-                Color selectColor = SystemColors.Control;
-                if (cb_selectColor.SelectedItem is ColorItem selectedItem)
-                    selectColor = selectedItem.Color;
+                String selectColor = "";
+                selectColor = select_selectColor.SelectedValue.ToString();
 
                 // create new toDoTask
                 ToDoTask new_toDoTask = new ToDoTask(subject, classification, taskDescribe, dateTime, selectColor);
 
+                jsonManager.add_tableToDoTask(new_toDoTask);
+
                 // add to table
                 lbl_debug.Text = "";
-                FL_Panel targetPanel = find_pnaelinlanel(this.flpanel_calendar, "FL_0");
                 int dayDiff = (dateTime.Date - DateTime.Today).Days;
-                if (!new_toDoTask.done)
+                if (!new_toDoTask.finish)
                 {
+                    FL_Panel targetPanel;
                     if (0 > dayDiff)
                     {
                         targetPanel = find_pnaelinlanel(this.flpanel_calendar, "FL_0") ?? throw new Exception("cant find panel");
@@ -305,81 +346,95 @@ namespace project
         {
             if (tc_modifySet.SelectedIndex == 0)
             {
-                cb_subject.Items.Clear();
-                cb_classification.Items.Clear();
-                foreach (var item in tableSuject)
+                select_subject.Items.Clear();
+                select_classification.Items.Clear();
+                foreach (var item in tableSubject)
                 {
-                    cb_subject.Items.Add(item);
+                    select_subject.Items.Add(item);
                 }
                 foreach (var item in tableClassification)
                 {
-                    cb_classification.Items.Add(item);
+                    select_classification.Items.Add(item);
                 }
             }
             else if (tc_modifySet.SelectedIndex == 1)
             {
-                cb_controlSubject.Items.Clear();
-                cb_controlClass.Items.Clear();
-                foreach (var item in tableSuject)
+                select_controlSubject.Items.Clear();
+                select_controlClass.Items.Clear();
+                foreach (var item in tableSubject)
                 {
-                    cb_controlSubject.Items.Add(item);
+                    select_controlSubject.Items.Add(item);
                 }
                 foreach (var item in tableClassification)
                 {
-                    cb_controlClass.Items.Add(item);
+                    select_controlClass.Items.Add(item);
                 }
             }
         }
 
         private void btn_addSubj_Click(object sender, EventArgs e)
         {
-            if (cb_controlSubject.Text == String.Empty)
+            if (select_controlSubject.Text == String.Empty)
             {
                 lbl_tabModfiyMes.Text = "請填入要新增的內容";
             }
-            if (!cb_controlSubject.Items.Contains(cb_controlSubject.Text))
+            if (!select_controlSubject.Items.Contains(select_controlSubject.Text))
             {
-                cb_controlSubject.Items.Add(cb_controlSubject.Text);
-                tableSuject.Add(cb_controlSubject.Text);
+                select_controlSubject.Items.Add(select_controlSubject.Text);
+                tableSubject.Add(select_controlSubject.Text);
+                this.jsonManager.Save_table_subject(tableSubject);
             }
         }
 
         private void btn_delSubj_Click(object sender, EventArgs e)
         {
-            if (cb_controlSubject.Text == String.Empty)
+            if (select_controlSubject.SelectedValue == null)
             {
                 lbl_tabModfiyMes.Text = "請選擇要刪除的內容";
+                return;
             }
-            if (cb_controlSubject.Items.Contains(cb_controlSubject.Text))
+            else
             {
-                tableSuject.Remove(cb_controlSubject.Text);
-                cb_controlSubject.Items.Remove(cb_controlSubject.Text);
+                foreach (var Item in select_controlSubject.SelectedValue)
+                {
+                    tableSubject.Remove(Item.ToString());
+                    select_controlSubject.Items.Remove(Item.ToString());
+                    this.jsonManager.Save_table_subject(tableSubject);
+                    select_controlSubject.Text = String.Empty;
+                }
             }
         }
 
         private void btn_addClass_Click(object sender, EventArgs e)
         {
-            if (cb_controlClass.Text == String.Empty)
+            if (select_controlClass.Text == String.Empty)
             {
                 lbl_tabModfiyMes.Text = "請填入要新增的內容";
             }
-            if (!cb_controlClass.Items.Contains(cb_controlClass.Text))
+            if (!select_controlClass.Items.Contains(select_controlClass.Text))
             {
-                cb_controlClass.Items.Add(cb_controlClass.Text);
-                tableSuject.Add(cb_controlClass.Text);
+                select_controlClass.Items.Add(select_controlClass.Text);
+                tableClassification.Add(select_controlClass.Text);
+                this.jsonManager.Save_tableClassification(tableClassification);
             }
         }
 
         private void btn_delClass_Click(object sender, EventArgs e)
         {
-            if (cb_controlClass.Text == String.Empty)
+            if (select_controlClass.SelectedValue == null)
             {
                 lbl_tabModfiyMes.Text = "請選擇要刪除的內容";
+                return;
             }
-            if (cb_controlClass.Items.Contains(cb_controlClass.Text))
+            else
             {
-                tableClassification.Remove(cb_controlClass.Text);
-                cb_controlClass.Items.Remove(cb_controlClass.Text);
+                foreach (var Item in select_controlClass.SelectedValue)
+                {
+                    tableClassification.Remove(Item.ToString());
+                    select_controlClass.Items.Remove(Item.ToString());
+                    this.jsonManager.Save_table_subject(tableClassification);
+                    select_controlClass.ClearSelect();
+                }
             }
         }
 
@@ -393,6 +448,71 @@ namespace project
         {
             From_settings new_form = new From_settings();
             new_form.ShowDialog();
+        }
+
+        private void cb_controlSubject_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btn_addSubj_Click(sender, e);
+            }
+            if (e.KeyCode == Keys.Delete)
+            {
+                btn_delSubj_Click(sender, e);
+            }
+        }
+
+        private void cb_controlClass_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btn_addClass_Click(sender, e);
+            }
+            if (e.KeyCode == Keys.Delete)
+            {
+                btn_delClass_Click(sender, e);
+            }
+        }
+
+        private void dateTimeP_select_PrefixClick(object sender, MouseEventArgs e)
+        {
+            dateTimeP_select.Value = DateTime.Now;
+        }
+
+        private void dateTimeP_select_ExpandDropChanged(object sender, BoolEventArgs e)
+        {
+            if (dateTimeP_select.ExpandDrop)
+            {
+                dateTimeP_select.Value = DateTime.Now;
+            }
+        }
+
+        private Image GetColorDotIcon(Color color, int size = 14)
+        {
+            if (_colorIconCache.TryGetValue(color, out var img))
+                return img;
+
+            var bmp = new Bitmap(size, size);
+            using (var g = Graphics.FromImage(bmp))
+            {
+                g.SmoothingMode = SmoothingMode.AntiAlias;
+                g.Clear(Color.Transparent);
+
+                var rect = new Rectangle(1, 1, size - 2, size - 2);
+                using (var b = new SolidBrush(color))
+                    g.FillEllipse(b, rect);
+
+                using (var p = new Pen(Color.FromArgb(160, 0, 0, 0), 1))
+                    g.DrawEllipse(p, rect);
+            }
+
+            _colorIconCache[color] = bmp;
+            return bmp;
+        }
+
+        private void select_selectColor_SelectedIndexChanged(object sender, IntEventArgs e)
+        {
+            select_selectColor.BackColor = ColorTranslator.FromHtml(select_selectColor.SelectedValue.ToString());
         }
     }
 }

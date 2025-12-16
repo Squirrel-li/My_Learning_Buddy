@@ -1,18 +1,21 @@
-﻿using System;
+﻿using project;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Drawing;
-using System.ComponentModel;
-using System.Windows.Forms;
 using System.Threading.Tasks;
-using project;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+//using AntdUI;
 
 namespace project.Component
 {
-    class ToDoTask
+    public class ToDoTask
     {
-        public ToDoTask(String subject, String classification, String task_describe, DateTime deadline, Color themeColor)
+        public ToDoTask() { }
+        public ToDoTask(String subject, String classification, String task_describe, DateTime deadline, String themeColor)
         {
             this.subject = subject;
             this.classification = classification;
@@ -20,7 +23,7 @@ namespace project.Component
             this.deadline = deadline;
             this.themeColor = themeColor;
 
-            this.done = false;
+            this.finish = false;
         }
 
         public void add_to_panel(FlowLayoutPanel contain_flpanel)
@@ -33,38 +36,95 @@ namespace project.Component
         public String classification { get; set; }
         public String taskDescribe { get; set; }
         public DateTime deadline { get; set; }
-        public bool done { get; set; }
-        public Color themeColor { get; set; }
+        public bool finish { get; set; }
+        public String themeColor { get; set; }
     }
 
     //顯示的任務 text_box
-    class TB_TASK : TextBox
+    class TB_TASK : System.Windows.Forms.TextBox
     {
         private FlowLayoutPanel target_panel;
         private ToDoTask task;
         public DateTime Deadline => task?.deadline ?? DateTime.MaxValue;
         public TB_TASK(FlowLayoutPanel contain_flpanel, ToDoTask input)
         {
+            // 初始化
             this.target_panel = contain_flpanel;
             this.task = input;
-            //.Width = contain_flpanel.Width - 20 - (contain_flpanel.Margin.Left + contain_flpanel.Margin.Right);
-            this.BorderStyle = BorderStyle.FixedSingle;
 
-            //this.ScrollBars = ScrollBars.Vertical;
+            // 基本屬性設定
+            this.BorderStyle = BorderStyle.FixedSingle;
             this.Multiline = true;
             this.TextAlign = HorizontalAlignment.Center;
             this.Enabled = true;
             this.Cursor = Cursors.Default;
             this.ForeColor = Color.Black;
-            this.BackColor = input.themeColor;
-
-            String text_index = text_set(input);
-
+            this.BackColor = ColorTranslator.FromHtml(input.themeColor);
             this.Font = new Font("微軟正黑體", 12);
-            this.ReadOnly = false;
-            this.Text = text_index;
+            this.ReadOnly = true;
+            this.Text = text_set(input);
             this.Height = this.FontHeight * 4 + 2;
             this.Width = target_panel.Width - 12 - 15;
+
+            // 右鍵選單
+            System.Windows.Forms.ContextMenuStrip cms = new System.Windows.Forms.ContextMenuStrip();
+
+            cms.Font = new Font("微軟正黑體", 12);
+
+            ToolStripMenuItem editItem = new ToolStripMenuItem("編輯活動");
+            ToolStripMenuItem finishItem = new ToolStripMenuItem("活動完成");
+            ToolStripMenuItem delItem = new ToolStripMenuItem("刪除活動");
+
+            editItem.Click += (s, e) => { this.ReadOnly = false; };
+            finishItem.Click += (s, e) => 
+            {
+                JsonManager jsonManager = new JsonManager();
+                int id = jsonManager.Find_ToDoTask_Id(this.task);
+                this.task.finish = true;
+                this.target_panel.Controls.Remove(this);
+                jsonManager.Update_tableToDoTask(id, this.task);
+            };
+
+            delItem.Click += (s, e) =>
+            {
+                JsonManager jsonManager = new JsonManager();
+                this.target_panel.Controls.Remove(this);
+                jsonManager.Remove_tableToDoTask(this.task);
+            };
+
+            cms.Items.AddRange(new ToolStripItem[]
+            {
+                editItem,
+                finishItem,
+                new ToolStripSeparator(),
+                delItem
+            });
+
+            this.ContextMenuStrip = cms;
+
+            // 滑鼠移入移出效果
+            this.MouseEnter += (s, e) => 
+            {
+                this.BackColor = ControlPaint.Light(ColorTranslator.FromHtml(input.themeColor));
+                this.Width += 4;
+                this.Height += 4;
+            };
+            this.MouseLeave += (s, e) =>
+            {
+                this.BackColor = ColorTranslator.FromHtml(input.themeColor);
+                this.Width -= 4;
+                this.Height -= 4;
+            };
+
+            this.KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    this.ReadOnly = true;
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                }
+            };
         }
 
         public void add_to_panel()
@@ -142,7 +202,7 @@ namespace project.Component
             this.Height = target_FLPanel.Height - 9;
             this.Tag = name;
 
-            Label lbl_title = new Label()
+            System.Windows.Forms.Label lbl_title = new System.Windows.Forms.Label()
             {
                 Text = show_text,
                 Height = 25,
