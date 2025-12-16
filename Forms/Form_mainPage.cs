@@ -140,11 +140,10 @@ namespace project
             ToDoTask new_toDoTask = new ToDoTask(subject, classification, taskDescribe, dateTime, ColorTranslator.FromHtml("#FFADAD"));
             this.tableToDoTask.Add(new_toDoTask);
 
-            foreach (var toDoTask in this.tableToDoTask)
+            // 先快取所有 FL_Panel，避免每次查找都掃描 Controls
             {
                 lbl_debug.Text = "";
-                FL_Panel targetPanel = find_pnaelinlanel(this.flpanel_calendar, "FL_0");
-                int dayDiff = (dateTime.Date - DateTime.Today).Days;
+                for (int t = 0; t < this.tableToDoTask.Count; t++)
                 if (!toDoTask.done)
                 {
                     if (0 > dayDiff)
