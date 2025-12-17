@@ -31,10 +31,15 @@ namespace project.Component
 
         class jsonStructure
         {
+            // 代辦任務設定
             public List<string> tableSubject { get; set; }
             public List<string> tableClassification { get; set; }
             public List<string> tableFLPanelText { get; set; }
             public List<ToDoTask> tableToDoTask { get; set; } = new List<ToDoTask>();
+
+            // 番茄鐘設定
+            public int[] modeSet { get; set; }
+            public int loopTimes { get; set; }
         }
 
         private void json_init()
@@ -46,7 +51,9 @@ namespace project.Component
                     tableSubject = new List<string> { "科目一", "科目二", "科目三" },
                     tableClassification = new List<string> { "考試", "報告", "作業", "期末專題" },
                     tableFLPanelText = new List<string> { "今日活動", "明日活動", "久遠以後" },
-                    tableToDoTask = new List<ToDoTask>()
+                    tableToDoTask = new List<ToDoTask>(),
+                    modeSet = new int[] { 0, 20 * 60, 5 * 60, 10 * 60 },
+                    loopTimes = 2
                 };
                 string jsonString = JsonSerializer.Serialize(default_json, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
                 System.IO.File.WriteAllText(this.filePath, jsonString);
@@ -385,6 +392,56 @@ namespace project.Component
                 t.finish == targetTask.finish
             );
             return Id;
+        }
+
+
+        // 番茄鐘操作
+        public int[] Get_modeSet()
+        {
+            if (!System.IO.File.Exists(this.filePath))
+            {
+                json_init();
+            }
+            string jsonFormFile = File.ReadAllText(filePath);
+            jsonStructure jsonData = JsonSerializer.Deserialize<jsonStructure>(jsonFormFile);
+            return jsonData.modeSet;
+        }
+
+        public int Get_loopTime()
+        {
+            if (!System.IO.File.Exists(this.filePath))
+            {
+                json_init();
+            }
+            string jsonFormFile = File.ReadAllText(filePath);
+            jsonStructure jsonData = JsonSerializer.Deserialize<jsonStructure>(jsonFormFile);
+            return jsonData.loopTimes;
+        }
+
+        public void Save_modeSet(int[] modeSet)
+        {
+            if (!System.IO.File.Exists(this.filePath))
+            {
+                json_init();
+            }
+            string jsonFormFile = File.ReadAllText(filePath);
+            jsonStructure jsonData = JsonSerializer.Deserialize<jsonStructure>(jsonFormFile);
+            jsonData.modeSet = modeSet;
+            string jsonString = JsonSerializer.Serialize(jsonData, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+            System.IO.File.WriteAllText(this.filePath, jsonString);
+        }
+
+        public void Save_loopTime(int loopTimes)
+        {
+            if (!System.IO.File.Exists(this.filePath))
+            {
+                json_init();
+            }
+            string jsonFormFile = File.ReadAllText(filePath);
+            jsonStructure jsonData = JsonSerializer.Deserialize<jsonStructure>(jsonFormFile);
+            jsonData.loopTimes = loopTimes;
+            string jsonString = JsonSerializer.Serialize(jsonData, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+            System.IO.File.WriteAllText(this.filePath, jsonString);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AntdUI;
+using project.Component;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,7 +27,9 @@ namespace project
         private int rate = 1;
 
         private int currentloop = 0;
-        private int currentMode = 0; // 0: idle, 1: work, 2: short break, 3: long break 
+        private int currentMode = 0; // 0: idle, 1: work, 2: short break, 3: long break
+
+        public JsonManager jsonManager = new JsonManager();
 
         public Form_pomodoro()
         {
@@ -35,7 +38,7 @@ namespace project
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            timer_count.Enabled = false;
+            initPara();
             initPomoTime();
             if (debug)
             {
@@ -63,6 +66,12 @@ namespace project
             progress1.Value = 1f;
 
             UpdateProgress(this.progress1);
+        }
+
+        private void initPara()
+        {
+            this.modeSet = jsonManager.Get_modeSet();
+            loopTimes = jsonManager.Get_loopTime();
         }
 
         private void timer_count_Tick(object sender, EventArgs e)
@@ -183,6 +192,7 @@ namespace project
                 }
                 e.Handled = true;
                 e.SuppressKeyPress = true;
+                jsonManager.Save_modeSet(this.modeSet);
             }
         }
 
@@ -199,6 +209,7 @@ namespace project
                 }
                 e.Handled = true;
                 e.SuppressKeyPress = true;
+                jsonManager.Save_modeSet(this.modeSet);
             }
         }
 
@@ -215,6 +226,7 @@ namespace project
                 }
                 e.Handled = true;
                 e.SuppressKeyPress = true;
+                jsonManager.Save_modeSet(this.modeSet);
             }
         }
 
@@ -226,6 +238,7 @@ namespace project
                 loopTimes = times;
                 e.Handled = true;
                 e.SuppressKeyPress = true;
+                jsonManager.Save_loopTime(loopTimes);
             }
         }
     }
