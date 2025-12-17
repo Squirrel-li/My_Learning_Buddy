@@ -109,18 +109,18 @@
             // inputN_shortBreak
             // 
             this.inputN_shortBreak.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.inputN_shortBreak.Location = new System.Drawing.Point(497, 438);
+            this.inputN_shortBreak.Location = new System.Drawing.Point(497, 428);
             this.inputN_shortBreak.Name = "inputN_shortBreak";
             this.inputN_shortBreak.Size = new System.Drawing.Size(75, 33);
             this.inputN_shortBreak.TabIndex = 42;
-            this.inputN_shortBreak.Text = "50";
+            this.inputN_shortBreak.Text = "0";
             this.inputN_shortBreak.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.inputN_shortBreak.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputN_shortBreak_KeyDown);
             // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.label1.Location = new System.Drawing.Point(399, 438);
+            this.label1.Location = new System.Drawing.Point(406, 428);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 33);
             this.label1.TabIndex = 43;
@@ -129,7 +129,7 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.label2.Location = new System.Drawing.Point(399, 399);
+            this.label2.Location = new System.Drawing.Point(406, 389);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(92, 33);
             this.label2.TabIndex = 45;
@@ -138,7 +138,7 @@
             // inputN_focus
             // 
             this.inputN_focus.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.inputN_focus.Location = new System.Drawing.Point(497, 399);
+            this.inputN_focus.Location = new System.Drawing.Point(497, 389);
             this.inputN_focus.Name = "inputN_focus";
             this.inputN_focus.Size = new System.Drawing.Size(75, 33);
             this.inputN_focus.TabIndex = 44;
@@ -149,7 +149,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.label3.Location = new System.Drawing.Point(399, 477);
+            this.label3.Location = new System.Drawing.Point(406, 467);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 33);
             this.label3.TabIndex = 47;
@@ -158,7 +158,7 @@
             // inputN_longBreak
             // 
             this.inputN_longBreak.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.inputN_longBreak.Location = new System.Drawing.Point(497, 477);
+            this.inputN_longBreak.Location = new System.Drawing.Point(497, 467);
             this.inputN_longBreak.Name = "inputN_longBreak";
             this.inputN_longBreak.Size = new System.Drawing.Size(75, 33);
             this.inputN_longBreak.TabIndex = 46;
@@ -169,16 +169,16 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.label4.Location = new System.Drawing.Point(399, 516);
+            this.label4.Location = new System.Drawing.Point(370, 506);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(92, 33);
+            this.label4.Size = new System.Drawing.Size(128, 33);
             this.label4.TabIndex = 49;
             this.label4.Text = "長短休息間隔(次)";
             // 
             // inputN_loopTimes
             // 
             this.inputN_loopTimes.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.inputN_loopTimes.Location = new System.Drawing.Point(497, 516);
+            this.inputN_loopTimes.Location = new System.Drawing.Point(497, 506);
             this.inputN_loopTimes.Name = "inputN_loopTimes";
             this.inputN_loopTimes.Size = new System.Drawing.Size(75, 33);
             this.inputN_loopTimes.TabIndex = 48;

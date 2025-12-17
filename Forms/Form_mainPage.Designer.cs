@@ -56,9 +56,29 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btn_openPomo = new AntdUI.Button();
             this.btn_settings = new AntdUI.Button();
+            this.stackPanel1 = new AntdUI.StackPanel();
+            this.stackPanel4 = new AntdUI.StackPanel();
+            this.input7 = new AntdUI.Input();
+            this.input8 = new AntdUI.Input();
+            this.datePicker3 = new AntdUI.DatePicker();
+            this.input9 = new AntdUI.Input();
+            this.stackPanel3 = new AntdUI.StackPanel();
+            this.input4 = new AntdUI.Input();
+            this.input5 = new AntdUI.Input();
+            this.datePicker2 = new AntdUI.DatePicker();
+            this.input6 = new AntdUI.Input();
+            this.stackPanel2 = new AntdUI.StackPanel();
+            this.input2 = new AntdUI.Input();
+            this.input3 = new AntdUI.Input();
+            this.datePicker1 = new AntdUI.DatePicker();
+            this.input1 = new AntdUI.Input();
             this.tb_addToDo.SuspendLayout();
             this.tc_modifySet.SuspendLayout();
             this.tb_addSubjClass.SuspendLayout();
+            this.stackPanel1.SuspendLayout();
+            this.stackPanel4.SuspendLayout();
+            this.stackPanel3.SuspendLayout();
+            this.stackPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // flpanel_calendar
@@ -136,7 +156,7 @@
             this.btn_addTask.Name = "btn_addTask";
             this.btn_addTask.Size = new System.Drawing.Size(143, 49);
             this.btn_addTask.TabIndex = 20;
-            this.btn_addTask.Text = "新增事項";
+            this.btn_addTask.Text = "新增活動";
             this.btn_addTask.Click += new System.EventHandler(this.btn_addTask_Click);
             // 
             // select_classification
@@ -372,12 +392,185 @@
             this.btn_settings.Text = "設定";
             this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
             // 
+            // stackPanel1
+            // 
+            this.stackPanel1.AutoScroll = true;
+            this.stackPanel1.Controls.Add(this.stackPanel4);
+            this.stackPanel1.Controls.Add(this.stackPanel3);
+            this.stackPanel1.Controls.Add(this.stackPanel2);
+            this.stackPanel1.Location = new System.Drawing.Point(175, 447);
+            this.stackPanel1.Name = "stackPanel1";
+            this.stackPanel1.Size = new System.Drawing.Size(159, 222);
+            this.stackPanel1.TabIndex = 17;
+            this.stackPanel1.Text = "stackPanel1";
+            this.stackPanel1.Vertical = true;
+            // 
+            // stackPanel4
+            // 
+            this.stackPanel4.AutoScroll = true;
+            this.stackPanel4.Controls.Add(this.input7);
+            this.stackPanel4.Controls.Add(this.input8);
+            this.stackPanel4.Controls.Add(this.datePicker3);
+            this.stackPanel4.Controls.Add(this.input9);
+            this.stackPanel4.Location = new System.Drawing.Point(3, 367);
+            this.stackPanel4.Name = "stackPanel4";
+            this.stackPanel4.Size = new System.Drawing.Size(137, 176);
+            this.stackPanel4.TabIndex = 5;
+            this.stackPanel4.Text = "stackPanel4";
+            this.stackPanel4.Vertical = true;
+            // 
+            // input7
+            // 
+            this.input7.JoinMode = AntdUI.TJoinMode.Bottom;
+            this.input7.Location = new System.Drawing.Point(0, 90);
+            this.input7.Margin = new System.Windows.Forms.Padding(0);
+            this.input7.Name = "input7";
+            this.input7.Size = new System.Drawing.Size(137, 64);
+            this.input7.TabIndex = 5;
+            this.input7.Text = "input7";
+            // 
+            // input8
+            // 
+            this.input8.JoinMode = AntdUI.TJoinMode.TB;
+            this.input8.Location = new System.Drawing.Point(0, 60);
+            this.input8.Margin = new System.Windows.Forms.Padding(0);
+            this.input8.Name = "input8";
+            this.input8.Size = new System.Drawing.Size(137, 30);
+            this.input8.TabIndex = 4;
+            this.input8.Text = "input8";
+            // 
+            // datePicker3
+            // 
+            this.datePicker3.JoinMode = AntdUI.TJoinMode.TB;
+            this.datePicker3.Location = new System.Drawing.Point(0, 30);
+            this.datePicker3.Margin = new System.Windows.Forms.Padding(0);
+            this.datePicker3.Name = "datePicker3";
+            this.datePicker3.Size = new System.Drawing.Size(137, 30);
+            this.datePicker3.TabIndex = 3;
+            // 
+            // input9
+            // 
+            this.input9.JoinMode = AntdUI.TJoinMode.Top;
+            this.input9.Location = new System.Drawing.Point(0, 0);
+            this.input9.Margin = new System.Windows.Forms.Padding(0);
+            this.input9.Name = "input9";
+            this.input9.Size = new System.Drawing.Size(137, 30);
+            this.input9.TabIndex = 0;
+            this.input9.Text = "input9";
+            // 
+            // stackPanel3
+            // 
+            this.stackPanel3.AutoScroll = true;
+            this.stackPanel3.Controls.Add(this.input4);
+            this.stackPanel3.Controls.Add(this.input5);
+            this.stackPanel3.Controls.Add(this.datePicker2);
+            this.stackPanel3.Controls.Add(this.input6);
+            this.stackPanel3.Location = new System.Drawing.Point(3, 185);
+            this.stackPanel3.Name = "stackPanel3";
+            this.stackPanel3.Size = new System.Drawing.Size(137, 176);
+            this.stackPanel3.TabIndex = 4;
+            this.stackPanel3.Text = "stackPanel3";
+            this.stackPanel3.Vertical = true;
+            // 
+            // input4
+            // 
+            this.input4.JoinMode = AntdUI.TJoinMode.Bottom;
+            this.input4.Location = new System.Drawing.Point(0, 90);
+            this.input4.Margin = new System.Windows.Forms.Padding(0);
+            this.input4.Name = "input4";
+            this.input4.Size = new System.Drawing.Size(137, 64);
+            this.input4.TabIndex = 5;
+            this.input4.Text = "input4";
+            // 
+            // input5
+            // 
+            this.input5.JoinMode = AntdUI.TJoinMode.TB;
+            this.input5.Location = new System.Drawing.Point(0, 60);
+            this.input5.Margin = new System.Windows.Forms.Padding(0);
+            this.input5.Name = "input5";
+            this.input5.Size = new System.Drawing.Size(137, 30);
+            this.input5.TabIndex = 4;
+            this.input5.Text = "input5";
+            // 
+            // datePicker2
+            // 
+            this.datePicker2.JoinMode = AntdUI.TJoinMode.TB;
+            this.datePicker2.Location = new System.Drawing.Point(0, 30);
+            this.datePicker2.Margin = new System.Windows.Forms.Padding(0);
+            this.datePicker2.Name = "datePicker2";
+            this.datePicker2.Size = new System.Drawing.Size(137, 30);
+            this.datePicker2.TabIndex = 3;
+            // 
+            // input6
+            // 
+            this.input6.JoinMode = AntdUI.TJoinMode.Top;
+            this.input6.Location = new System.Drawing.Point(0, 0);
+            this.input6.Margin = new System.Windows.Forms.Padding(0);
+            this.input6.Name = "input6";
+            this.input6.Size = new System.Drawing.Size(137, 30);
+            this.input6.TabIndex = 0;
+            this.input6.Text = "input6";
+            // 
+            // stackPanel2
+            // 
+            this.stackPanel2.AutoScroll = true;
+            this.stackPanel2.Controls.Add(this.input2);
+            this.stackPanel2.Controls.Add(this.input3);
+            this.stackPanel2.Controls.Add(this.datePicker1);
+            this.stackPanel2.Controls.Add(this.input1);
+            this.stackPanel2.Location = new System.Drawing.Point(3, 3);
+            this.stackPanel2.Name = "stackPanel2";
+            this.stackPanel2.Size = new System.Drawing.Size(137, 176);
+            this.stackPanel2.TabIndex = 3;
+            this.stackPanel2.Text = "stackPanel2";
+            this.stackPanel2.Vertical = true;
+            // 
+            // input2
+            // 
+            this.input2.JoinMode = AntdUI.TJoinMode.Bottom;
+            this.input2.Location = new System.Drawing.Point(0, 90);
+            this.input2.Margin = new System.Windows.Forms.Padding(0);
+            this.input2.Name = "input2";
+            this.input2.Size = new System.Drawing.Size(137, 64);
+            this.input2.TabIndex = 5;
+            this.input2.Text = "input2";
+            // 
+            // input3
+            // 
+            this.input3.JoinMode = AntdUI.TJoinMode.TB;
+            this.input3.Location = new System.Drawing.Point(0, 60);
+            this.input3.Margin = new System.Windows.Forms.Padding(0);
+            this.input3.Name = "input3";
+            this.input3.Size = new System.Drawing.Size(137, 30);
+            this.input3.TabIndex = 4;
+            this.input3.Text = "input3";
+            // 
+            // datePicker1
+            // 
+            this.datePicker1.JoinMode = AntdUI.TJoinMode.TB;
+            this.datePicker1.Location = new System.Drawing.Point(0, 30);
+            this.datePicker1.Margin = new System.Windows.Forms.Padding(0);
+            this.datePicker1.Name = "datePicker1";
+            this.datePicker1.Size = new System.Drawing.Size(137, 30);
+            this.datePicker1.TabIndex = 3;
+            // 
+            // input1
+            // 
+            this.input1.JoinMode = AntdUI.TJoinMode.Top;
+            this.input1.Location = new System.Drawing.Point(0, 0);
+            this.input1.Margin = new System.Windows.Forms.Padding(0);
+            this.input1.Name = "input1";
+            this.input1.Size = new System.Drawing.Size(137, 30);
+            this.input1.TabIndex = 0;
+            this.input1.Text = "input1";
+            // 
             // Form_mainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(244)))), ((int)(((byte)(248)))));
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.stackPanel1);
             this.Controls.Add(this.btn_settings);
             this.Controls.Add(this.btn_openPomo);
             this.Controls.Add(this.tc_modifySet);
@@ -391,6 +584,10 @@
             this.tc_modifySet.ResumeLayout(false);
             this.tb_addSubjClass.ResumeLayout(false);
             this.tb_addSubjClass.PerformLayout();
+            this.stackPanel1.ResumeLayout(false);
+            this.stackPanel4.ResumeLayout(false);
+            this.stackPanel3.ResumeLayout(false);
+            this.stackPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -425,6 +622,22 @@
         private AntdUI.Button btn_delSubj;
         private AntdUI.SelectMultiple select_controlClass;
         private AntdUI.SelectMultiple select_controlSubject;
+        private AntdUI.StackPanel stackPanel1;
+        private AntdUI.StackPanel stackPanel4;
+        private AntdUI.Input input7;
+        private AntdUI.Input input8;
+        private AntdUI.DatePicker datePicker3;
+        private AntdUI.Input input9;
+        private AntdUI.StackPanel stackPanel3;
+        private AntdUI.Input input4;
+        private AntdUI.Input input5;
+        private AntdUI.DatePicker datePicker2;
+        private AntdUI.Input input6;
+        private AntdUI.StackPanel stackPanel2;
+        private AntdUI.Input input2;
+        private AntdUI.Input input3;
+        private AntdUI.DatePicker datePicker1;
+        private AntdUI.Input input1;
     }
 }
 
