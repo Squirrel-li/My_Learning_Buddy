@@ -1,4 +1,5 @@
-﻿using project;
+﻿using AntdUI;
+using project;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,6 +44,7 @@ namespace project.Component
 
     public class PanelTASK : AntdUI.StackPanel
     {
+        JsonManager jsonManager = new JsonManager();
         private AntdUI.StackPanel contain_StackPanel;
         private ToDoTask task;
         public PanelTASK(AntdUI.StackPanel contain_StackPanel, ToDoTask task)
@@ -74,7 +76,8 @@ namespace project.Component
             SelectSubject.JoinMode = AntdUI.TJoinMode.Top;
             SelectSubject.BackColor = ParseHex(task.themeColor);
             SelectSubject.IconRatio = 0;
-            //SelectSubject.
+            SelectSubject.List = true;
+            SelectSubject.ReadOnly = true;
 
             deadlineLabel.Padding = new Padding(0, 0, 0, 0);
             deadlineLabel.Margin = new Padding(0, 0, 0, 0);
@@ -84,6 +87,7 @@ namespace project.Component
             deadlineLabel.Height = 30;
             deadlineLabel.JoinMode = AntdUI.TJoinMode.TB;
             deadlineLabel.BackColor = ParseHex(task.themeColor);
+            deadlineLabel.ReadOnly = true;
 
             SelectClassification.Padding = new Padding(0, 0, 0, 0);
             SelectClassification.Margin = new Padding(0, 0, 0, 0);
@@ -93,6 +97,8 @@ namespace project.Component
             SelectClassification.JoinMode = AntdUI.TJoinMode.TB;
             SelectClassification.BackColor = ParseHex(task.themeColor);
             SelectClassification.IconRatio = 0;
+            SelectClassification.List = true;
+            SelectClassification.ReadOnly = true;
 
             inputTaskDescribe.Padding = new Padding(0, 0, 0, 0);
             inputTaskDescribe.Margin = new Padding(0, 0, 0, 0);
@@ -103,6 +109,7 @@ namespace project.Component
             inputTaskDescribe.Multiline = true;
             inputTaskDescribe.AutoScroll = true;
             inputTaskDescribe.BackColor = ParseHex(task.themeColor);
+            inputTaskDescribe.ReadOnly = true;
 
             this.Height = SelectSubject.Height + deadlineLabel.Height + SelectClassification.Height + inputTaskDescribe.Height;
             contain_StackPanel.Controls.Add(this);

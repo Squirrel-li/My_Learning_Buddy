@@ -1,5 +1,6 @@
 ﻿using AntdUI;
 using project.Component;
+using project.util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,7 +34,7 @@ namespace project
 
         public JsonManager jsonManager = new JsonManager();
 
-        private bool debug = true;
+        private bool debug = false;
 
 
         private class ColorItem
@@ -85,7 +86,11 @@ namespace project
             initSelectColor();
             select_subject.SelectedIndex = 0;
             select_classification.SelectedIndex = 0;
+
             dateTimeP_select.Value = DateTime.Now;
+
+            backColorSet.SetPanelBackItemColor(panel_Task);
+            backColorSet.SetPanelBackItemColor(panel_modeify);
         }
 
         private void InitTables()
@@ -276,12 +281,25 @@ namespace project
 
         private void btn_addTask_Click(object sender, EventArgs e)
         {
+            if (select_subject.Text == String.Empty)
+            {
+                lbl_tabToDoMes.Text = "請填入科目";
+                tooltip_subject.Show();
+            }
+            if (select_classification.Text == String.Empty)
+            {
+                lbl_tabToDoMes.Text = "請填入分類";
+                tooltip_class.Show();
+            }
             if (select_subject.Text == String.Empty || select_classification.Text == String.Empty)
             {
-                lbl_tabToDoMes.Text = "請填入要新增的內容";
+                timer_toopTipShow.Enabled = false;
+                timer_toopTipShow.Enabled = true;
+                return;
             }
             else
             {
+                lbl_tabToDoMes.Text = "";
                 if (!select_subject.Items.Contains(select_subject.Text))
                 {
                     AddSelectIndex(select_subject, select_subject.Text);
@@ -384,9 +402,9 @@ namespace project
             return targetPanel;
         }
 
-        private void tc_modifySet_SelectedIndexChanged(object sender, EventArgs e)
+        private void tabs_modifySet_SelectedIndexChanged(object sender, IntEventArgs e)
         {
-            if (tc_modifySet.SelectedIndex == 0)
+            if (tabs_modifySet.SelectedIndex == 0)
             {
                 select_subject.Items.Clear();
                 select_classification.Items.Clear();
@@ -399,7 +417,7 @@ namespace project
                     select_classification.Items.Add(item);
                 }
             }
-            else if (tc_modifySet.SelectedIndex == 1)
+            else if (tabs_modifySet.SelectedIndex == 1)
             {
                 select_controlSubject.Items.Clear();
                 select_controlClass.Items.Clear();
@@ -555,6 +573,24 @@ namespace project
         private void select_selectColor_SelectedIndexChanged(object sender, IntEventArgs e)
         {
             select_selectColor.BackColor = ColorTranslator.FromHtml(select_selectColor.SelectedValue.ToString());
+        }
+
+        private void select_subject_MouseEnter(object sender, EventArgs e)
+        {
+            tooltip_subject.Hide();
+        }
+
+        private void select_classification_MouseEnter(object sender, EventArgs e)
+        {
+            tooltip_class.Hide();
+        }
+
+        private void timer_toopTipShow_Tick(object sender, EventArgs e)
+        {
+            lbl_tabToDoMes.Text = "";
+            tooltip_subject.Hide();
+            tooltip_class.Hide();
+            timer_toopTipShow.Enabled = false;
         }
     }
 }

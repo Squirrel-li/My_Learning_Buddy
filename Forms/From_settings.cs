@@ -1,5 +1,6 @@
 ﻿using AntdUI;
 using project.Component;
+using project.util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,8 +29,8 @@ namespace project
 
         private void From_settings_Load(object sender, EventArgs e)
         {
-            SetPanelBackItemColor(panel1);
-            SetPanelBackItemColor(panel2);
+            backColorSet.SetPanelBackItemColor(panel1);
+            backColorSet.SetPanelBackItemColor(panel2);
         }
 
         private void initPara()
@@ -41,23 +42,6 @@ namespace project
             inputN_longBreak.Value = modeSet[2] / 60;
             inputN_shortBreak.Value = modeSet[3] / 60;
             inputN_loopTimes.Value = loopTimes;
-        }
-
-        private void SetPanelBackItemColor(AntdUI.Panel panel)
-        {
-            foreach (Control Item in panel.Controls)
-            {
-                if (Item is AntdUI.Label)
-                {
-                    AntdUI.Label item = (AntdUI.Label)Item;
-                    item.BackColor = Color.FromArgb(255, 230, 230, 230);
-                }
-                if (Item is AntdUI.Switch)
-                {
-                    AntdUI.Switch item = (AntdUI.Switch)Item;
-                    item.BackColor = Color.FromArgb(255, 230, 230, 230);
-                }
-            }
         }
     }
 }
