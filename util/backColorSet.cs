@@ -12,22 +12,44 @@ namespace project.util
     {
         static public void SetPanelBackItemColor(AntdUI.Panel panel)
         {
+            Color color = (Color)panel.Back;
             foreach (Control Item in panel.Controls)
             {
                 if (Item is AntdUI.Label)
                 {
                     AntdUI.Label item = (AntdUI.Label)Item;
-                    item.BackColor = Color.FromArgb(255, 230, 230, 230);
+                    item.BackColor = color;
                 }
                 if (Item is AntdUI.Switch)
                 {
                     AntdUI.Switch item = (AntdUI.Switch)Item;
-                    item.BackColor = Color.FromArgb(255, 230, 230, 230);
+                    item.BackColor = color;
                 }
                 if (Item is AntdUI.Tooltip)
                 {
                     AntdUI.Tooltip item = (AntdUI.Tooltip)Item;
-                    item.BackColor = Color.FromArgb(255, 230, 230, 230);
+                    item.BackColor = color;
+                }
+            }
+        }
+        static public void SetPanelBackItemColor(AntdUI.Panel panel, Color color)
+        {
+            foreach (Control Item in panel.Controls)
+            {
+                if (Item is AntdUI.Label)
+                {
+                    AntdUI.Label item = (AntdUI.Label)Item;
+                    item.BackColor = color;
+                }
+                if (Item is AntdUI.Switch)
+                {
+                    AntdUI.Switch item = (AntdUI.Switch)Item;
+                    item.BackColor = color;
+                }
+                if (Item is AntdUI.Tooltip)
+                {
+                    AntdUI.Tooltip item = (AntdUI.Tooltip)Item;
+                    item.BackColor = color;
                 }
             }
         }

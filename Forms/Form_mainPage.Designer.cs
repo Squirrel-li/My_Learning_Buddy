@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            AntdUI.Tabs.StyleLine styleLine2 = new AntdUI.Tabs.StyleLine();
+            AntdUI.Tabs.StyleLine styleLine8 = new AntdUI.Tabs.StyleLine();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_mainPage));
             this.lbl_debug = new System.Windows.Forms.Label();
             this.select_selectColor = new AntdUI.Select();
             this.dateTimeP_select = new AntdUI.DatePicker();
@@ -41,8 +42,20 @@
             this.btn_settings = new AntdUI.Button();
             this.gridpanel_calendar = new AntdUI.GridPanel();
             this.tabs_modifySet = new AntdUI.Tabs();
+            this.tb_addSubjClass = new AntdUI.TabPage();
+            this.panel_modeify = new AntdUI.Panel();
+            this.lbl_tabModfiyMes = new AntdUI.Label();
+            this.label10 = new AntdUI.Label();
+            this.label9 = new AntdUI.Label();
+            this.select_controlClass = new AntdUI.SelectMultiple();
+            this.btn_addClass = new AntdUI.Button();
+            this.select_controlSubject = new AntdUI.SelectMultiple();
+            this.btn_addSubj = new AntdUI.Button();
+            this.btn_delClass = new AntdUI.Button();
+            this.btn_delSubj = new AntdUI.Button();
             this.tb_addToDo = new AntdUI.TabPage();
             this.panel_Task = new AntdUI.Panel();
+            this.lbl_tabToDoMes = new AntdUI.Label();
             this.tooltip_class = new AntdUI.Tooltip();
             this.tooltip_subject = new AntdUI.Tooltip();
             this.label4 = new AntdUI.Label();
@@ -50,31 +63,20 @@
             this.label3 = new AntdUI.Label();
             this.label1 = new AntdUI.Label();
             this.label6 = new AntdUI.Label();
-            this.tb_addSubjClass = new AntdUI.TabPage();
-            this.panel_modeify = new AntdUI.Panel();
-            this.lbl_tabModfiyMes = new System.Windows.Forms.Label();
-            this.select_controlClass = new AntdUI.SelectMultiple();
-            this.btn_addClass = new AntdUI.Button();
-            this.select_controlSubject = new AntdUI.SelectMultiple();
-            this.label7 = new System.Windows.Forms.Label();
-            this.btn_addSubj = new AntdUI.Button();
-            this.btn_delClass = new AntdUI.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.btn_delSubj = new AntdUI.Button();
             this.timer_toopTipShow = new System.Windows.Forms.Timer(this.components);
-            this.lbl_tabToDoMes = new AntdUI.Label();
+            this.pageHeader1 = new AntdUI.PageHeader();
             this.tabs_modifySet.SuspendLayout();
-            this.tb_addToDo.SuspendLayout();
-            this.panel_Task.SuspendLayout();
             this.tb_addSubjClass.SuspendLayout();
             this.panel_modeify.SuspendLayout();
+            this.tb_addToDo.SuspendLayout();
+            this.panel_Task.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl_debug
             // 
             this.lbl_debug.AutoSize = true;
             this.lbl_debug.Font = new System.Drawing.Font("更紗黑體 Mono TC Nerd", 8F);
-            this.lbl_debug.Location = new System.Drawing.Point(177, 547);
+            this.lbl_debug.Location = new System.Drawing.Point(166, 598);
             this.lbl_debug.Name = "lbl_debug";
             this.lbl_debug.Size = new System.Drawing.Size(109, 14);
             this.lbl_debug.TabIndex = 3;
@@ -90,7 +92,7 @@
             "test3",
             "test4"});
             this.select_selectColor.List = true;
-            this.select_selectColor.Location = new System.Drawing.Point(18, 361);
+            this.select_selectColor.Location = new System.Drawing.Point(18, 364);
             this.select_selectColor.Margin = new System.Windows.Forms.Padding(3, 1, 3, 3);
             this.select_selectColor.MaxCount = 5;
             this.select_selectColor.Name = "select_selectColor";
@@ -102,7 +104,7 @@
             // 
             this.dateTimeP_select.DropDownArrow = true;
             this.dateTimeP_select.Format = "yyyy/MM/dd HH:mm";
-            this.dateTimeP_select.Location = new System.Drawing.Point(18, 281);
+            this.dateTimeP_select.Location = new System.Drawing.Point(18, 284);
             this.dateTimeP_select.Margin = new System.Windows.Forms.Padding(3, 1, 3, 3);
             this.dateTimeP_select.Name = "dateTimeP_select";
             this.dateTimeP_select.ShowIcon = false;
@@ -114,7 +116,7 @@
             // btn_addTask
             // 
             this.btn_addTask.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
-            this.btn_addTask.Location = new System.Drawing.Point(169, 409);
+            this.btn_addTask.Location = new System.Drawing.Point(169, 407);
             this.btn_addTask.Name = "btn_addTask";
             this.btn_addTask.Size = new System.Drawing.Size(143, 49);
             this.btn_addTask.TabIndex = 20;
@@ -130,7 +132,7 @@
             "test3",
             "test4"});
             this.select_classification.List = true;
-            this.select_classification.Location = new System.Drawing.Point(168, 48);
+            this.select_classification.Location = new System.Drawing.Point(168, 51);
             this.select_classification.Margin = new System.Windows.Forms.Padding(3, 1, 3, 3);
             this.select_classification.MaxCount = 5;
             this.select_classification.Name = "select_classification";
@@ -142,7 +144,7 @@
             // 
             this.input_taskDescribe.AutoScroll = true;
             this.input_taskDescribe.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
-            this.input_taskDescribe.Location = new System.Drawing.Point(18, 124);
+            this.input_taskDescribe.Location = new System.Drawing.Point(18, 127);
             this.input_taskDescribe.Multiline = true;
             this.input_taskDescribe.Name = "input_taskDescribe";
             this.input_taskDescribe.Size = new System.Drawing.Size(294, 121);
@@ -157,7 +159,7 @@
             "test3",
             "test4"});
             this.select_subject.List = true;
-            this.select_subject.Location = new System.Drawing.Point(18, 48);
+            this.select_subject.Location = new System.Drawing.Point(18, 51);
             this.select_subject.Margin = new System.Windows.Forms.Padding(3, 1, 3, 3);
             this.select_subject.MaxCount = 5;
             this.select_subject.Name = "select_subject";
@@ -168,7 +170,7 @@
             // btn_openPomo
             // 
             this.btn_openPomo.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
-            this.btn_openPomo.Location = new System.Drawing.Point(17, 568);
+            this.btn_openPomo.Location = new System.Drawing.Point(17, 603);
             this.btn_openPomo.Name = "btn_openPomo";
             this.btn_openPomo.Size = new System.Drawing.Size(143, 49);
             this.btn_openPomo.TabIndex = 15;
@@ -178,7 +180,7 @@
             // btn_settings
             // 
             this.btn_settings.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
-            this.btn_settings.Location = new System.Drawing.Point(17, 620);
+            this.btn_settings.Location = new System.Drawing.Point(17, 655);
             this.btn_settings.Name = "btn_settings";
             this.btn_settings.Size = new System.Drawing.Size(143, 49);
             this.btn_settings.TabIndex = 16;
@@ -187,10 +189,13 @@
             // 
             // gridpanel_calendar
             // 
-            this.gridpanel_calendar.Location = new System.Drawing.Point(344, 12);
+            this.gridpanel_calendar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(136)))), ((int)(((byte)(161)))));
+            this.gridpanel_calendar.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dot;
+            this.gridpanel_calendar.Location = new System.Drawing.Point(344, 77);
             this.gridpanel_calendar.Name = "gridpanel_calendar";
-            this.gridpanel_calendar.Size = new System.Drawing.Size(908, 660);
-            this.gridpanel_calendar.Span = "";
+            this.gridpanel_calendar.Padding = new System.Windows.Forms.Padding(2, 2, 2, 0);
+            this.gridpanel_calendar.Size = new System.Drawing.Size(908, 630);
+            this.gridpanel_calendar.Span = "30% 30% 30% ";
             this.gridpanel_calendar.TabIndex = 1;
             this.gridpanel_calendar.Text = "gridPanel1";
             // 
@@ -200,16 +205,138 @@
             this.tabs_modifySet.Controls.Add(this.tb_addSubjClass);
             this.tabs_modifySet.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tabs_modifySet.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
-            this.tabs_modifySet.Location = new System.Drawing.Point(12, 11);
+            this.tabs_modifySet.Location = new System.Drawing.Point(10, 77);
             this.tabs_modifySet.Margin = new System.Windows.Forms.Padding(3, 3, 3, 5);
             this.tabs_modifySet.Name = "tabs_modifySet";
             this.tabs_modifySet.Pages.Add(this.tb_addToDo);
             this.tabs_modifySet.Pages.Add(this.tb_addSubjClass);
             this.tabs_modifySet.Size = new System.Drawing.Size(328, 518);
-            this.tabs_modifySet.Style = styleLine2;
+            this.tabs_modifySet.Style = styleLine8;
             this.tabs_modifySet.TabIndex = 19;
             this.tabs_modifySet.Text = "tabs1";
             this.tabs_modifySet.SelectedIndexChanged += new AntdUI.IntEventHandler(this.tabs_modifySet_SelectedIndexChanged);
+            // 
+            // tb_addSubjClass
+            // 
+            this.tb_addSubjClass.Controls.Add(this.panel_modeify);
+            this.tb_addSubjClass.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_addSubjClass.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.tb_addSubjClass.Location = new System.Drawing.Point(0, 42);
+            this.tb_addSubjClass.Name = "tb_addSubjClass";
+            this.tb_addSubjClass.Size = new System.Drawing.Size(328, 476);
+            this.tb_addSubjClass.TabIndex = 1;
+            this.tb_addSubjClass.Text = "更改科目與類別";
+            // 
+            // panel_modeify
+            // 
+            this.panel_modeify.Controls.Add(this.lbl_tabModfiyMes);
+            this.panel_modeify.Controls.Add(this.label10);
+            this.panel_modeify.Controls.Add(this.label9);
+            this.panel_modeify.Controls.Add(this.select_controlClass);
+            this.panel_modeify.Controls.Add(this.btn_addClass);
+            this.panel_modeify.Controls.Add(this.select_controlSubject);
+            this.panel_modeify.Controls.Add(this.btn_addSubj);
+            this.panel_modeify.Controls.Add(this.btn_delClass);
+            this.panel_modeify.Controls.Add(this.btn_delSubj);
+            this.panel_modeify.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_modeify.Location = new System.Drawing.Point(0, 0);
+            this.panel_modeify.Margin = new System.Windows.Forms.Padding(0);
+            this.panel_modeify.Name = "panel_modeify";
+            this.panel_modeify.Radius = 10;
+            this.panel_modeify.Shadow = 5;
+            this.panel_modeify.Size = new System.Drawing.Size(328, 476);
+            this.panel_modeify.TabIndex = 28;
+            this.panel_modeify.Text = "panel4";
+            // 
+            // lbl_tabModfiyMes
+            // 
+            this.lbl_tabModfiyMes.AutoSizeMode = AntdUI.TAutoSize.Auto;
+            this.lbl_tabModfiyMes.BackColor = System.Drawing.Color.White;
+            this.lbl_tabModfiyMes.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_tabModfiyMes.Location = new System.Drawing.Point(24, 434);
+            this.lbl_tabModfiyMes.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+            this.lbl_tabModfiyMes.Name = "lbl_tabModfiyMes";
+            this.lbl_tabModfiyMes.Size = new System.Drawing.Size(26, 20);
+            this.lbl_tabModfiyMes.TabIndex = 48;
+            this.lbl_tabModfiyMes.Text = "abc";
+            // 
+            // label10
+            // 
+            this.label10.AutoSizeMode = AntdUI.TAutoSize.Auto;
+            this.label10.BackColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(24, 132);
+            this.label10.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(42, 28);
+            this.label10.TabIndex = 47;
+            this.label10.Text = "類別";
+            // 
+            // label9
+            // 
+            this.label9.AutoSizeMode = AntdUI.TAutoSize.Auto;
+            this.label9.BackColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(24, 21);
+            this.label9.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(42, 28);
+            this.label9.TabIndex = 46;
+            this.label9.Text = "科目";
+            // 
+            // select_controlClass
+            // 
+            this.select_controlClass.Location = new System.Drawing.Point(68, 128);
+            this.select_controlClass.Name = "select_controlClass";
+            this.select_controlClass.Size = new System.Drawing.Size(248, 37);
+            this.select_controlClass.TabIndex = 43;
+            this.select_controlClass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cb_controlClass_KeyDown);
+            // 
+            // btn_addClass
+            // 
+            this.btn_addClass.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.btn_addClass.Location = new System.Drawing.Point(144, 169);
+            this.btn_addClass.Name = "btn_addClass";
+            this.btn_addClass.Size = new System.Drawing.Size(83, 43);
+            this.btn_addClass.TabIndex = 41;
+            this.btn_addClass.Text = "新增";
+            this.btn_addClass.Click += new System.EventHandler(this.btn_addClass_Click);
+            // 
+            // select_controlSubject
+            // 
+            this.select_controlSubject.Location = new System.Drawing.Point(68, 28);
+            this.select_controlSubject.Name = "select_controlSubject";
+            this.select_controlSubject.Size = new System.Drawing.Size(248, 37);
+            this.select_controlSubject.TabIndex = 44;
+            this.select_controlSubject.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cb_controlSubject_KeyDown);
+            // 
+            // btn_addSubj
+            // 
+            this.btn_addSubj.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.btn_addSubj.Location = new System.Drawing.Point(144, 71);
+            this.btn_addSubj.Name = "btn_addSubj";
+            this.btn_addSubj.Size = new System.Drawing.Size(83, 43);
+            this.btn_addSubj.TabIndex = 39;
+            this.btn_addSubj.Text = "新增";
+            this.btn_addSubj.Click += new System.EventHandler(this.btn_addSubj_Click);
+            // 
+            // btn_delClass
+            // 
+            this.btn_delClass.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.btn_delClass.Location = new System.Drawing.Point(233, 169);
+            this.btn_delClass.Name = "btn_delClass";
+            this.btn_delClass.Size = new System.Drawing.Size(83, 43);
+            this.btn_delClass.TabIndex = 40;
+            this.btn_delClass.Text = "刪除";
+            this.btn_delClass.Click += new System.EventHandler(this.btn_delClass_Click);
+            // 
+            // btn_delSubj
+            // 
+            this.btn_delSubj.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.btn_delSubj.Location = new System.Drawing.Point(233, 71);
+            this.btn_delSubj.Name = "btn_delSubj";
+            this.btn_delSubj.Size = new System.Drawing.Size(83, 43);
+            this.btn_delSubj.TabIndex = 38;
+            this.btn_delSubj.Text = "刪除";
+            this.btn_delSubj.Click += new System.EventHandler(this.btn_delSubj_Click);
             // 
             // tb_addToDo
             // 
@@ -249,6 +376,18 @@
             this.panel_Task.TabIndex = 0;
             this.panel_Task.Text = "panel1";
             // 
+            // lbl_tabToDoMes
+            // 
+            this.lbl_tabToDoMes.AutoSizeMode = AntdUI.TAutoSize.Auto;
+            this.lbl_tabToDoMes.BackColor = System.Drawing.Color.White;
+            this.lbl_tabToDoMes.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_tabToDoMes.Location = new System.Drawing.Point(24, 434);
+            this.lbl_tabToDoMes.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+            this.lbl_tabToDoMes.Name = "lbl_tabToDoMes";
+            this.lbl_tabToDoMes.Size = new System.Drawing.Size(26, 20);
+            this.lbl_tabToDoMes.TabIndex = 35;
+            this.lbl_tabToDoMes.Text = "abc";
+            // 
             // tooltip_class
             // 
             this.tooltip_class.ArrowAlign = AntdUI.TAlign.BL;
@@ -257,7 +396,7 @@
             this.tooltip_class.ColorScheme = AntdUI.TAMode.Dark;
             this.tooltip_class.Font = new System.Drawing.Font("微軟正黑體", 10F);
             this.tooltip_class.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.tooltip_class.Location = new System.Drawing.Point(223, 83);
+            this.tooltip_class.Location = new System.Drawing.Point(223, 86);
             this.tooltip_class.MaximumSize = new System.Drawing.Size(89, 41);
             this.tooltip_class.MinimumSize = new System.Drawing.Size(89, 41);
             this.tooltip_class.Name = "tooltip_class";
@@ -276,7 +415,7 @@
             this.tooltip_subject.ColorScheme = AntdUI.TAMode.Dark;
             this.tooltip_subject.Font = new System.Drawing.Font("微軟正黑體", 10F);
             this.tooltip_subject.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.tooltip_subject.Location = new System.Drawing.Point(73, 83);
+            this.tooltip_subject.Location = new System.Drawing.Point(73, 86);
             this.tooltip_subject.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.tooltip_subject.MaximumSize = new System.Drawing.Size(89, 41);
             this.tooltip_subject.MinimumSize = new System.Drawing.Size(89, 41);
@@ -292,7 +431,7 @@
             // 
             this.label4.AutoSizeMode = AntdUI.TAutoSize.Auto;
             this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(24, 331);
+            this.label4.Location = new System.Drawing.Point(24, 334);
             this.label4.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 28);
@@ -303,7 +442,7 @@
             // 
             this.label2.AutoSizeMode = AntdUI.TAutoSize.Auto;
             this.label2.BackColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(24, 251);
+            this.label2.Location = new System.Drawing.Point(24, 254);
             this.label2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 28);
@@ -314,7 +453,7 @@
             // 
             this.label3.AutoSizeMode = AntdUI.TAutoSize.Auto;
             this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(24, 92);
+            this.label3.Location = new System.Drawing.Point(24, 95);
             this.label3.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 28);
@@ -325,7 +464,7 @@
             // 
             this.label1.AutoSizeMode = AntdUI.TAutoSize.Auto;
             this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(181, 18);
+            this.label1.Location = new System.Drawing.Point(181, 21);
             this.label1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 28);
@@ -336,169 +475,58 @@
             // 
             this.label6.AutoSizeMode = AntdUI.TAutoSize.Auto;
             this.label6.BackColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(24, 18);
+            this.label6.Location = new System.Drawing.Point(24, 21);
             this.label6.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(42, 28);
             this.label6.TabIndex = 27;
             this.label6.Text = "科目";
             // 
-            // tb_addSubjClass
-            // 
-            this.tb_addSubjClass.Controls.Add(this.panel_modeify);
-            this.tb_addSubjClass.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_addSubjClass.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
-            this.tb_addSubjClass.Location = new System.Drawing.Point(0, 42);
-            this.tb_addSubjClass.Name = "tb_addSubjClass";
-            this.tb_addSubjClass.Size = new System.Drawing.Size(328, 476);
-            this.tb_addSubjClass.TabIndex = 1;
-            this.tb_addSubjClass.Text = "更改科目與類別";
-            // 
-            // panel_modeify
-            // 
-            this.panel_modeify.Controls.Add(this.lbl_tabModfiyMes);
-            this.panel_modeify.Controls.Add(this.select_controlClass);
-            this.panel_modeify.Controls.Add(this.btn_addClass);
-            this.panel_modeify.Controls.Add(this.select_controlSubject);
-            this.panel_modeify.Controls.Add(this.label7);
-            this.panel_modeify.Controls.Add(this.btn_addSubj);
-            this.panel_modeify.Controls.Add(this.btn_delClass);
-            this.panel_modeify.Controls.Add(this.label8);
-            this.panel_modeify.Controls.Add(this.btn_delSubj);
-            this.panel_modeify.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_modeify.Location = new System.Drawing.Point(0, 0);
-            this.panel_modeify.Margin = new System.Windows.Forms.Padding(0);
-            this.panel_modeify.Name = "panel_modeify";
-            this.panel_modeify.Radius = 10;
-            this.panel_modeify.Shadow = 5;
-            this.panel_modeify.Size = new System.Drawing.Size(328, 476);
-            this.panel_modeify.TabIndex = 28;
-            this.panel_modeify.Text = "panel4";
-            // 
-            // lbl_tabModfiyMes
-            // 
-            this.lbl_tabModfiyMes.AutoSize = true;
-            this.lbl_tabModfiyMes.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lbl_tabModfiyMes.Location = new System.Drawing.Point(18, 400);
-            this.lbl_tabModfiyMes.Name = "lbl_tabModfiyMes";
-            this.lbl_tabModfiyMes.Size = new System.Drawing.Size(36, 20);
-            this.lbl_tabModfiyMes.TabIndex = 45;
-            this.lbl_tabModfiyMes.Text = "123";
-            // 
-            // select_controlClass
-            // 
-            this.select_controlClass.Location = new System.Drawing.Point(68, 112);
-            this.select_controlClass.Name = "select_controlClass";
-            this.select_controlClass.Size = new System.Drawing.Size(248, 37);
-            this.select_controlClass.TabIndex = 43;
-            this.select_controlClass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cb_controlClass_KeyDown);
-            // 
-            // btn_addClass
-            // 
-            this.btn_addClass.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
-            this.btn_addClass.Location = new System.Drawing.Point(144, 153);
-            this.btn_addClass.Name = "btn_addClass";
-            this.btn_addClass.Size = new System.Drawing.Size(83, 43);
-            this.btn_addClass.TabIndex = 41;
-            this.btn_addClass.Text = "新增";
-            this.btn_addClass.Click += new System.EventHandler(this.btn_addClass_Click);
-            // 
-            // select_controlSubject
-            // 
-            this.select_controlSubject.Location = new System.Drawing.Point(68, 12);
-            this.select_controlSubject.Name = "select_controlSubject";
-            this.select_controlSubject.Size = new System.Drawing.Size(248, 37);
-            this.select_controlSubject.TabIndex = 44;
-            this.select_controlSubject.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cb_controlSubject_KeyDown);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("微軟正黑體", 15F);
-            this.label7.Location = new System.Drawing.Point(13, 118);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(52, 25);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "類別";
-            // 
-            // btn_addSubj
-            // 
-            this.btn_addSubj.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
-            this.btn_addSubj.Location = new System.Drawing.Point(144, 55);
-            this.btn_addSubj.Name = "btn_addSubj";
-            this.btn_addSubj.Size = new System.Drawing.Size(83, 43);
-            this.btn_addSubj.TabIndex = 39;
-            this.btn_addSubj.Text = "新增";
-            this.btn_addSubj.Click += new System.EventHandler(this.btn_addSubj_Click);
-            // 
-            // btn_delClass
-            // 
-            this.btn_delClass.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
-            this.btn_delClass.Location = new System.Drawing.Point(233, 153);
-            this.btn_delClass.Name = "btn_delClass";
-            this.btn_delClass.Size = new System.Drawing.Size(83, 43);
-            this.btn_delClass.TabIndex = 40;
-            this.btn_delClass.Text = "刪除";
-            this.btn_delClass.Click += new System.EventHandler(this.btn_delClass_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
-            this.label8.Location = new System.Drawing.Point(14, 18);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(48, 24);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "科目";
-            // 
-            // btn_delSubj
-            // 
-            this.btn_delSubj.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
-            this.btn_delSubj.Location = new System.Drawing.Point(233, 55);
-            this.btn_delSubj.Name = "btn_delSubj";
-            this.btn_delSubj.Size = new System.Drawing.Size(83, 43);
-            this.btn_delSubj.TabIndex = 38;
-            this.btn_delSubj.Text = "刪除";
-            this.btn_delSubj.Click += new System.EventHandler(this.btn_delSubj_Click);
-            // 
             // timer_toopTipShow
             // 
             this.timer_toopTipShow.Interval = 1000;
             this.timer_toopTipShow.Tick += new System.EventHandler(this.timer_toopTipShow_Tick);
             // 
-            // lbl_tabToDoMes
+            // pageHeader1
             // 
-            this.lbl_tabToDoMes.AutoSizeMode = AntdUI.TAutoSize.Auto;
-            this.lbl_tabToDoMes.BackColor = System.Drawing.Color.White;
-            this.lbl_tabToDoMes.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_tabToDoMes.Location = new System.Drawing.Point(24, 438);
-            this.lbl_tabToDoMes.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
-            this.lbl_tabToDoMes.Name = "lbl_tabToDoMes";
-            this.lbl_tabToDoMes.Size = new System.Drawing.Size(26, 20);
-            this.lbl_tabToDoMes.TabIndex = 35;
-            this.lbl_tabToDoMes.Text = "abc";
+            this.pageHeader1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pageHeader1.Font = new System.Drawing.Font("微軟正黑體", 30F);
+            this.pageHeader1.Icon = ((System.Drawing.Image)(resources.GetObject("pageHeader1.Icon")));
+            this.pageHeader1.IconRatio = 1F;
+            this.pageHeader1.IconSvg = "";
+            this.pageHeader1.Location = new System.Drawing.Point(0, 0);
+            this.pageHeader1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.pageHeader1.MaximizeBox = false;
+            this.pageHeader1.Name = "pageHeader1";
+            this.pageHeader1.ShowButton = true;
+            this.pageHeader1.ShowIcon = true;
+            this.pageHeader1.Size = new System.Drawing.Size(1264, 71);
+            this.pageHeader1.TabIndex = 20;
+            this.pageHeader1.Text = "My Learning Buddy";
             // 
             // Form_mainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(244)))), ((int)(((byte)(248)))));
-            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.ClientSize = new System.Drawing.Size(1264, 719);
+            this.Controls.Add(this.pageHeader1);
             this.Controls.Add(this.lbl_debug);
             this.Controls.Add(this.gridpanel_calendar);
             this.Controls.Add(this.btn_settings);
             this.Controls.Add(this.btn_openPomo);
             this.Controls.Add(this.tabs_modifySet);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form_mainPage";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabs_modifySet.ResumeLayout(false);
-            this.tb_addToDo.ResumeLayout(false);
-            this.panel_Task.ResumeLayout(false);
-            this.panel_Task.PerformLayout();
             this.tb_addSubjClass.ResumeLayout(false);
             this.panel_modeify.ResumeLayout(false);
             this.panel_modeify.PerformLayout();
+            this.tb_addToDo.ResumeLayout(false);
+            this.panel_Task.ResumeLayout(false);
+            this.panel_Task.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -520,14 +548,11 @@
         private AntdUI.TabPage tb_addToDo;
         private AntdUI.Panel panel_Task;
         private AntdUI.Panel panel_modeify;
-        public System.Windows.Forms.Label lbl_tabModfiyMes;
         private AntdUI.SelectMultiple select_controlClass;
         private AntdUI.Button btn_addClass;
         private AntdUI.SelectMultiple select_controlSubject;
-        private System.Windows.Forms.Label label7;
         private AntdUI.Button btn_addSubj;
         private AntdUI.Button btn_delClass;
-        private System.Windows.Forms.Label label8;
         private AntdUI.Button btn_delSubj;
         private AntdUI.Label label1;
         private AntdUI.Label label6;
@@ -538,6 +563,10 @@
         private AntdUI.Tooltip tooltip_class;
         private System.Windows.Forms.Timer timer_toopTipShow;
         private AntdUI.Label lbl_tabToDoMes;
+        private AntdUI.PageHeader pageHeader1;
+        private AntdUI.Label label9;
+        private AntdUI.Label label10;
+        private AntdUI.Label lbl_tabModfiyMes;
     }
 }
 

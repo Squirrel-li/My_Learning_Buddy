@@ -19,7 +19,7 @@ using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace project
 {
-    public partial class Form_mainPage : Form
+    public partial class Form_mainPage : AntdUI.Window
     {
         private readonly Dictionary<Color, Image> _colorIconCache = new Dictionary<Color, Image>();
         // Tables
@@ -34,7 +34,7 @@ namespace project
 
         public JsonManager jsonManager = new JsonManager();
 
-        private bool debug = false;
+        private bool debug = true;
 
 
         private class ColorItem
@@ -61,6 +61,7 @@ namespace project
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.Resizable = false;
             if (debug)
             {
                 lbl_debug.Visible = true;
@@ -88,9 +89,8 @@ namespace project
             select_classification.SelectedIndex = 0;
 
             dateTimeP_select.Value = DateTime.Now;
-
-            backColorSet.SetPanelBackItemColor(panel_Task);
-            backColorSet.SetPanelBackItemColor(panel_modeify);
+            //backColorSet.SetPanelBackItemColor(panel_Task);
+            //backColorSet.SetPanelBackItemColor(panel_modeify);
         }
 
         private void InitTables()
@@ -163,10 +163,12 @@ namespace project
                 ContainerStackPanel.Padding = new Padding(0, 0, 0, 0);
 
                 task_panel.Radius = 10;
-                task_panel.Margin = new Padding(1, 0, 1, 0);
+                task_panel.Margin = new Padding(2, 2, 2, 2);
 
                 gridpanel_calendar.Controls.Add(ContainerStackPanel);
                 task_panel.Height = ContainerStackPanel.Height - fl_label.Height - 12;
+                task_panel.BorderStyle = DashStyle.Solid;
+                task_panel.BorderWidth = 2;
 
                 ContainerStackPanel.Controls.Add(task_panel);
                 ContainerStackPanel.Controls.Add(fl_label);
@@ -209,23 +211,20 @@ namespace project
             {
                 AntdUI.StackPanel targetPanel = null;
                 int dayDiff = (toDoTask.deadline.Date - DateTime.Today).Days;
-                if (!toDoTask.finish)
+                if (0 > dayDiff && !toDoTask.finish)
                 {
-                    if (0 > dayDiff)
-                    {
-                        targetPanel = find_pnaelinlanel(this.gridpanel_calendar, "FL_0") ?? throw new Exception("cant find panel");
-                        toDoTask.add_to_panel(targetPanel);
-                    }
-                    else if (panelNum - 1 > dayDiff && dayDiff >= 0)
-                    {
-                        targetPanel = find_pnaelinlanel(this.gridpanel_calendar, $"FL_{dayDiff}") ?? throw new Exception("cant find panel");
-                        toDoTask.add_to_panel(targetPanel);
-                    }
-                    else if (dayDiff >= panelNum - 1)
-                    {
-                        targetPanel = find_pnaelinlanel(this.gridpanel_calendar, $"FL_{panelNum - 1}") ?? throw new Exception("cant find panel");
-                        toDoTask.add_to_panel(targetPanel);
-                    }
+                    targetPanel = find_pnaelinlanel(this.gridpanel_calendar, "FL_0") ?? throw new Exception("cant find panel");
+                    toDoTask.add_to_panel(targetPanel);
+                }
+                else if (panelNum - 1 > dayDiff && dayDiff >= 0)
+                {
+                    targetPanel = find_pnaelinlanel(this.gridpanel_calendar, $"FL_{dayDiff}") ?? throw new Exception("cant find panel");
+                    toDoTask.add_to_panel(targetPanel);
+                }
+                else if (dayDiff >= panelNum - 1)
+                {
+                    targetPanel = find_pnaelinlanel(this.gridpanel_calendar, $"FL_{panelNum - 1}") ?? throw new Exception("cant find panel");
+                    toDoTask.add_to_panel(targetPanel);
                 }
             }
         }
@@ -500,7 +499,7 @@ namespace project
 
         private void btn_openPomo_Click(object sender, EventArgs e)
         {
-            Form_pomodoro new_form = new Form_pomodoro();
+            Form_pomodoro new_form = new Form_pomodoro(debug);
             new_form.ShowDialog();
         }
 

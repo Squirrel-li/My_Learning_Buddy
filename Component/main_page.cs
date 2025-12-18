@@ -51,14 +51,19 @@ namespace project.Component
         {
             this.contain_StackPanel = contain_StackPanel;
             this.task = task;
-            this.Height = 160;
+            this.Height = 165;
             this.Margin = new Padding(0, 0, 0, 0);
             //this.Span = "100%; 100%; 100%; 100%";
             this.Vertical = true;
         }
         public void add_to_panel()
         {
+            AntdUI.Panel PanelContainerSubject = new AntdUI.Panel();
+            AntdUI.Panel PanelC1 = new AntdUI.Panel();
+            AntdUI.Panel PanelC2 = new AntdUI.Panel();
+            AntdUI.Splitter SplitterPanelContainer = new AntdUI.Splitter();
             AntdUI.Select SelectSubject = new AntdUI.Select();
+            AntdUI.Checkbox checkboxFinish = new AntdUI.Checkbox();
             AntdUI.DatePicker deadlineLabel = new AntdUI.DatePicker();
             AntdUI.Select SelectClassification = new AntdUI.Select();
             AntdUI.Input inputTaskDescribe = new AntdUI.Input();
@@ -66,20 +71,95 @@ namespace project.Component
             this.Controls.Add(inputTaskDescribe);
             this.Controls.Add(SelectClassification);
             this.Controls.Add(deadlineLabel);
-            this.Controls.Add(SelectSubject);
+            this.Controls.Add(PanelContainerSubject);
 
-            SelectSubject.Padding = new Padding(0, 0, 0, 0);
+            PanelContainerSubject.Padding = new Padding(0, 0, 0, 0);
+            PanelContainerSubject.Margin = new Padding(5, 3, 5, 0);
+            PanelContainerSubject.Height = 35;
+            //PanelContainerSubject.Radius = 6;
+            //PanelContainerSubject.RadiusAlign = TAlignRound.Top;
+            //PanelContainerSubject.Back = ParseHex(task.themeColor);
+            PanelContainerSubject.BorderWidth = 0;
+
+            SplitterPanelContainer.Dock = DockStyle.Fill;
+            SplitterPanelContainer.Width = 1;
+            SplitterPanelContainer.SplitterSize = 0;
+            SplitterPanelContainer.SplitterBack = ParseHex(task.themeColor);
+            SplitterPanelContainer.FixedPanel = FixedPanel.Panel2;
+            SplitterPanelContainer.IsSplitterFixed = true;
+
+            PanelContainerSubject.Controls.Add(SplitterPanelContainer);
+
+
+            PanelC1.Radius = 6;
+            PanelC1.RadiusAlign = TAlignRound.TL;
+            PanelC1.Back = ParseHex(task.themeColor);
+            PanelC1.Controls.Add(SelectSubject);
+            PanelC1.Dock = DockStyle.Fill;
+
+            PanelC2.Radius = 6;
+            PanelC2.RadiusAlign = TAlignRound.TR;
+            PanelC2.Back = ParseHex(task.themeColor);
+            PanelC2.Controls.Add(checkboxFinish);
+            PanelC2.Dock = DockStyle.Fill;
+
+            SplitterPanelContainer.Panel1.Controls.Add(PanelC1);
+            SplitterPanelContainer.Panel2.Controls.Add(PanelC2);
+
             SelectSubject.Margin = new Padding(0, 0, 0, 0);
             SelectSubject.Text = task.subject;
             SelectSubject.Font = new Font("Segoe UI", 12, FontStyle.Bold);
-            SelectSubject.Height = 30;
-            SelectSubject.JoinMode = AntdUI.TJoinMode.Top;
             SelectSubject.BackColor = ParseHex(task.themeColor);
-            SelectSubject.IconRatio = 0;
+            SelectSubject.ShowIcon = false;
             SelectSubject.List = true;
             SelectSubject.ReadOnly = true;
+            SelectSubject.BorderWidth = 0;
+            SelectSubject.Size = new Size(contain_StackPanel.Width - 8 - 45, PanelContainerSubject.Height - 2);
+            SelectSubject.Dock = DockStyle.Fill;
+            SelectSubject.Location = new Point(0, 0);
 
-            deadlineLabel.Padding = new Padding(0, 0, 0, 0);
+            checkboxFinish.Margin = new Padding(0, 0, 0, 0);
+            checkboxFinish.Text = "";
+            checkboxFinish.Font = new Font("Segoe UI", 8, FontStyle.Regular);
+            checkboxFinish.Height = 30;
+            checkboxFinish.Width = 30;
+            checkboxFinish.Dock = DockStyle.Bottom;
+            checkboxFinish.BackColor = ParseHex(task.themeColor);
+            checkboxFinish.Checked = task.finish;
+            checkboxFinish.CheckedChanged += (s, e) =>
+            {
+                JsonManager jsonManager = new JsonManager();
+                int id = jsonManager.Find_ToDoTask_Id(task);
+                List<ToDoTask> table = jsonManager.Get_tableToDoTask();
+                if (checkboxFinish.Checked)
+                {
+                    task.finish = true;
+                    PanelC1.Back = Color.LightGreen;
+                    PanelC2.Back = Color.LightGreen;
+                    SelectSubject.BackColor = Color.LightGreen;
+                    checkboxFinish.BackColor = Color.LightGreen;
+                    deadlineLabel.BackColor = Color.LightGreen;
+                    SelectClassification.BackColor = Color.LightGreen;
+                    inputTaskDescribe.BackColor = Color.LightGreen;
+                    SplitterPanelContainer.SplitterBack = Color.LightGreen;
+                }
+                else
+                {
+                    task.finish = false;
+                    PanelC1.Back = ParseHex(task.themeColor);
+                    PanelC2.Back = ParseHex(task.themeColor);
+                    SelectSubject.BackColor = ParseHex(task.themeColor);
+                    checkboxFinish.BackColor = ParseHex(task.themeColor);
+                    deadlineLabel.BackColor = ParseHex(task.themeColor);
+                    SelectClassification.BackColor = ParseHex(task.themeColor);
+                    inputTaskDescribe.BackColor = ParseHex(task.themeColor);
+                    SplitterPanelContainer.SplitterBack = ParseHex(task.themeColor);
+                }
+                jsonManager.Update_tableToDoTask(id, task);
+            };
+
+
+
             deadlineLabel.Margin = new Padding(0, 0, 0, 0);
             deadlineLabel.Value = task.deadline;
             deadlineLabel.Text = task.deadline.ToString("yyyy-MM-dd HH:mm");
@@ -87,22 +167,20 @@ namespace project.Component
             deadlineLabel.Height = 30;
             deadlineLabel.JoinMode = AntdUI.TJoinMode.TB;
             deadlineLabel.BackColor = ParseHex(task.themeColor);
+            deadlineLabel.ShowIcon = false;
             deadlineLabel.ReadOnly = true;
 
-            SelectClassification.Padding = new Padding(0, 0, 0, 0);
             SelectClassification.Margin = new Padding(0, 0, 0, 0);
             SelectClassification.Text = task.classification;
             SelectClassification.Font = new Font("Segoe UI", 10, FontStyle.Italic);
             SelectClassification.Height = 30;
             SelectClassification.JoinMode = AntdUI.TJoinMode.TB;
             SelectClassification.BackColor = ParseHex(task.themeColor);
-            SelectClassification.IconRatio = 0;
+            SelectClassification.ShowIcon = false;
             SelectClassification.List = true;
             SelectClassification.ReadOnly = true;
 
-            inputTaskDescribe.Padding = new Padding(0, 0, 0, 0);
             inputTaskDescribe.Margin = new Padding(0, 0, 0, 0);
-            inputTaskDescribe.Text = task.taskDescribe;
             inputTaskDescribe.Font = new Font("Segoe UI", 10, FontStyle.Regular);
             inputTaskDescribe.Height = 70;
             inputTaskDescribe.JoinMode = AntdUI.TJoinMode.Bottom;
@@ -111,7 +189,23 @@ namespace project.Component
             inputTaskDescribe.BackColor = ParseHex(task.themeColor);
             inputTaskDescribe.ReadOnly = true;
 
-            this.Height = SelectSubject.Height + deadlineLabel.Height + SelectClassification.Height + inputTaskDescribe.Height;
+            if (task.taskDescribe == "")
+                inputTaskDescribe.Text = "(無描述)";
+            else
+                inputTaskDescribe.Text = task.taskDescribe;
+
+            if (task.finish)
+            {
+                PanelC1.Back = Color.LightGreen;
+                PanelC2.Back = Color.LightGreen;
+                SelectSubject.BackColor = Color.LightGreen;
+                checkboxFinish.BackColor = Color.LightGreen;
+                deadlineLabel.BackColor = Color.LightGreen;
+                SelectClassification.BackColor = Color.LightGreen;
+                inputTaskDescribe.BackColor = Color.LightGreen;
+                SplitterPanelContainer.SplitterBack = Color.LightGreen;
+            }
+
             contain_StackPanel.Controls.Add(this);
         }
 
