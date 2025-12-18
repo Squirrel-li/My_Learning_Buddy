@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 
 
@@ -77,14 +78,14 @@ namespace project
 
             // Init panel data
             ushort panelNum = 5;
-            InitFLPanel(panelNum);
-
+            InitCalendarPanel(panelNum);
             // Load TO-DO Task data
             loadToDoTask();
 
             initSelectColor();
             select_subject.SelectedIndex = 0;
             select_classification.SelectedIndex = 0;
+            dateTimeP_select.Value = DateTime.Now;
         }
 
         private void InitTables()
@@ -114,26 +115,56 @@ namespace project
             initSelectIndex(this.select_classification, tableClassification);
         }
 
-        private void InitFLPanel(ushort panelNum)
+        private void InitCalendarPanel(ushort panelNum)
         {
+            String settingsText = "";
             for (int i = 0; i < panelNum; i++)
             {
-                String titel = "";
-                if (i < this.tableFLPanelText.Count - 1)
+                settingsText += $"{100/panelNum}% ";
+            }
+            gridpanel_calendar.Span = settingsText;
+
+
+            StackPanel new_stackPanel = new StackPanel();
+            for (int i = panelNum - 1; i >= 0; i--)
+            {
+                lbl_debug.Text += $"初始化 FL_Panel {i}\n";
+                AntdUI.StackPanel task_panel = new AntdUI.StackPanel();
+                task_panel.Vertical =true;
+                task_panel.AutoScroll = true;
+                task_panel.Tag = $"FL_{i}";
+                AntdUI.Label fl_label = new AntdUI.Label();
+                if (i < tableFLPanelText.Count - 1)
                 {
-                    titel = this.tableFLPanelText[i];
+                    fl_label.Text = tableFLPanelText[i];
                 }
-                else if (i == this.panelNum - 1)
+                else if (i < panelNum - 1)
                 {
-                    titel = this.tableFLPanelText[this.tableFLPanelText.Count - 1];
+                    fl_label.Text = $"{i} 天後";
                 }
-                else
+                else if (i == panelNum - 1)
                 {
-                    titel = $"{i}天後";
+                    fl_label.Text = "更久以後";
                 }
-                FL_Panel newPanel = new FL_Panel(this.flpanel_calendar, $"FL_{i}", $"{titel}", panelNum);
-                newPanel.add_to_FLPanel();
-                this.lbl_debug.Text += newPanel.Tag + "\n\r";
+                fl_label.Font = new Font("Microsoft JhengHei", 12, FontStyle.Bold);
+                fl_label.Height = 30;
+                fl_label.Margin = new Padding(0, 0, 0, 0);
+                fl_label.TextAlign = ContentAlignment.MiddleCenter;
+
+                AntdUI.StackPanel ContainerStackPanel = new AntdUI.StackPanel();
+                ContainerStackPanel.Tag = "Container";
+                ContainerStackPanel.Vertical = true;
+                ContainerStackPanel.Margin = new Padding(0, 0, 0, 0);
+                ContainerStackPanel.Padding = new Padding(0, 0, 0, 0);
+
+                task_panel.Radius = 10;
+                task_panel.Margin = new Padding(1, 0, 1, 0);
+
+                gridpanel_calendar.Controls.Add(ContainerStackPanel);
+                task_panel.Height = ContainerStackPanel.Height - fl_label.Height - 12;
+
+                ContainerStackPanel.Controls.Add(task_panel);
+                ContainerStackPanel.Controls.Add(fl_label);
             }
         }
 
@@ -171,23 +202,23 @@ namespace project
 
             foreach (var toDoTask in this.tableToDoTask)
             {
-                FL_Panel targetPanel = null;
+                AntdUI.StackPanel targetPanel = null;
                 int dayDiff = (toDoTask.deadline.Date - DateTime.Today).Days;
                 if (!toDoTask.finish)
                 {
                     if (0 > dayDiff)
                     {
-                        targetPanel = find_pnaelinlanel(this.flpanel_calendar, "FL_0") ?? throw new Exception("cant find panel");
+                        targetPanel = find_pnaelinlanel(this.gridpanel_calendar, "FL_0") ?? throw new Exception("cant find panel");
                         toDoTask.add_to_panel(targetPanel);
                     }
                     else if (panelNum - 1 > dayDiff && dayDiff >= 0)
                     {
-                        targetPanel = find_pnaelinlanel(this.flpanel_calendar, $"FL_{dayDiff}") ?? throw new Exception("cant find panel");
+                        targetPanel = find_pnaelinlanel(this.gridpanel_calendar, $"FL_{dayDiff}") ?? throw new Exception("cant find panel");
                         toDoTask.add_to_panel(targetPanel);
                     }
                     else if (dayDiff >= panelNum - 1)
                     {
-                        targetPanel = find_pnaelinlanel(this.flpanel_calendar, $"FL_{panelNum - 1}") ?? throw new Exception("cant find panel");
+                        targetPanel = find_pnaelinlanel(this.gridpanel_calendar, $"FL_{panelNum - 1}") ?? throw new Exception("cant find panel");
                         toDoTask.add_to_panel(targetPanel);
                     }
                 }
@@ -303,35 +334,46 @@ namespace project
                 int dayDiff = (dateTime.Date - DateTime.Today).Days;
                 if (!new_toDoTask.finish)
                 {
-                    FL_Panel targetPanel;
+                    StackPanel targetPanel;
                     if (0 > dayDiff)
                     {
-                        targetPanel = find_pnaelinlanel(this.flpanel_calendar, "FL_0") ?? throw new Exception("cant find panel");
+                        targetPanel = find_pnaelinlanel(this.gridpanel_calendar, "FL_0") ?? throw new Exception("cant find panel");
                         new_toDoTask.add_to_panel(targetPanel);
                     }
                     else if (panelNum - 1 > dayDiff && dayDiff >= 0)
                     {
-                        targetPanel = find_pnaelinlanel(this.flpanel_calendar, $"FL_{dayDiff}") ?? throw new Exception("cant find panel");
+                        targetPanel = find_pnaelinlanel(this.gridpanel_calendar, $"FL_{dayDiff}") ?? throw new Exception($"cant find panel tag:{dayDiff}");
                         new_toDoTask.add_to_panel(targetPanel);
                     }
                     else if (dayDiff >= panelNum - 1)
                     {
-                        targetPanel = find_pnaelinlanel(this.flpanel_calendar, $"FL_{panelNum - 1}") ?? throw new Exception("cant find panel");
+                        targetPanel = find_pnaelinlanel(this.gridpanel_calendar, $"FL_{panelNum - 1}") ?? throw new Exception("cant find panel");
                         new_toDoTask.add_to_panel(targetPanel);
                     }
                 }
             }
         }
 
-        private FL_Panel find_pnaelinlanel(FlowLayoutPanel sourcePanel, String tag)
+        private AntdUI.StackPanel find_pnaelinlanel(AntdUI.GridPanel sourcePanel, String tag)
         {
-            FL_Panel targetPanel = null;
+            List<AntdUI.StackPanel> ContainerPanels = new List<AntdUI.StackPanel>();
+            AntdUI.StackPanel targetPanel = null;
             foreach (Control control in sourcePanel.Controls)
             {
-                if (control is FL_Panel fl && control.Tag?.ToString() == tag)
+                if (control is AntdUI.StackPanel fl && control.Tag?.ToString() == "Container")
                 {
-                    targetPanel = fl;
-                    break; // 找到就跳出
+                    ContainerPanels.Add(fl);
+                }
+            }
+            foreach (AntdUI.StackPanel ContainerPanel in ContainerPanels)
+            {
+                foreach (Control control in ContainerPanel.Controls)
+                {
+                    if (control is AntdUI.StackPanel fl && control.Tag?.ToString() == tag)
+                    {
+                        targetPanel = fl;
+                        break; // 找到就跳出
+                    }
                 }
             }
             if (targetPanel == null)
@@ -398,9 +440,9 @@ namespace project
                 foreach (var Item in select_controlSubject.SelectedValue)
                 {
                     tableSubject.Remove(Item.ToString());
-                    select_controlSubject.Items.Remove(Item.ToString());
+                    select_controlSubject.ClearSelect();
+                    select_controlSubject.Items.Remove(Item);
                     this.jsonManager.Save_table_subject(tableSubject);
-                    select_controlSubject.Text = String.Empty;
                 }
             }
         }
@@ -431,9 +473,9 @@ namespace project
                 foreach (var Item in select_controlClass.SelectedValue)
                 {
                     tableClassification.Remove(Item.ToString());
-                    select_controlClass.Items.Remove(Item.ToString());
-                    this.jsonManager.Save_table_subject(tableClassification);
                     select_controlClass.ClearSelect();
+                    select_controlClass.Items.Remove(Item);
+                    this.jsonManager.Save_table_subject(tableClassification);
                 }
             }
         }

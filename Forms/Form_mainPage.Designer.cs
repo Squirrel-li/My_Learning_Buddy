@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flpanel_calendar = new System.Windows.Forms.FlowLayoutPanel();
             this.lbl_debug = new System.Windows.Forms.Label();
             this.tb_addToDo = new System.Windows.Forms.TabPage();
             this.select_selectColor = new AntdUI.Select();
@@ -72,6 +71,7 @@
             this.input3 = new AntdUI.Input();
             this.datePicker1 = new AntdUI.DatePicker();
             this.input1 = new AntdUI.Input();
+            this.gridpanel_calendar = new AntdUI.GridPanel();
             this.tb_addToDo.SuspendLayout();
             this.tc_modifySet.SuspendLayout();
             this.tb_addSubjClass.SuspendLayout();
@@ -80,14 +80,6 @@
             this.stackPanel3.SuspendLayout();
             this.stackPanel2.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // flpanel_calendar
-            // 
-            this.flpanel_calendar.Location = new System.Drawing.Point(344, 9);
-            this.flpanel_calendar.Name = "flpanel_calendar";
-            this.flpanel_calendar.Size = new System.Drawing.Size(908, 660);
-            this.flpanel_calendar.TabIndex = 0;
-            this.flpanel_calendar.WrapContents = false;
             // 
             // lbl_debug
             // 
@@ -140,6 +132,7 @@
             // 
             // dateTimeP_select
             // 
+            this.dateTimeP_select.DropDownArrow = true;
             this.dateTimeP_select.Format = "yyyy/MM/dd HH:mm";
             this.dateTimeP_select.Location = new System.Drawing.Point(9, 250);
             this.dateTimeP_select.Name = "dateTimeP_select";
@@ -176,6 +169,7 @@
             // 
             // input_taskDescribe
             // 
+            this.input_taskDescribe.AutoScroll = true;
             this.input_taskDescribe.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
             this.input_taskDescribe.Location = new System.Drawing.Point(9, 99);
             this.input_taskDescribe.Multiline = true;
@@ -295,6 +289,7 @@
             this.select_controlSubject.Name = "select_controlSubject";
             this.select_controlSubject.Size = new System.Drawing.Size(248, 37);
             this.select_controlSubject.TabIndex = 44;
+            this.select_controlSubject.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cb_controlSubject_KeyDown);
             // 
             // select_controlClass
             // 
@@ -302,6 +297,7 @@
             this.select_controlClass.Name = "select_controlClass";
             this.select_controlClass.Size = new System.Drawing.Size(248, 37);
             this.select_controlClass.TabIndex = 43;
+            this.select_controlClass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cb_controlClass_KeyDown);
             // 
             // btn_addClass
             // 
@@ -404,6 +400,7 @@
             this.stackPanel1.TabIndex = 17;
             this.stackPanel1.Text = "stackPanel1";
             this.stackPanel1.Vertical = true;
+            this.stackPanel1.Visible = false;
             // 
             // stackPanel4
             // 
@@ -564,18 +561,27 @@
             this.input1.TabIndex = 0;
             this.input1.Text = "input1";
             // 
+            // gridpanel_calendar
+            // 
+            this.gridpanel_calendar.Location = new System.Drawing.Point(344, 12);
+            this.gridpanel_calendar.Name = "gridpanel_calendar";
+            this.gridpanel_calendar.Size = new System.Drawing.Size(908, 660);
+            this.gridpanel_calendar.Span = "";
+            this.gridpanel_calendar.TabIndex = 1;
+            this.gridpanel_calendar.Text = "gridPanel1";
+            // 
             // Form_mainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(244)))), ((int)(((byte)(248)))));
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.lbl_debug);
+            this.Controls.Add(this.gridpanel_calendar);
             this.Controls.Add(this.stackPanel1);
             this.Controls.Add(this.btn_settings);
             this.Controls.Add(this.btn_openPomo);
             this.Controls.Add(this.tc_modifySet);
-            this.Controls.Add(this.lbl_debug);
-            this.Controls.Add(this.flpanel_calendar);
             this.Name = "Form_mainPage";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -594,7 +600,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.FlowLayoutPanel flpanel_calendar;
         public System.Windows.Forms.Label lbl_debug;
         private System.Windows.Forms.TabPage tb_addToDo;
         public System.Windows.Forms.Label lbl_tabToDoMes;
@@ -638,6 +643,7 @@
         private AntdUI.Input input3;
         private AntdUI.DatePicker datePicker1;
         private AntdUI.Input input1;
+        private AntdUI.GridPanel gridpanel_calendar;
     }
 }
 

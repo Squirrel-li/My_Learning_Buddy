@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,9 +27,9 @@ namespace project.Component
             this.finish = false;
         }
 
-        public void add_to_panel(FlowLayoutPanel contain_flpanel)
+        public void add_to_panel(AntdUI.StackPanel contain_StackPanel)
         {
-            TB_TASK current_task = new TB_TASK(contain_flpanel, this);
+            PanelTASK current_task = new PanelTASK(contain_StackPanel, this);
             current_task.add_to_panel();
         }
 
@@ -40,183 +41,82 @@ namespace project.Component
         public String themeColor { get; set; }
     }
 
-    //顯示的任務 text_box
-    class TB_TASK : System.Windows.Forms.TextBox
+    public class PanelTASK : AntdUI.StackPanel
     {
-        private FlowLayoutPanel target_panel;
+        private AntdUI.StackPanel contain_StackPanel;
         private ToDoTask task;
-        public DateTime Deadline => task?.deadline ?? DateTime.MaxValue;
-        public TB_TASK(FlowLayoutPanel contain_flpanel, ToDoTask input)
+        public PanelTASK(AntdUI.StackPanel contain_StackPanel, ToDoTask task)
         {
-            // 初始化
-            this.target_panel = contain_flpanel;
-            this.task = input;
-
-            // 基本屬性設定
-            this.BorderStyle = BorderStyle.FixedSingle;
-            this.Multiline = true;
-            this.TextAlign = HorizontalAlignment.Center;
-            this.Enabled = true;
-            this.Cursor = Cursors.Default;
-            this.ForeColor = Color.Black;
-            this.BackColor = ColorTranslator.FromHtml(input.themeColor);
-            this.Font = new Font("微軟正黑體", 12);
-            this.ReadOnly = true;
-            this.Text = text_set(input);
-            this.Height = this.FontHeight * 4 + 2;
-            this.Width = target_panel.Width - 12 - 15;
-
-            // 右鍵選單
-            System.Windows.Forms.ContextMenuStrip cms = new System.Windows.Forms.ContextMenuStrip();
-
-            cms.Font = new Font("微軟正黑體", 12);
-
-            ToolStripMenuItem editItem = new ToolStripMenuItem("編輯活動");
-            ToolStripMenuItem finishItem = new ToolStripMenuItem("活動完成");
-            ToolStripMenuItem delItem = new ToolStripMenuItem("刪除活動");
-
-            editItem.Click += (s, e) => { this.ReadOnly = false; };
-            finishItem.Click += (s, e) => 
-            {
-                JsonManager jsonManager = new JsonManager();
-                int id = jsonManager.Find_ToDoTask_Id(this.task);
-                this.task.finish = true;
-                this.target_panel.Controls.Remove(this);
-                jsonManager.Update_tableToDoTask(id, this.task);
-            };
-
-            delItem.Click += (s, e) =>
-            {
-                JsonManager jsonManager = new JsonManager();
-                this.target_panel.Controls.Remove(this);
-                jsonManager.Remove_tableToDoTask(this.task);
-            };
-
-            cms.Items.AddRange(new ToolStripItem[]
-            {
-                editItem,
-                finishItem,
-                new ToolStripSeparator(),
-                delItem
-            });
-
-            this.ContextMenuStrip = cms;
-
-            // 滑鼠移入移出效果
-            this.MouseEnter += (s, e) => 
-            {
-                this.BackColor = ControlPaint.Light(ColorTranslator.FromHtml(input.themeColor));
-                this.Width += 4;
-                this.Height += 4;
-            };
-            this.MouseLeave += (s, e) =>
-            {
-                this.BackColor = ColorTranslator.FromHtml(input.themeColor);
-                this.Width -= 4;
-                this.Height -= 4;
-            };
-
-            this.KeyDown += (s, e) =>
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    this.ReadOnly = true;
-                    e.Handled = true;
-                    e.SuppressKeyPress = true;
-                }
-            };
+            this.contain_StackPanel = contain_StackPanel;
+            this.task = task;
+            this.Height = 160;
+            this.Margin = new Padding(0, 0, 0, 0);
+            //this.Span = "100%; 100%; 100%; 100%";
+            this.Vertical = true;
         }
-
         public void add_to_panel()
         {
-            try
-            {
-                // 依截止日期排序插入
-                int insertionIndex = this.target_panel.Controls.Count;
+            AntdUI.Select SelectSubject = new AntdUI.Select();
+            AntdUI.DatePicker deadlineLabel = new AntdUI.DatePicker();
+            AntdUI.Select SelectClassification = new AntdUI.Select();
+            AntdUI.Input inputTaskDescribe = new AntdUI.Input();
 
-                // 根據截止日期找到插入位置
-                for (int i = 1; i < this.target_panel.Controls.Count; i++)
-                {
-                    var c = this.target_panel.Controls[i];
-                    if (c is TB_TASK otherTask)
-                    {
-                        if (otherTask.Deadline > this.Deadline)
-                        {
-                            insertionIndex = i;
-                            break;
-                        }
-                    }
-                }
+            this.Controls.Add(inputTaskDescribe);
+            this.Controls.Add(SelectClassification);
+            this.Controls.Add(deadlineLabel);
+            this.Controls.Add(SelectSubject);
 
-                // 確保索引不小於1，因為索引0可能是標題
-                if (insertionIndex < 1)
-                    insertionIndex = 1;
+            SelectSubject.Padding = new Padding(0, 0, 0, 0);
+            SelectSubject.Margin = new Padding(0, 0, 0, 0);
+            SelectSubject.Text = task.subject;
+            SelectSubject.Font = new Font("Segoe UI", 12, FontStyle.Bold);
+            SelectSubject.Height = 30;
+            SelectSubject.JoinMode = AntdUI.TJoinMode.Top;
+            SelectSubject.BackColor = ParseHex(task.themeColor);
+            SelectSubject.IconRatio = 0;
+            //SelectSubject.
 
-                // 插入控件
-                this.target_panel.Controls.Add(this);
-                // 調整控件順序
-                this.target_panel.Controls.SetChildIndex(this, insertionIndex);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"add to form fail, {ex}");
-            }
+            deadlineLabel.Padding = new Padding(0, 0, 0, 0);
+            deadlineLabel.Margin = new Padding(0, 0, 0, 0);
+            deadlineLabel.Value = task.deadline;
+            deadlineLabel.Text = task.deadline.ToString("yyyy-MM-dd HH:mm");
+            deadlineLabel.Font = new Font("Segoe UI", 10, FontStyle.Regular);
+            deadlineLabel.Height = 30;
+            deadlineLabel.JoinMode = AntdUI.TJoinMode.TB;
+            deadlineLabel.BackColor = ParseHex(task.themeColor);
+
+            SelectClassification.Padding = new Padding(0, 0, 0, 0);
+            SelectClassification.Margin = new Padding(0, 0, 0, 0);
+            SelectClassification.Text = task.classification;
+            SelectClassification.Font = new Font("Segoe UI", 10, FontStyle.Italic);
+            SelectClassification.Height = 30;
+            SelectClassification.JoinMode = AntdUI.TJoinMode.TB;
+            SelectClassification.BackColor = ParseHex(task.themeColor);
+            SelectClassification.IconRatio = 0;
+
+            inputTaskDescribe.Padding = new Padding(0, 0, 0, 0);
+            inputTaskDescribe.Margin = new Padding(0, 0, 0, 0);
+            inputTaskDescribe.Text = task.taskDescribe;
+            inputTaskDescribe.Font = new Font("Segoe UI", 10, FontStyle.Regular);
+            inputTaskDescribe.Height = 70;
+            inputTaskDescribe.JoinMode = AntdUI.TJoinMode.Bottom;
+            inputTaskDescribe.Multiline = true;
+            inputTaskDescribe.AutoScroll = true;
+            inputTaskDescribe.BackColor = ParseHex(task.themeColor);
+
+            this.Height = SelectSubject.Height + deadlineLabel.Height + SelectClassification.Height + inputTaskDescribe.Height;
+            contain_StackPanel.Controls.Add(this);
         }
 
-        private String text_set(ToDoTask input)
+        private Color ParseHex(string hex)
         {
-            String result = "";
-            result = $"{input.subject}\r\n";
+            hex = hex.Replace("#", "");
 
-            if (input.deadline.Date == DateTime.Now.Date)
-                result += "今天 ";
-            else
-                result += $"{input.deadline:yyyy/MM/dd} ";
+            int r = Convert.ToInt32(hex.Substring(0, 2), 16);
+            int g = Convert.ToInt32(hex.Substring(2, 2), 16);
+            int b = Convert.ToInt32(hex.Substring(4, 2), 16);
 
-            result += $"{input.deadline:HH:mm}\r\n";
-            result += $"{input.classification}\r\n";
-            result += (string.IsNullOrEmpty(input.taskDescribe)) ? "無敘述" : $"{input.taskDescribe}";
-            return result;
-        }
-    }
-
-    class FL_Panel : FlowLayoutPanel
-    {
-        FlowLayoutPanel target_FLPanel;
-        public FL_Panel(FlowLayoutPanel target_FLPanel, String name, String show_text, UInt16 show_num)
-        {
-            this.target_FLPanel = target_FLPanel;
-
-            int usable = target_FLPanel.Width - 9;
-            int margin = this.Margin.Left + this.Margin.Right;
-            int finalWidth = (usable - (show_num - 1) * margin) / show_num;
-            this.Width = finalWidth;
-
-            this.AutoScroll = true;
-            this.FlowDirection = FlowDirection.TopDown;
-            this.WrapContents = false;
-            this.AutoSize = false;
-
-            this.Font = new Font("微軟正黑體", 15);
-            this.Name = name;
-            this.Height = target_FLPanel.Height - 9;
-            this.Tag = name;
-
-            System.Windows.Forms.Label lbl_title = new System.Windows.Forms.Label()
-            {
-                Text = show_text,
-                Height = 25,
-                Width = this.Width - 12 - 15,
-                Font = new Font("微軟正黑體", 15),
-                TextAlign = ContentAlignment.BottomCenter,
-            };
-
-            this.Controls.Add(lbl_title);
-        }
-
-        public void add_to_FLPanel()
-        {
-            this.target_FLPanel.Controls.Add(this);
+            return Color.FromArgb(r, g, b);
         }
     }
 }
