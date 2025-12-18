@@ -17,7 +17,7 @@ namespace project.Component
         {
             if (filePath == null || filePath == "")
             {
-                filePath = "../../settings.json";
+                filePath = "./settings.json";
             }
             this.filePath = filePath;
             json_init();
@@ -25,7 +25,7 @@ namespace project.Component
 
         public JsonManager()
         {
-            this.filePath = "../../settings.json";
+            this.filePath = "./settings.json";
             json_init();
         }
 

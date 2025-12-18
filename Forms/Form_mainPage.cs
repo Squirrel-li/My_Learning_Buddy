@@ -34,7 +34,7 @@ namespace project
 
         public JsonManager jsonManager = new JsonManager();
 
-        private bool debug = true;
+        private bool debug = false;
 
 
         private class ColorItem
