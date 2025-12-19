@@ -30,6 +30,29 @@
         {
             AntdUI.Tabs.StyleLine styleLine1 = new AntdUI.Tabs.StyleLine();
             this.tabs1 = new AntdUI.Tabs();
+            this.tb_task = new AntdUI.TabPage();
+            this.gridPanel2 = new AntdUI.GridPanel();
+            this.panel3 = new AntdUI.Panel();
+            this.btn_clearAllTask = new AntdUI.Button();
+            this.panel4 = new AntdUI.Panel();
+            this.btn_clearAllSubject = new AntdUI.Button();
+            this.label1 = new AntdUI.Label();
+            this.btn_clearAllClass = new AntdUI.Button();
+            this.btn_addClass = new AntdUI.Button();
+            this.btn_delClass = new AntdUI.Button();
+            this.label2 = new AntdUI.Label();
+            this.select_controlClass = new AntdUI.SelectMultiple();
+            this.select_controlSubject = new AntdUI.SelectMultiple();
+            this.btn_addSubj = new AntdUI.Button();
+            this.btn_delSubj = new AntdUI.Button();
+            this.tb_display = new AntdUI.TabPage();
+            this.gridPanel3 = new AntdUI.GridPanel();
+            this.panel5 = new AntdUI.Panel();
+            this.panel6 = new AntdUI.Panel();
+            this.select1 = new AntdUI.Select();
+            this.select_panelNum = new AntdUI.Select();
+            this.label15 = new AntdUI.Label();
+            this.label16 = new AntdUI.Label();
             this.tb_pomo = new AntdUI.TabPage();
             this.gridPanel1 = new AntdUI.GridPanel();
             this.panel1 = new AntdUI.Panel();
@@ -46,65 +69,284 @@
             this.label9 = new AntdUI.Label();
             this.inputN_loopTimes = new AntdUI.InputNumber();
             this.label10 = new AntdUI.Label();
-            this.tb_globle = new AntdUI.TabPage();
-            this.stackPanel3 = new AntdUI.StackPanel();
-            this.stackPanel2 = new AntdUI.StackPanel();
-            this.input3 = new AntdUI.Input();
-            this.select5 = new AntdUI.Select();
-            this.datePicker3 = new AntdUI.DatePicker();
-            this.panel5 = new AntdUI.Panel();
-            this.checkbox3 = new AntdUI.Checkbox();
-            this.select6 = new AntdUI.Select();
-            this.stackPanel1 = new AntdUI.StackPanel();
-            this.input1 = new AntdUI.Input();
-            this.select3 = new AntdUI.Select();
-            this.datePicker1 = new AntdUI.DatePicker();
-            this.panel3 = new AntdUI.Panel();
-            this.checkbox1 = new AntdUI.Checkbox();
-            this.select4 = new AntdUI.Select();
-            this.stackPanel4 = new AntdUI.StackPanel();
-            this.input2 = new AntdUI.Input();
-            this.select1 = new AntdUI.Select();
-            this.datePicker2 = new AntdUI.DatePicker();
-            this.panel4 = new AntdUI.Panel();
-            this.checkbox2 = new AntdUI.Checkbox();
-            this.select2 = new AntdUI.Select();
-            this.tb_task = new AntdUI.TabPage();
             this.btn_save = new AntdUI.Button();
             this.pageHeader1 = new AntdUI.PageHeader();
             this.tabs1.SuspendLayout();
+            this.tb_task.SuspendLayout();
+            this.gridPanel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.tb_display.SuspendLayout();
+            this.gridPanel3.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.tb_pomo.SuspendLayout();
             this.gridPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.tb_globle.SuspendLayout();
-            this.stackPanel3.SuspendLayout();
-            this.stackPanel2.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.stackPanel1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.stackPanel4.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabs1
             // 
             this.tabs1.Alignment = System.Windows.Forms.TabAlignment.Left;
-            this.tabs1.Controls.Add(this.tb_pomo);
-            this.tabs1.Controls.Add(this.tb_globle);
             this.tabs1.Controls.Add(this.tb_task);
-            this.tabs1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.tabs1.Controls.Add(this.tb_display);
+            this.tabs1.Controls.Add(this.tb_pomo);
+            this.tabs1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tabs1.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
             this.tabs1.Location = new System.Drawing.Point(12, 77);
             this.tabs1.Name = "tabs1";
-            this.tabs1.Pages.Add(this.tb_globle);
+            this.tabs1.Pages.Add(this.tb_display);
             this.tabs1.Pages.Add(this.tb_task);
             this.tabs1.Pages.Add(this.tb_pomo);
-            this.tabs1.SelectedIndex = 2;
+            this.tabs1.SelectedIndex = 1;
             this.tabs1.Size = new System.Drawing.Size(776, 362);
             this.tabs1.Style = styleLine1;
             this.tabs1.TabIndex = 6;
             this.tabs1.Text = "全域設定";
+            // 
+            // tb_task
+            // 
+            this.tb_task.Controls.Add(this.gridPanel2);
+            this.tb_task.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_task.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.tb_task.Location = new System.Drawing.Point(117, 0);
+            this.tb_task.Name = "tb_task";
+            this.tb_task.Size = new System.Drawing.Size(659, 362);
+            this.tb_task.TabIndex = 1;
+            this.tb_task.Text = "任務設定";
+            // 
+            // gridPanel2
+            // 
+            this.gridPanel2.Controls.Add(this.panel3);
+            this.gridPanel2.Controls.Add(this.panel4);
+            this.gridPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridPanel2.Location = new System.Drawing.Point(0, 0);
+            this.gridPanel2.Name = "gridPanel2";
+            this.gridPanel2.Size = new System.Drawing.Size(659, 362);
+            this.gridPanel2.Span = "50% 50%";
+            this.gridPanel2.TabIndex = 1;
+            this.gridPanel2.Text = "gridPanel2";
+            // 
+            // panel3
+            // 
+            this.panel3.Back = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.panel3.Controls.Add(this.btn_clearAllTask);
+            this.panel3.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.panel3.Location = new System.Drawing.Point(333, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Shadow = 10;
+            this.panel3.Size = new System.Drawing.Size(324, 356);
+            this.panel3.TabIndex = 78;
+            this.panel3.Text = "panel3";
+            // 
+            // btn_clearAllTask
+            // 
+            this.btn_clearAllTask.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.btn_clearAllTask.Location = new System.Drawing.Point(156, 300);
+            this.btn_clearAllTask.Name = "btn_clearAllTask";
+            this.btn_clearAllTask.Size = new System.Drawing.Size(155, 43);
+            this.btn_clearAllTask.TabIndex = 65;
+            this.btn_clearAllTask.Text = "清除所有任務";
+            this.btn_clearAllTask.Click += new System.EventHandler(this.btn_clearAllTask_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.Back = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.panel4.Controls.Add(this.btn_clearAllSubject);
+            this.panel4.Controls.Add(this.label1);
+            this.panel4.Controls.Add(this.btn_clearAllClass);
+            this.panel4.Controls.Add(this.btn_addClass);
+            this.panel4.Controls.Add(this.btn_delClass);
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Controls.Add(this.select_controlClass);
+            this.panel4.Controls.Add(this.select_controlSubject);
+            this.panel4.Controls.Add(this.btn_addSubj);
+            this.panel4.Controls.Add(this.btn_delSubj);
+            this.panel4.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.panel4.Location = new System.Drawing.Point(3, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Shadow = 10;
+            this.panel4.Size = new System.Drawing.Size(324, 356);
+            this.panel4.TabIndex = 70;
+            this.panel4.Text = "panel4";
+            // 
+            // btn_clearAllSubject
+            // 
+            this.btn_clearAllSubject.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.btn_clearAllSubject.Location = new System.Drawing.Point(13, 76);
+            this.btn_clearAllSubject.Name = "btn_clearAllSubject";
+            this.btn_clearAllSubject.Size = new System.Drawing.Size(114, 43);
+            this.btn_clearAllSubject.TabIndex = 65;
+            this.btn_clearAllSubject.Text = "清除全部";
+            this.btn_clearAllSubject.Click += new System.EventHandler(this.btn_clearAllSubject_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSizeMode = AntdUI.TAutoSize.Auto;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(16, 137);
+            this.label1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 26);
+            this.label1.TabIndex = 63;
+            this.label1.Text = "類別";
+            // 
+            // btn_clearAllClass
+            // 
+            this.btn_clearAllClass.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.btn_clearAllClass.Location = new System.Drawing.Point(16, 176);
+            this.btn_clearAllClass.Name = "btn_clearAllClass";
+            this.btn_clearAllClass.Size = new System.Drawing.Size(114, 43);
+            this.btn_clearAllClass.TabIndex = 64;
+            this.btn_clearAllClass.Text = "清除全部";
+            this.btn_clearAllClass.Click += new System.EventHandler(this.btn_clearAllClass_Click);
+            // 
+            // btn_addClass
+            // 
+            this.btn_addClass.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.btn_addClass.Location = new System.Drawing.Point(136, 176);
+            this.btn_addClass.Name = "btn_addClass";
+            this.btn_addClass.Size = new System.Drawing.Size(83, 43);
+            this.btn_addClass.TabIndex = 59;
+            this.btn_addClass.Text = "新增";
+            this.btn_addClass.Click += new System.EventHandler(this.btn_addClass_Click);
+            // 
+            // btn_delClass
+            // 
+            this.btn_delClass.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.btn_delClass.Location = new System.Drawing.Point(225, 176);
+            this.btn_delClass.Name = "btn_delClass";
+            this.btn_delClass.Size = new System.Drawing.Size(83, 43);
+            this.btn_delClass.TabIndex = 58;
+            this.btn_delClass.Text = "刪除";
+            this.btn_delClass.Click += new System.EventHandler(this.btn_delClass_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSizeMode = AntdUI.TAutoSize.Auto;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Location = new System.Drawing.Point(16, 38);
+            this.label2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 26);
+            this.label2.TabIndex = 62;
+            this.label2.Text = "科目";
+            // 
+            // select_controlClass
+            // 
+            this.select_controlClass.Location = new System.Drawing.Point(60, 133);
+            this.select_controlClass.Name = "select_controlClass";
+            this.select_controlClass.Size = new System.Drawing.Size(248, 37);
+            this.select_controlClass.TabIndex = 60;
+            // 
+            // select_controlSubject
+            // 
+            this.select_controlSubject.Location = new System.Drawing.Point(60, 33);
+            this.select_controlSubject.Name = "select_controlSubject";
+            this.select_controlSubject.Size = new System.Drawing.Size(248, 37);
+            this.select_controlSubject.TabIndex = 61;
+            // 
+            // btn_addSubj
+            // 
+            this.btn_addSubj.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.btn_addSubj.Location = new System.Drawing.Point(136, 76);
+            this.btn_addSubj.Name = "btn_addSubj";
+            this.btn_addSubj.Size = new System.Drawing.Size(83, 43);
+            this.btn_addSubj.TabIndex = 57;
+            this.btn_addSubj.Text = "新增";
+            this.btn_addSubj.Click += new System.EventHandler(this.btn_addSubj_Click);
+            // 
+            // btn_delSubj
+            // 
+            this.btn_delSubj.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.btn_delSubj.Location = new System.Drawing.Point(225, 76);
+            this.btn_delSubj.Name = "btn_delSubj";
+            this.btn_delSubj.Size = new System.Drawing.Size(83, 43);
+            this.btn_delSubj.TabIndex = 56;
+            this.btn_delSubj.Text = "刪除";
+            this.btn_delSubj.Click += new System.EventHandler(this.btn_delSubj_Click);
+            // 
+            // tb_display
+            // 
+            this.tb_display.Controls.Add(this.gridPanel3);
+            this.tb_display.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_display.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.tb_display.Location = new System.Drawing.Point(117, 0);
+            this.tb_display.Name = "tb_display";
+            this.tb_display.Size = new System.Drawing.Size(659, 362);
+            this.tb_display.TabIndex = 0;
+            this.tb_display.Text = "顯示設定";
+            // 
+            // gridPanel3
+            // 
+            this.gridPanel3.Controls.Add(this.panel5);
+            this.gridPanel3.Controls.Add(this.panel6);
+            this.gridPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridPanel3.Location = new System.Drawing.Point(0, 0);
+            this.gridPanel3.Name = "gridPanel3";
+            this.gridPanel3.Size = new System.Drawing.Size(659, 362);
+            this.gridPanel3.Span = "50% 50%";
+            this.gridPanel3.TabIndex = 1;
+            this.gridPanel3.Text = "gridPanel3";
+            // 
+            // panel5
+            // 
+            this.panel5.Back = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.panel5.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.panel5.Location = new System.Drawing.Point(333, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Shadow = 10;
+            this.panel5.Size = new System.Drawing.Size(324, 356);
+            this.panel5.TabIndex = 78;
+            this.panel5.Text = "panel5";
+            // 
+            // panel6
+            // 
+            this.panel6.Back = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.panel6.Controls.Add(this.select1);
+            this.panel6.Controls.Add(this.select_panelNum);
+            this.panel6.Controls.Add(this.label15);
+            this.panel6.Controls.Add(this.label16);
+            this.panel6.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.panel6.Location = new System.Drawing.Point(3, 3);
+            this.panel6.Name = "panel6";
+            this.panel6.Shadow = 10;
+            this.panel6.Size = new System.Drawing.Size(324, 356);
+            this.panel6.TabIndex = 70;
+            this.panel6.Text = "panel6";
+            // 
+            // select1
+            // 
+            this.select1.Location = new System.Drawing.Point(164, 130);
+            this.select1.Name = "select1";
+            this.select1.Size = new System.Drawing.Size(135, 44);
+            this.select1.TabIndex = 79;
+            // 
+            // select_panelNum
+            // 
+            this.select_panelNum.Location = new System.Drawing.Point(164, 78);
+            this.select_panelNum.Name = "select_panelNum";
+            this.select_panelNum.Size = new System.Drawing.Size(135, 44);
+            this.select_panelNum.TabIndex = 78;
+            // 
+            // label15
+            // 
+            this.label15.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.label15.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.label15.Location = new System.Drawing.Point(23, 78);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(135, 44);
+            this.label15.TabIndex = 73;
+            this.label15.Text = "任務顯示天數";
+            // 
+            // label16
+            // 
+            this.label16.Font = new System.Drawing.Font("微軟正黑體", 12F);
+            this.label16.Location = new System.Drawing.Point(23, 130);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(135, 44);
+            this.label16.TabIndex = 71;
+            this.label16.Text = "未來任務顯示範圍";
             // 
             // tb_pomo
             // 
@@ -274,305 +516,6 @@
             this.label10.TabIndex = 77;
             this.label10.Text = "長短休息間隔(次)";
             // 
-            // tb_globle
-            // 
-            this.tb_globle.Controls.Add(this.stackPanel3);
-            this.tb_globle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_globle.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
-            this.tb_globle.Location = new System.Drawing.Point(117, 0);
-            this.tb_globle.Name = "tb_globle";
-            this.tb_globle.Size = new System.Drawing.Size(659, 362);
-            this.tb_globle.TabIndex = 0;
-            this.tb_globle.Text = "全域設定";
-            // 
-            // stackPanel3
-            // 
-            this.stackPanel3.AutoScroll = true;
-            this.stackPanel3.Controls.Add(this.stackPanel2);
-            this.stackPanel3.Controls.Add(this.stackPanel1);
-            this.stackPanel3.Controls.Add(this.stackPanel4);
-            this.stackPanel3.Font = new System.Drawing.Font("微軟正黑體", 10F);
-            this.stackPanel3.Location = new System.Drawing.Point(170, 86);
-            this.stackPanel3.Name = "stackPanel3";
-            this.stackPanel3.Size = new System.Drawing.Size(187, 370);
-            this.stackPanel3.TabIndex = 28;
-            this.stackPanel3.Text = "stackPanel3";
-            this.stackPanel3.Vertical = true;
-            // 
-            // stackPanel2
-            // 
-            this.stackPanel2.Controls.Add(this.input3);
-            this.stackPanel2.Controls.Add(this.select5);
-            this.stackPanel2.Controls.Add(this.datePicker3);
-            this.stackPanel2.Controls.Add(this.panel5);
-            this.stackPanel2.Location = new System.Drawing.Point(3, 399);
-            this.stackPanel2.Name = "stackPanel2";
-            this.stackPanel2.Size = new System.Drawing.Size(165, 192);
-            this.stackPanel2.TabIndex = 27;
-            this.stackPanel2.Text = "stackPanel2";
-            this.stackPanel2.Vertical = true;
-            // 
-            // input3
-            // 
-            this.input3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.input3.JoinMode = AntdUI.TJoinMode.Bottom;
-            this.input3.Location = new System.Drawing.Point(0, 98);
-            this.input3.Margin = new System.Windows.Forms.Padding(0);
-            this.input3.Name = "input3";
-            this.input3.Size = new System.Drawing.Size(165, 70);
-            this.input3.TabIndex = 32;
-            this.input3.Text = "input3";
-            // 
-            // select5
-            // 
-            this.select5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.select5.IconRatio = 0F;
-            this.select5.JoinMode = AntdUI.TJoinMode.TB;
-            this.select5.List = true;
-            this.select5.Location = new System.Drawing.Point(0, 68);
-            this.select5.Margin = new System.Windows.Forms.Padding(0);
-            this.select5.Name = "select5";
-            this.select5.Size = new System.Drawing.Size(165, 30);
-            this.select5.TabIndex = 31;
-            this.select5.Text = "select5";
-            // 
-            // datePicker3
-            // 
-            this.datePicker3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.datePicker3.JoinMode = AntdUI.TJoinMode.TB;
-            this.datePicker3.Location = new System.Drawing.Point(0, 38);
-            this.datePicker3.Margin = new System.Windows.Forms.Padding(0);
-            this.datePicker3.Name = "datePicker3";
-            this.datePicker3.Size = new System.Drawing.Size(165, 30);
-            this.datePicker3.TabIndex = 30;
-            // 
-            // panel5
-            // 
-            this.panel5.BorderWidth = 1F;
-            this.panel5.Controls.Add(this.checkbox3);
-            this.panel5.Controls.Add(this.select6);
-            this.panel5.Location = new System.Drawing.Point(4, 3);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.RadiusAlign = AntdUI.TAlignRound.Top;
-            this.panel5.Size = new System.Drawing.Size(157, 35);
-            this.panel5.TabIndex = 26;
-            this.panel5.Text = "panel5";
-            // 
-            // checkbox3
-            // 
-            this.checkbox3.AutoSizeMode = AntdUI.TAutoSize.Height;
-            this.checkbox3.BackColor = System.Drawing.Color.White;
-            this.checkbox3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.checkbox3.Font = new System.Drawing.Font("微軟正黑體", 5F);
-            this.checkbox3.Location = new System.Drawing.Point(130, 16);
-            this.checkbox3.Name = "checkbox3";
-            this.checkbox3.Size = new System.Drawing.Size(26, 18);
-            this.checkbox3.TabIndex = 27;
-            this.checkbox3.Text = "";
-            // 
-            // select6
-            // 
-            this.select6.BorderWidth = 0F;
-            this.select6.Dock = System.Windows.Forms.DockStyle.Left;
-            this.select6.IconRatio = 0F;
-            this.select6.List = true;
-            this.select6.Location = new System.Drawing.Point(1, 1);
-            this.select6.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            this.select6.Name = "select6";
-            this.select6.PrefixText = "";
-            this.select6.ShowIcon = false;
-            this.select6.Size = new System.Drawing.Size(129, 33);
-            this.select6.SuffixText = "";
-            this.select6.TabIndex = 25;
-            this.select6.Text = "select6";
-            // 
-            // stackPanel1
-            // 
-            this.stackPanel1.Controls.Add(this.input1);
-            this.stackPanel1.Controls.Add(this.select3);
-            this.stackPanel1.Controls.Add(this.datePicker1);
-            this.stackPanel1.Controls.Add(this.panel3);
-            this.stackPanel1.Location = new System.Drawing.Point(3, 201);
-            this.stackPanel1.Name = "stackPanel1";
-            this.stackPanel1.Size = new System.Drawing.Size(165, 192);
-            this.stackPanel1.TabIndex = 26;
-            this.stackPanel1.Text = "stackPanel1";
-            this.stackPanel1.Vertical = true;
-            // 
-            // input1
-            // 
-            this.input1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.input1.JoinMode = AntdUI.TJoinMode.Bottom;
-            this.input1.Location = new System.Drawing.Point(0, 103);
-            this.input1.Margin = new System.Windows.Forms.Padding(0);
-            this.input1.Name = "input1";
-            this.input1.Size = new System.Drawing.Size(165, 70);
-            this.input1.TabIndex = 32;
-            this.input1.Text = "input1";
-            // 
-            // select3
-            // 
-            this.select3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.select3.IconRatio = 0F;
-            this.select3.JoinMode = AntdUI.TJoinMode.TB;
-            this.select3.List = true;
-            this.select3.Location = new System.Drawing.Point(0, 73);
-            this.select3.Margin = new System.Windows.Forms.Padding(0);
-            this.select3.Name = "select3";
-            this.select3.Size = new System.Drawing.Size(165, 30);
-            this.select3.TabIndex = 31;
-            this.select3.Text = "select3";
-            // 
-            // datePicker1
-            // 
-            this.datePicker1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.datePicker1.JoinMode = AntdUI.TJoinMode.TB;
-            this.datePicker1.Location = new System.Drawing.Point(0, 43);
-            this.datePicker1.Margin = new System.Windows.Forms.Padding(0);
-            this.datePicker1.Name = "datePicker1";
-            this.datePicker1.Size = new System.Drawing.Size(165, 30);
-            this.datePicker1.TabIndex = 30;
-            // 
-            // panel3
-            // 
-            this.panel3.BorderWidth = 1F;
-            this.panel3.Controls.Add(this.checkbox1);
-            this.panel3.Controls.Add(this.select4);
-            this.panel3.Location = new System.Drawing.Point(4, 3);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.RadiusAlign = AntdUI.TAlignRound.Top;
-            this.panel3.Size = new System.Drawing.Size(157, 40);
-            this.panel3.TabIndex = 26;
-            this.panel3.Text = "panel3";
-            // 
-            // checkbox1
-            // 
-            this.checkbox1.AutoSizeMode = AntdUI.TAutoSize.Height;
-            this.checkbox1.BackColor = System.Drawing.Color.White;
-            this.checkbox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.checkbox1.Font = new System.Drawing.Font("微軟正黑體", 8F);
-            this.checkbox1.Location = new System.Drawing.Point(128, 9);
-            this.checkbox1.Name = "checkbox1";
-            this.checkbox1.Size = new System.Drawing.Size(28, 30);
-            this.checkbox1.TabIndex = 27;
-            this.checkbox1.Text = "";
-            // 
-            // select4
-            // 
-            this.select4.BorderWidth = 0F;
-            this.select4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.select4.IconRatio = 0F;
-            this.select4.List = true;
-            this.select4.Location = new System.Drawing.Point(1, 1);
-            this.select4.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            this.select4.Name = "select4";
-            this.select4.PrefixText = "";
-            this.select4.ShowIcon = false;
-            this.select4.Size = new System.Drawing.Size(127, 38);
-            this.select4.SuffixText = "";
-            this.select4.TabIndex = 25;
-            this.select4.Text = "select4";
-            // 
-            // stackPanel4
-            // 
-            this.stackPanel4.Controls.Add(this.input2);
-            this.stackPanel4.Controls.Add(this.select1);
-            this.stackPanel4.Controls.Add(this.datePicker2);
-            this.stackPanel4.Controls.Add(this.panel4);
-            this.stackPanel4.Location = new System.Drawing.Point(3, 3);
-            this.stackPanel4.Name = "stackPanel4";
-            this.stackPanel4.Size = new System.Drawing.Size(165, 192);
-            this.stackPanel4.TabIndex = 25;
-            this.stackPanel4.Text = "stackPanel4";
-            this.stackPanel4.Vertical = true;
-            // 
-            // input2
-            // 
-            this.input2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.input2.JoinMode = AntdUI.TJoinMode.Bottom;
-            this.input2.Location = new System.Drawing.Point(0, 98);
-            this.input2.Margin = new System.Windows.Forms.Padding(0);
-            this.input2.Name = "input2";
-            this.input2.Size = new System.Drawing.Size(165, 70);
-            this.input2.TabIndex = 32;
-            this.input2.Text = "input2";
-            // 
-            // select1
-            // 
-            this.select1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.select1.IconRatio = 0F;
-            this.select1.JoinMode = AntdUI.TJoinMode.TB;
-            this.select1.List = true;
-            this.select1.Location = new System.Drawing.Point(0, 68);
-            this.select1.Margin = new System.Windows.Forms.Padding(0);
-            this.select1.Name = "select1";
-            this.select1.Size = new System.Drawing.Size(165, 30);
-            this.select1.TabIndex = 31;
-            this.select1.Text = "select1";
-            // 
-            // datePicker2
-            // 
-            this.datePicker2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.datePicker2.JoinMode = AntdUI.TJoinMode.TB;
-            this.datePicker2.Location = new System.Drawing.Point(0, 38);
-            this.datePicker2.Margin = new System.Windows.Forms.Padding(0);
-            this.datePicker2.Name = "datePicker2";
-            this.datePicker2.Size = new System.Drawing.Size(165, 30);
-            this.datePicker2.TabIndex = 30;
-            // 
-            // panel4
-            // 
-            this.panel4.BorderWidth = 1F;
-            this.panel4.Controls.Add(this.checkbox2);
-            this.panel4.Controls.Add(this.select2);
-            this.panel4.Location = new System.Drawing.Point(4, 3);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.RadiusAlign = AntdUI.TAlignRound.Top;
-            this.panel4.Size = new System.Drawing.Size(157, 35);
-            this.panel4.TabIndex = 26;
-            this.panel4.Text = "panel4";
-            // 
-            // checkbox2
-            // 
-            this.checkbox2.AutoSizeMode = AntdUI.TAutoSize.Height;
-            this.checkbox2.BackColor = System.Drawing.Color.White;
-            this.checkbox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.checkbox2.Font = new System.Drawing.Font("微軟正黑體", 5F);
-            this.checkbox2.Location = new System.Drawing.Point(130, 16);
-            this.checkbox2.Name = "checkbox2";
-            this.checkbox2.Size = new System.Drawing.Size(26, 18);
-            this.checkbox2.TabIndex = 27;
-            this.checkbox2.Text = "";
-            // 
-            // select2
-            // 
-            this.select2.BorderWidth = 0F;
-            this.select2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.select2.IconRatio = 0F;
-            this.select2.List = true;
-            this.select2.Location = new System.Drawing.Point(1, 1);
-            this.select2.Margin = new System.Windows.Forms.Padding(0);
-            this.select2.Name = "select2";
-            this.select2.PrefixText = "";
-            this.select2.ShowIcon = false;
-            this.select2.Size = new System.Drawing.Size(129, 33);
-            this.select2.SuffixText = "";
-            this.select2.TabIndex = 25;
-            this.select2.Text = "select2";
-            // 
-            // tb_task
-            // 
-            this.tb_task.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_task.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
-            this.tb_task.Location = new System.Drawing.Point(117, 0);
-            this.tb_task.Name = "tb_task";
-            this.tb_task.Size = new System.Drawing.Size(659, 362);
-            this.tb_task.TabIndex = 1;
-            this.tb_task.Text = "任務設定";
-            // 
             // btn_save
             // 
             this.btn_save.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
@@ -580,7 +523,7 @@
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(143, 49);
             this.btn_save.TabIndex = 17;
-            this.btn_save.Text = "儲存";
+            this.btn_save.Text = "全部儲存";
             this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
             // pageHeader1
@@ -607,21 +550,18 @@
             this.Text = "settings";
             this.Load += new System.EventHandler(this.From_settings_Load);
             this.tabs1.ResumeLayout(false);
+            this.tb_task.ResumeLayout(false);
+            this.gridPanel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.tb_display.ResumeLayout(false);
+            this.gridPanel3.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
             this.tb_pomo.ResumeLayout(false);
             this.gridPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.tb_globle.ResumeLayout(false);
-            this.stackPanel3.ResumeLayout(false);
-            this.stackPanel2.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.stackPanel1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.stackPanel4.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -640,36 +580,35 @@
         private AntdUI.Label label9;
         private AntdUI.InputNumber inputN_loopTimes;
         private AntdUI.Label label10;
-        private AntdUI.TabPage tb_globle;
+        private AntdUI.TabPage tb_display;
         private AntdUI.TabPage tb_task;
         private AntdUI.Panel panel1;
         private AntdUI.Label label11;
         private AntdUI.Switch switch_autoFocus;
         private AntdUI.Label label12;
         private AntdUI.Switch switch_autoBreak;
-        private AntdUI.StackPanel stackPanel3;
-        private AntdUI.StackPanel stackPanel2;
-        private AntdUI.Input input3;
-        private AntdUI.Select select5;
-        private AntdUI.DatePicker datePicker3;
-        private AntdUI.Panel panel5;
-        private AntdUI.Checkbox checkbox3;
-        private AntdUI.Select select6;
-        private AntdUI.StackPanel stackPanel1;
-        private AntdUI.Input input1;
-        private AntdUI.Select select3;
-        private AntdUI.DatePicker datePicker1;
-        private AntdUI.Panel panel3;
-        private AntdUI.Checkbox checkbox1;
-        private AntdUI.Select select4;
-        private AntdUI.StackPanel stackPanel4;
-        private AntdUI.Input input2;
-        private AntdUI.Select select1;
-        private AntdUI.DatePicker datePicker2;
-        private AntdUI.Panel panel4;
-        private AntdUI.Checkbox checkbox2;
-        private AntdUI.Select select2;
         private AntdUI.Button btn_save;
         private AntdUI.PageHeader pageHeader1;
+        private AntdUI.GridPanel gridPanel3;
+        private AntdUI.Panel panel5;
+        private AntdUI.Panel panel6;
+        private AntdUI.Label label15;
+        private AntdUI.Label label16;
+        private AntdUI.GridPanel gridPanel2;
+        private AntdUI.Panel panel3;
+        private AntdUI.Panel panel4;
+        private AntdUI.Select select_panelNum;
+        private AntdUI.Button btn_clearAllTask;
+        private AntdUI.Select select1;
+        private AntdUI.Button btn_clearAllSubject;
+        private AntdUI.Label label1;
+        private AntdUI.Button btn_clearAllClass;
+        private AntdUI.Button btn_addClass;
+        private AntdUI.Button btn_delClass;
+        private AntdUI.Label label2;
+        private AntdUI.SelectMultiple select_controlClass;
+        private AntdUI.SelectMultiple select_controlSubject;
+        private AntdUI.Button btn_addSubj;
+        private AntdUI.Button btn_delSubj;
     }
 }

@@ -25,13 +25,18 @@ namespace project
         public From_settings()
         {
             InitializeComponent();
-            initPara();
+        }
+
+        public From_settings(ThemeColor themeColor)
+        {
+            InitializeComponent();
         }
 
         private void From_settings_Load(object sender, EventArgs e)
         {
-            backColorSet.SetPanelBackItemColor(panel1, Color.FromArgb(255, 230, 230, 230));
-            backColorSet.SetPanelBackItemColor(panel2, Color.FromArgb(255, 230, 230, 230));
+            backColorSet.SetPanelBackItemColor(panel1);
+            backColorSet.SetPanelBackItemColor(panel2);
+            initPara();
         }
 
         private void initPara()
@@ -39,6 +44,11 @@ namespace project
             this.modeSet = jsonManager.Get_modeSet();
             this.loopTimes = jsonManager.Get_loopTime();
 
+            // init display settings
+
+            // set task settings
+
+            // init pomodoro settings
             inputN_focus.Value = modeSet[1] / 60;
             inputN_shortBreak.Value = modeSet[2] / 60;
             inputN_longBreak.Value = modeSet[3] / 60; 
@@ -57,6 +67,41 @@ namespace project
                 autoStart = new bool[] { switch_autoFocus.Checked, switch_autoBreak.Checked };
                 jsonManager.Save_autoStart(autoStart);
             }
+        }
+
+        private void btn_clearAllSubject_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_addSubj_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_delSubj_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_clearAllClass_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_addClass_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_delClass_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_clearAllTask_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

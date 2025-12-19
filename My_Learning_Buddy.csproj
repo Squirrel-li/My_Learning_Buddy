@@ -83,6 +83,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Component\class.cs" />
     <Compile Include="Component\main_page.cs" />
     <Compile Include="Forms\Form_mainPage.cs">
       <SubType>Form</SubType>
@@ -95,6 +96,12 @@
     </Compile>
     <Compile Include="Forms\Form_pomodoro.Designer.cs">
       <DependentUpon>Form_pomodoro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Form_Debug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Form_Debug.Designer.cs">
+      <DependentUpon>Form_Debug.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -129,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form_pomodoro.resx">
       <DependentUpon>Form_pomodoro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form_Debug.resx">
+      <DependentUpon>Form_Debug.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
