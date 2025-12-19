@@ -16,7 +16,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace project
 {
-    public partial class Form_pomodoro : Form
+    public partial class Form_pomodoro : AntdUI.Window
     {
         private bool debug = true;
 
@@ -25,6 +25,7 @@ namespace project
         private int[] modeSet = {0,  20 * 60, 5 * 60, 10 * 60}; // work, short break, long break
         private int loopTimes = 2;
         private int rate = 1;
+        private bool[] autoStart;
 
         private int currentloop = 0;
         private int currentMode = 0; // 0: idle, 1: work, 2: short break, 3: long break
@@ -34,6 +35,11 @@ namespace project
         public Form_pomodoro()
         {
             InitializeComponent();
+        }
+        public Form_pomodoro(bool debug)
+        {
+            InitializeComponent();
+            this.debug = debug;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -70,22 +76,25 @@ namespace project
 
         private void initPara()
         {
-            this.modeSet = jsonManager.Get_modeSet();
+            modeSet = jsonManager.Get_modeSet();
             loopTimes = jsonManager.Get_loopTime();
+            autoStart = jsonManager.Get_autoStart();
         }
 
         private void timer_count_Tick(object sender, EventArgs e)
         {
             currentSecond -= rate;
-            UpdateProgress(this.progress1);
 
             if (currentSecond <= 0)
             {
-                timer_count.Stop();
-                timer_count.Enabled = false;
                 btn_control.Text = "開始";
                 if (currentMode == 1) // work -> break
                 {
+                    timer_count.Stop();
+                    if (!autoStart[1])
+                    {
+                        timer_count.Enabled = false;
+                    }
                     if (currentloop > 0)
                     {
                         currentMode = 2; // short break
@@ -99,10 +108,12 @@ namespace project
                 }
                 else if (currentMode == 2)
                 {
+                    timer_count.Start();
                     currentMode = 1;
                 }
                 else if (currentMode == 3)
                 {
+                    timer_count.Start();
                     currentMode = 1;
                 }
                 else // currentMode 超出範圍
@@ -112,11 +123,11 @@ namespace project
                 lbl_debug.Text = $"Mode: {currentMode.ToString()}\ncurrentloop: {currentloop.ToString()}";
                 currentSecond = modeSet[currentMode];
             }
+            UpdateProgress(this.progress1);
         }
 
         private void btn_control_Click(object sender, EventArgs e)
         {
-
             if (!timer_count.Enabled) // start
             {
                 if (currentMode == 0) // idle -> work
@@ -126,7 +137,6 @@ namespace project
                     currentloop = loopTimes;
                 }
                 timer_count.Start();
-                timer_count.Enabled = true;
                 btn_control.Text = "暫停";
                 btn_stop.Visible = false;
             }
@@ -135,7 +145,6 @@ namespace project
                 if (currentMode != 0)
                 {
                     timer_count.Stop();
-                    timer_count.Enabled = false;
                     btn_control.Text = "開始";
                     btn_stop.Visible = true;
                 }
@@ -177,6 +186,7 @@ namespace project
         private void btn_stop_Click(object sender, EventArgs e)
         {
             initPomoTime();
+            btn_stop.Visible = false;
         }
 
         private void inputN_focus_KeyDown(object sender, KeyEventArgs e)

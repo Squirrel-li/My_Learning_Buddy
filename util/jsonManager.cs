@@ -17,7 +17,7 @@ namespace project.Component
         {
             if (filePath == null || filePath == "")
             {
-                filePath = "../../settings.json";
+                filePath = "./settings.json";
             }
             this.filePath = filePath;
             json_init();
@@ -25,7 +25,7 @@ namespace project.Component
 
         public JsonManager()
         {
-            this.filePath = "../../settings.json";
+            this.filePath = "./settings.json";
             json_init();
         }
 
@@ -40,6 +40,7 @@ namespace project.Component
             // 番茄鐘設定
             public int[] modeSet { get; set; }
             public int loopTimes { get; set; }
+            public bool[] autoStart { get; set; }
         }
 
         private void json_init()
@@ -53,7 +54,8 @@ namespace project.Component
                     tableFLPanelText = new List<string> { "今日活動", "明日活動", "久遠以後" },
                     tableToDoTask = new List<ToDoTask>(),
                     modeSet = new int[] { 0, 20 * 60, 5 * 60, 10 * 60 },
-                    loopTimes = 2
+                    loopTimes = 2,
+                    autoStart = new bool[] { false, false }
                 };
                 string jsonString = JsonSerializer.Serialize(default_json, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
                 System.IO.File.WriteAllText(this.filePath, jsonString);
@@ -108,6 +110,17 @@ namespace project.Component
             return jsonData.tableToDoTask;
         }
 
+        public bool[] Get_autoStart()
+        {
+            if (!System.IO.File.Exists(this.filePath))
+            {
+                json_init();
+            }
+            string jsonFormFile = File.ReadAllText(filePath);
+            jsonStructure jsonData = JsonSerializer.Deserialize<jsonStructure>(jsonFormFile);
+            return jsonData.autoStart;
+        }
+
         public void Save_table_subject(List<string> table_subject)
         {
             if (!System.IO.File.Exists(this.filePath))
@@ -159,6 +172,19 @@ namespace project.Component
             jsonStructure jsonData = JsonSerializer.Deserialize<jsonStructure>(jsonFormFile);
             tableToDoTasks.Sort((a, b) => a.deadline.CompareTo(b.deadline));
             jsonData.tableToDoTask = tableToDoTasks;
+            string jsonString = JsonSerializer.Serialize(jsonData, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+            System.IO.File.WriteAllText(this.filePath, jsonString);
+        }
+
+        public void Save_autoStart(bool[] autoStart)
+        {
+            if (!System.IO.File.Exists(this.filePath))
+            {
+                json_init();
+            }
+            string jsonFormFile = File.ReadAllText(filePath);
+            jsonStructure jsonData = JsonSerializer.Deserialize<jsonStructure>(jsonFormFile);
+            jsonData.autoStart = autoStart;
             string jsonString = JsonSerializer.Serialize(jsonData, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
             System.IO.File.WriteAllText(this.filePath, jsonString);
         }

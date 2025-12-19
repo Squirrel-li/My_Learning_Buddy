@@ -122,6 +122,7 @@
     <Compile Include="setting_user_control\user_control_settings_task.Designer.cs">
       <DependentUpon>user_control_settings_task.cs</DependentUpon>
     </Compile>
+    <Compile Include="util\backColorSet.cs" />
     <Compile Include="util\jsonManager.cs" />
     <EmbeddedResource Include="Forms\Form_mainPage.resx">
       <DependentUpon>Form_mainPage.cs</DependentUpon>

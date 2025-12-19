@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_pomodoro));
             this.timer_count = new System.Windows.Forms.Timer(this.components);
             this.progress1 = new AntdUI.Progress();
             this.btn_control = new AntdUI.Button();
@@ -42,6 +43,7 @@
             this.inputN_longBreak = new AntdUI.InputNumber();
             this.label4 = new AntdUI.Label();
             this.inputN_loopTimes = new AntdUI.InputNumber();
+            this.pageHeader1 = new AntdUI.PageHeader();
             this.SuspendLayout();
             // 
             // timer_count
@@ -58,7 +60,7 @@
             this.progress1.IconSvgCircle = "test";
             this.progress1.LoadingFull = true;
             this.progress1.LocalizationText = "";
-            this.progress1.Location = new System.Drawing.Point(91, 22);
+            this.progress1.Location = new System.Drawing.Point(91, 74);
             this.progress1.Name = "progress1";
             this.progress1.Radius = 30;
             this.progress1.Shape = AntdUI.TShapeProgress.Circle;
@@ -76,7 +78,7 @@
             // btn_control
             // 
             this.btn_control.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
-            this.btn_control.Location = new System.Drawing.Point(235, 428);
+            this.btn_control.Location = new System.Drawing.Point(235, 480);
             this.btn_control.Name = "btn_control";
             this.btn_control.Size = new System.Drawing.Size(113, 51);
             this.btn_control.TabIndex = 39;
@@ -87,9 +89,9 @@
             // 
             this.lbl_debug.BackColor = System.Drawing.Color.Transparent;
             this.lbl_debug.Font = new System.Drawing.Font("微軟正黑體", 10F);
-            this.lbl_debug.Location = new System.Drawing.Point(12, 12);
+            this.lbl_debug.Location = new System.Drawing.Point(12, 77);
             this.lbl_debug.Name = "lbl_debug";
-            this.lbl_debug.Size = new System.Drawing.Size(197, 537);
+            this.lbl_debug.Size = new System.Drawing.Size(197, 498);
             this.lbl_debug.TabIndex = 40;
             this.lbl_debug.Text = "Debug Mode Enable";
             this.lbl_debug.TextAlign = System.Drawing.ContentAlignment.TopLeft;
@@ -98,7 +100,7 @@
             // btn_stop
             // 
             this.btn_stop.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
-            this.btn_stop.Location = new System.Drawing.Point(235, 485);
+            this.btn_stop.Location = new System.Drawing.Point(235, 537);
             this.btn_stop.Name = "btn_stop";
             this.btn_stop.Size = new System.Drawing.Size(113, 51);
             this.btn_stop.TabIndex = 41;
@@ -109,7 +111,7 @@
             // inputN_shortBreak
             // 
             this.inputN_shortBreak.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.inputN_shortBreak.Location = new System.Drawing.Point(497, 428);
+            this.inputN_shortBreak.Location = new System.Drawing.Point(497, 480);
             this.inputN_shortBreak.Name = "inputN_shortBreak";
             this.inputN_shortBreak.Size = new System.Drawing.Size(75, 33);
             this.inputN_shortBreak.TabIndex = 42;
@@ -120,7 +122,7 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.label1.Location = new System.Drawing.Point(406, 428);
+            this.label1.Location = new System.Drawing.Point(406, 480);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 33);
             this.label1.TabIndex = 43;
@@ -129,7 +131,7 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.label2.Location = new System.Drawing.Point(406, 389);
+            this.label2.Location = new System.Drawing.Point(406, 441);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(92, 33);
             this.label2.TabIndex = 45;
@@ -138,7 +140,7 @@
             // inputN_focus
             // 
             this.inputN_focus.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.inputN_focus.Location = new System.Drawing.Point(497, 389);
+            this.inputN_focus.Location = new System.Drawing.Point(497, 441);
             this.inputN_focus.Name = "inputN_focus";
             this.inputN_focus.Size = new System.Drawing.Size(75, 33);
             this.inputN_focus.TabIndex = 44;
@@ -149,7 +151,7 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.label3.Location = new System.Drawing.Point(406, 467);
+            this.label3.Location = new System.Drawing.Point(406, 519);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 33);
             this.label3.TabIndex = 47;
@@ -158,7 +160,7 @@
             // inputN_longBreak
             // 
             this.inputN_longBreak.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.inputN_longBreak.Location = new System.Drawing.Point(497, 467);
+            this.inputN_longBreak.Location = new System.Drawing.Point(497, 519);
             this.inputN_longBreak.Name = "inputN_longBreak";
             this.inputN_longBreak.Size = new System.Drawing.Size(75, 33);
             this.inputN_longBreak.TabIndex = 46;
@@ -169,7 +171,7 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.label4.Location = new System.Drawing.Point(370, 506);
+            this.label4.Location = new System.Drawing.Point(370, 558);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(128, 33);
             this.label4.TabIndex = 49;
@@ -178,7 +180,7 @@
             // inputN_loopTimes
             // 
             this.inputN_loopTimes.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.inputN_loopTimes.Location = new System.Drawing.Point(497, 506);
+            this.inputN_loopTimes.Location = new System.Drawing.Point(497, 558);
             this.inputN_loopTimes.Name = "inputN_loopTimes";
             this.inputN_loopTimes.Size = new System.Drawing.Size(75, 33);
             this.inputN_loopTimes.TabIndex = 48;
@@ -186,11 +188,30 @@
             this.inputN_loopTimes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.inputN_loopTimes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.inputN_loopTimes_KeyDown);
             // 
+            // pageHeader1
+            // 
+            this.pageHeader1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pageHeader1.Font = new System.Drawing.Font("微軟正黑體", 30F);
+            this.pageHeader1.Icon = ((System.Drawing.Image)(resources.GetObject("pageHeader1.Icon")));
+            this.pageHeader1.IconRatio = 1.5F;
+            this.pageHeader1.Location = new System.Drawing.Point(0, 0);
+            this.pageHeader1.MaximizeBox = false;
+            this.pageHeader1.Name = "pageHeader1";
+            this.pageHeader1.ShowButton = true;
+            this.pageHeader1.Size = new System.Drawing.Size(584, 68);
+            this.pageHeader1.SubFont = new System.Drawing.Font("微軟正黑體", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.pageHeader1.SubText = "";
+            this.pageHeader1.TabIndex = 50;
+            this.pageHeader1.Text = "番茄鐘";
+            this.pageHeader1.UseLeftMargin = false;
+            this.pageHeader1.UseTextBold = false;
+            // 
             // Form_pomodoro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 561);
+            this.ClientSize = new System.Drawing.Size(584, 606);
+            this.Controls.Add(this.pageHeader1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.inputN_loopTimes);
             this.Controls.Add(this.label3);
@@ -203,8 +224,10 @@
             this.Controls.Add(this.btn_control);
             this.Controls.Add(this.progress1);
             this.Controls.Add(this.lbl_debug);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(1, 2, 1, 2);
             this.Name = "Form_pomodoro";
+            this.Resizable = false;
             this.Text = "番茄鐘";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -226,6 +249,7 @@
         private AntdUI.InputNumber inputN_longBreak;
         private AntdUI.Label label4;
         private AntdUI.InputNumber inputN_loopTimes;
+        private AntdUI.PageHeader pageHeader1;
     }
 }
 
