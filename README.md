@@ -20,12 +20,7 @@ It combines a Pomodoro timer, a to-do list manager, and useful study statistics 
 - Optional due date  
 - Tasks automatically saved to local files  
 
-### **3. Study Statistics (Optional Module)**
-- Track daily completed Pomodoro sessions  
-- Track completed tasks  
-- Overview of productivity trends  
-
-### **4. Settings Panel**
+### **3. Settings Panel**
 - Customize Pomodoro time lengths  
 - Toggle sound notifications  
 - Automatically load previous tasks  
@@ -38,45 +33,38 @@ This structure is not yet complete and is currently in the initial testing phase
 ```
 /MyLearnBuddy
   /Forms
-    MainForm.cs
-    PomodoroControl.cs
-    TodoControl.cs
-    StatsControl.cs
-    SettingsForm.cs
-  /Logic
-    PomodoroManager.cs
-    TodoManager.cs
-  /Data
-    ITaskRepository.cs
-    FileTaskRepository.cs
-    UserSettingsStore.cs
-  /Models
-    TodoItem.cs
-    PomodoroSession.cs
+    Form_mainPage.cs
+    Form_pomodoro.cs
+    Form_setting.cs
+    Form_Debug.cd
+  /Component
+    DataStructure.cs
+    Task.cs
+  /Component
+    backColorSet.cs
+    jsonnManager.cs
+  Program.cs
   README.md
 ```
-<!--
+
 ---
 
 ## 👥 Team Responsibilities
 
-### **Member A – UI / UX (Forms Development)**
-- Designs MainForm, Pomodoro UI, To‑Do List UI, and Settings UI  
-- Ensures layout, colors, usability, and user flow  
-- Provides wireframes and process documentation  
+### **李松澔 – To‑Do + setting**
+- Implements TodoManager and task models
+- Implements user settings persistence  
+- Integrates load/save on program start/exit  
 
-### **Member B – Pomodoro Logic**
+### **陳鍵中 – Pomodoro Logic**
 - Implements PomodoroManager (state machine, timers)  
 - Connects WinForms Timer to UI  
 - Handles focus/break session transitions  
 - Tests timer cycles and state changes  
 
-### **Member C – To‑Do + Data Storage**
-- Implements TodoManager and task models  
-- Handles reading/writing tasks to JSON/text  
-- Implements user settings persistence  
-- Integrates load/save on program start/exit  
--->
+### **藍碩彥 – Data Storage**
+- Handles reading/writing tasks to JSON/text
+
 
 ---
 
@@ -84,8 +72,9 @@ This structure is not yet complete and is currently in the initial testing phase
 
 ### **Requirements**
 - Windows 10 / 11  
-- .NET Framework or .NET 6+ (depending on project settings)  
+- .NET Framework 4.8 (depending on project settings)  
 - Visual Studio 2022 (recommended)
+
 <!--
 ### **How to Run**
 1. Clone this repository  
