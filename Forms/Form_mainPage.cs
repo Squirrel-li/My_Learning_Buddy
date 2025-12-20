@@ -1,5 +1,6 @@
 ﻿using AntdUI;
 using project.Component;
+using project.Forms;
 using project.util;
 using System;
 using System.Collections.Generic;
@@ -34,25 +35,7 @@ namespace project
 
         public JsonManager jsonManager = new JsonManager();
 
-        private bool debug = false;
-
-
-        private class ColorItem
-        {
-            public Color Color { get; }
-            public string Label { get; }
-            public string hexColorCodes { get; }
-            public ColorItem(String hexColorCodes, string label)
-            {
-                this.hexColorCodes = hexColorCodes;
-                Color = ColorTranslator.FromHtml(hexColorCodes);
-                Label = label;
-            }
-            public override string ToString()
-            {
-                return hexColorCodes;
-            }
-        }
+        private static bool debug = false;
 
         public Form_mainPage()
         {
@@ -61,18 +44,16 @@ namespace project
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.Resizable = false;
+            //this.Resizable = false;
             if (debug)
             {
                 lbl_debug.Visible = true;
                 lbl_debug.Text = "Debug 模式開啟\n\r";
                 lbl_tabModfiyMes.Text = "tabModfiyMes";
-                lbl_tabToDoMes.Text = "tabToDoMes";
             }
             else
             {
                 lbl_tabModfiyMes.Text = "";
-                lbl_tabToDoMes.Text = "";
             }
 
             // Init Tables and combobox data
@@ -91,6 +72,8 @@ namespace project
             dateTimeP_select.Value = DateTime.Now;
             //backColorSet.SetPanelBackItemColor(panel_Task);
             //backColorSet.SetPanelBackItemColor(panel_modeify);
+
+            tabs_modifySet.SelectedIndex = 0;
         }
 
         private void InitTables()
@@ -130,7 +113,7 @@ namespace project
             gridpanel_calendar.Span = settingsText;
 
 
-            StackPanel new_stackPanel = new StackPanel();
+            //StackPanel new_stackPanel = new StackPanel();
             for (int i = panelNum - 1; i >= 0; i--)
             {
                 lbl_debug.Text += $"初始化 FL_Panel {i}\n";
@@ -153,22 +136,28 @@ namespace project
                 }
                 fl_label.Font = new Font("Microsoft JhengHei", 12, FontStyle.Bold);
                 fl_label.Height = 30;
-                fl_label.Margin = new Padding(0, 0, 0, 0);
+                fl_label.Margin = new Padding(0, 10, 0, 0);
                 fl_label.TextAlign = ContentAlignment.MiddleCenter;
+                fl_label.Dock = DockStyle.Top;
 
-                AntdUI.StackPanel ContainerStackPanel = new AntdUI.StackPanel();
+                AntdUI.Panel ContainerStackPanel = new AntdUI.Panel();
                 ContainerStackPanel.Tag = "Container";
-                ContainerStackPanel.Vertical = true;
+                //ContainerStackPanel.Vertical = true;
                 ContainerStackPanel.Margin = new Padding(0, 0, 0, 0);
                 ContainerStackPanel.Padding = new Padding(0, 0, 0, 0);
+                ContainerStackPanel.Radius = 20;
+                ContainerStackPanel.Back = Color.Transparent;
+                ContainerStackPanel.BackColor = Color.Transparent;
+                task_panel.Back = Color.Transparent;
 
                 task_panel.Radius = 10;
                 task_panel.Margin = new Padding(2, 2, 2, 2);
 
                 gridpanel_calendar.Controls.Add(ContainerStackPanel);
-                task_panel.Height = ContainerStackPanel.Height - fl_label.Height - 12;
+                //task_panel.Height = ContainerStackPanel.Height - fl_label.Height - 12;
                 task_panel.BorderStyle = DashStyle.Solid;
-                task_panel.BorderWidth = 2;
+                task_panel.BorderWidth = 5;
+                task_panel.Dock = DockStyle.Fill;
 
                 ContainerStackPanel.Controls.Add(task_panel);
                 ContainerStackPanel.Controls.Add(fl_label);
@@ -282,12 +271,10 @@ namespace project
         {
             if (select_subject.Text == String.Empty)
             {
-                lbl_tabToDoMes.Text = "請填入科目";
                 tooltip_subject.Show();
             }
             if (select_classification.Text == String.Empty)
             {
-                lbl_tabToDoMes.Text = "請填入分類";
                 tooltip_class.Show();
             }
             if (select_subject.Text == String.Empty || select_classification.Text == String.Empty)
@@ -298,7 +285,6 @@ namespace project
             }
             else
             {
-                lbl_tabToDoMes.Text = "";
                 if (!select_subject.Items.Contains(select_subject.Text))
                 {
                     AddSelectIndex(select_subject, select_subject.Text);
@@ -373,16 +359,16 @@ namespace project
 
         private AntdUI.StackPanel find_pnaelinlanel(AntdUI.GridPanel sourcePanel, String tag)
         {
-            List<AntdUI.StackPanel> ContainerPanels = new List<AntdUI.StackPanel>();
+            List<AntdUI.Panel> ContainerPanels = new List<AntdUI.Panel>();
             AntdUI.StackPanel targetPanel = null;
             foreach (Control control in sourcePanel.Controls)
             {
-                if (control is AntdUI.StackPanel fl && control.Tag?.ToString() == "Container")
+                if (control is AntdUI.Panel fl && control.Tag?.ToString() == "Container")
                 {
                     ContainerPanels.Add(fl);
                 }
             }
-            foreach (AntdUI.StackPanel ContainerPanel in ContainerPanels)
+            foreach (AntdUI.Panel ContainerPanel in ContainerPanels)
             {
                 foreach (Control control in ContainerPanel.Controls)
                 {
@@ -509,6 +495,12 @@ namespace project
             new_form.ShowDialog();
         }
 
+        private void btn_debugPage_Click(object sender, EventArgs e)
+        {
+            Form_Debug new_form = new Form_Debug();
+            new_form.ShowDialog();
+        }
+
         private void cb_controlSubject_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -586,7 +578,6 @@ namespace project
 
         private void timer_toopTipShow_Tick(object sender, EventArgs e)
         {
-            lbl_tabToDoMes.Text = "";
             tooltip_subject.Hide();
             tooltip_class.Hide();
             timer_toopTipShow.Enabled = false;

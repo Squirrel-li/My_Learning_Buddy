@@ -8,18 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace project
+namespace project.Forms
 {
-    public partial class user_control_settings_task : UserControl
+    public partial class Form_Debug : Form
     {
-        public user_control_settings_task()
+        public Form_Debug()
         {
             InitializeComponent();
-        }
-
-        private void user_control_settings_task_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -83,7 +83,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Component\main_page.cs" />
+    <Compile Include="Component\DataStructure.cs" />
+    <Compile Include="Component\Task.cs" />
     <Compile Include="Forms\Form_mainPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +97,12 @@
     <Compile Include="Forms\Form_pomodoro.Designer.cs">
       <DependentUpon>Form_pomodoro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Form_Debug.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Form_Debug.Designer.cs">
+      <DependentUpon>Form_Debug.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\From_settings.cs">
@@ -104,24 +111,6 @@
     <Compile Include="Forms\From_settings.Designer.cs">
       <DependentUpon>From_settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="setting_user_control\user_control_settings_gen.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="setting_user_control\user_control_settings_gen.Designer.cs">
-      <DependentUpon>user_control_settings_gen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="setting_user_control\user_control_settings_pomo.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="setting_user_control\user_control_settings_pomo.Designer.cs">
-      <DependentUpon>user_control_settings_pomo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="setting_user_control\user_control_settings_task.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="setting_user_control\user_control_settings_task.Designer.cs">
-      <DependentUpon>user_control_settings_task.cs</DependentUpon>
-    </Compile>
     <Compile Include="util\backColorSet.cs" />
     <Compile Include="util\jsonManager.cs" />
     <EmbeddedResource Include="Forms\Form_mainPage.resx">
@@ -129,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Form_pomodoro.resx">
       <DependentUpon>Form_pomodoro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form_Debug.resx">
+      <DependentUpon>Form_Debug.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -142,15 +134,6 @@
     </Compile>
     <EmbeddedResource Include="Forms\From_settings.resx">
       <DependentUpon>From_settings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="setting_user_control\user_control_settings_gen.resx">
-      <DependentUpon>user_control_settings_gen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="setting_user_control\user_control_settings_pomo.resx">
-      <DependentUpon>user_control_settings_pomo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="setting_user_control\user_control_settings_task.resx">
-      <DependentUpon>user_control_settings_task.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\project.Component.main_page.datasource" />

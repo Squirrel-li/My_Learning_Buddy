@@ -10,6 +10,7 @@ namespace project.util
 {
     internal class backColorSet
     {
+        
         static public void SetPanelBackItemColor(AntdUI.Panel panel)
         {
             Color color = (Color)panel.Back;
@@ -18,17 +19,17 @@ namespace project.util
                 if (Item is AntdUI.Label)
                 {
                     AntdUI.Label item = (AntdUI.Label)Item;
-                    item.BackColor = color;
+                    item.BackColor = Color.Transparent;
                 }
                 if (Item is AntdUI.Switch)
                 {
                     AntdUI.Switch item = (AntdUI.Switch)Item;
-                    item.BackColor = color;
+                    item.BackColor = Color.Transparent;
                 }
                 if (Item is AntdUI.Tooltip)
                 {
                     AntdUI.Tooltip item = (AntdUI.Tooltip)Item;
-                    item.BackColor = color;
+                    item.BackColor = Color.Transparent;
                 }
             }
         }
