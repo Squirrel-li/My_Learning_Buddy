@@ -83,8 +83,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Component\class.cs" />
-    <Compile Include="Component\main_page.cs" />
+    <Compile Include="Component\DataStructure.cs" />
+    <Compile Include="Component\Task.cs" />
     <Compile Include="Forms\Form_mainPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,24 +111,6 @@
     <Compile Include="Forms\From_settings.Designer.cs">
       <DependentUpon>From_settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="setting_user_control\user_control_settings_gen.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="setting_user_control\user_control_settings_gen.Designer.cs">
-      <DependentUpon>user_control_settings_gen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="setting_user_control\user_control_settings_pomo.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="setting_user_control\user_control_settings_pomo.Designer.cs">
-      <DependentUpon>user_control_settings_pomo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="setting_user_control\user_control_settings_task.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="setting_user_control\user_control_settings_task.Designer.cs">
-      <DependentUpon>user_control_settings_task.cs</DependentUpon>
-    </Compile>
     <Compile Include="util\backColorSet.cs" />
     <Compile Include="util\jsonManager.cs" />
     <EmbeddedResource Include="Forms\Form_mainPage.resx">
@@ -152,15 +134,6 @@
     </Compile>
     <EmbeddedResource Include="Forms\From_settings.resx">
       <DependentUpon>From_settings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="setting_user_control\user_control_settings_gen.resx">
-      <DependentUpon>user_control_settings_gen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="setting_user_control\user_control_settings_pomo.resx">
-      <DependentUpon>user_control_settings_pomo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="setting_user_control\user_control_settings_task.resx">
-      <DependentUpon>user_control_settings_task.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\project.Component.main_page.datasource" />
