@@ -88,9 +88,9 @@
             // tabs1
             // 
             this.tabs1.Alignment = System.Windows.Forms.TabAlignment.Left;
+            this.tabs1.Controls.Add(this.tb_pomo);
             this.tabs1.Controls.Add(this.tb_task);
             this.tabs1.Controls.Add(this.tb_display);
-            this.tabs1.Controls.Add(this.tb_pomo);
             this.tabs1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tabs1.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
             this.tabs1.Location = new System.Drawing.Point(12, 77);
@@ -98,7 +98,7 @@
             this.tabs1.Pages.Add(this.tb_display);
             this.tabs1.Pages.Add(this.tb_task);
             this.tabs1.Pages.Add(this.tb_pomo);
-            this.tabs1.SelectedIndex = 1;
+            this.tabs1.SelectedIndex = 2;
             this.tabs1.Size = new System.Drawing.Size(776, 362);
             this.tabs1.Style = styleLine1;
             this.tabs1.TabIndex = 6;
@@ -141,12 +141,16 @@
             // 
             // btn_clearAllTask
             // 
-            this.btn_clearAllTask.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
-            this.btn_clearAllTask.Location = new System.Drawing.Point(156, 300);
+            this.btn_clearAllTask.BackColor = System.Drawing.Color.Transparent;
+            this.btn_clearAllTask.DefaultBack = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(119)))), ((int)(((byte)(119)))));
+            this.btn_clearAllTask.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_clearAllTask.Font = new System.Drawing.Font("微軟正黑體", 60F);
+            this.btn_clearAllTask.Location = new System.Drawing.Point(10, 10);
             this.btn_clearAllTask.Name = "btn_clearAllTask";
-            this.btn_clearAllTask.Size = new System.Drawing.Size(155, 43);
+            this.btn_clearAllTask.Size = new System.Drawing.Size(304, 336);
             this.btn_clearAllTask.TabIndex = 65;
             this.btn_clearAllTask.Text = "清除所有任務";
+            this.btn_clearAllTask.TextMultiLine = true;
             this.btn_clearAllTask.Click += new System.EventHandler(this.btn_clearAllTask_Click);
             // 
             // panel4
@@ -331,7 +335,7 @@
             // 
             // label15
             // 
-            this.label15.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Font = new System.Drawing.Font("微軟正黑體", 12F);
             this.label15.Location = new System.Drawing.Point(23, 78);
             this.label15.Name = "label15";
@@ -341,6 +345,7 @@
             // 
             // label16
             // 
+            this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.Font = new System.Drawing.Font("微軟正黑體", 12F);
             this.label16.Location = new System.Drawing.Point(23, 130);
             this.label16.Name = "label16";
@@ -451,7 +456,7 @@
             // 
             // label7
             // 
-            this.label7.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("微軟正黑體", 12F);
             this.label7.Location = new System.Drawing.Point(23, 78);
             this.label7.Name = "label7";
@@ -471,6 +476,7 @@
             // 
             // label8
             // 
+            this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("微軟正黑體", 12F);
             this.label8.Location = new System.Drawing.Point(23, 130);
             this.label8.Name = "label8";
@@ -490,6 +496,7 @@
             // 
             // label9
             // 
+            this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("微軟正黑體", 12F);
             this.label9.Location = new System.Drawing.Point(23, 181);
             this.label9.Name = "label9";
@@ -509,6 +516,7 @@
             // 
             // label10
             // 
+            this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("微軟正黑體", 12F);
             this.label10.Location = new System.Drawing.Point(23, 233);
             this.label10.Name = "label10";
@@ -547,6 +555,7 @@
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.tabs1);
             this.Name = "From_settings";
+            this.Resizable = false;
             this.Text = "settings";
             this.Load += new System.EventHandler(this.From_settings_Load);
             this.tabs1.ResumeLayout(false);

@@ -72,6 +72,8 @@ namespace project
             dateTimeP_select.Value = DateTime.Now;
             //backColorSet.SetPanelBackItemColor(panel_Task);
             //backColorSet.SetPanelBackItemColor(panel_modeify);
+
+            tabs_modifySet.SelectedIndex = 0;
         }
 
         private void InitTables()
@@ -154,7 +156,7 @@ namespace project
                 gridpanel_calendar.Controls.Add(ContainerStackPanel);
                 //task_panel.Height = ContainerStackPanel.Height - fl_label.Height - 12;
                 task_panel.BorderStyle = DashStyle.Solid;
-                task_panel.BorderWidth = 2;
+                task_panel.BorderWidth = 5;
                 task_panel.Dock = DockStyle.Fill;
 
                 ContainerStackPanel.Controls.Add(task_panel);

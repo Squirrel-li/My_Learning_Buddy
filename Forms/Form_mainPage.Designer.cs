@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            AntdUI.Tabs.StyleLine styleLine2 = new AntdUI.Tabs.StyleLine();
+            AntdUI.Tabs.StyleLine styleLine1 = new AntdUI.Tabs.StyleLine();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_mainPage));
             this.select_selectColor = new AntdUI.Select();
             this.dateTimeP_select = new AntdUI.DatePicker();
@@ -39,22 +39,6 @@
             this.select_subject = new AntdUI.Select();
             this.gridpanel_calendar = new AntdUI.GridPanel();
             this.tabs_modifySet = new AntdUI.Tabs();
-            this.tb_addToDo = new AntdUI.TabPage();
-            this.panel7 = new AntdUI.Panel();
-            this.flowLayoutPanel1 = new AntdUI.In.FlowLayoutPanel();
-            this.panel3 = new AntdUI.Panel();
-            this.tooltip_class = new AntdUI.Tooltip();
-            this.label6 = new AntdUI.Label();
-            this.panel4 = new AntdUI.Panel();
-            this.tooltip_subject = new AntdUI.Tooltip();
-            this.label1 = new AntdUI.Label();
-            this.panel6 = new AntdUI.Panel();
-            this.label2 = new AntdUI.Label();
-            this.panel8 = new AntdUI.Panel();
-            this.label3 = new AntdUI.Label();
-            this.panel5 = new AntdUI.Panel();
-            this.label4 = new AntdUI.Label();
-            this.panel9 = new AntdUI.Panel();
             this.tb_addSubjClass = new AntdUI.TabPage();
             this.panel10 = new AntdUI.Panel();
             this.flowLayoutPanel2 = new AntdUI.In.FlowLayoutPanel();
@@ -71,6 +55,22 @@
             this.btn_delClass = new AntdUI.Button();
             this.btn_addClass = new AntdUI.Button();
             this.lbl_tabModfiyMes = new AntdUI.Label();
+            this.tb_addToDo = new AntdUI.TabPage();
+            this.panel7 = new AntdUI.Panel();
+            this.flowLayoutPanel1 = new AntdUI.In.FlowLayoutPanel();
+            this.panel3 = new AntdUI.Panel();
+            this.tooltip_class = new AntdUI.Tooltip();
+            this.label6 = new AntdUI.Label();
+            this.panel4 = new AntdUI.Panel();
+            this.tooltip_subject = new AntdUI.Tooltip();
+            this.label1 = new AntdUI.Label();
+            this.panel6 = new AntdUI.Panel();
+            this.label2 = new AntdUI.Label();
+            this.panel8 = new AntdUI.Panel();
+            this.label3 = new AntdUI.Label();
+            this.panel5 = new AntdUI.Panel();
+            this.label4 = new AntdUI.Label();
+            this.panel9 = new AntdUI.Panel();
             this.timer_toopTipShow = new System.Windows.Forms.Timer(this.components);
             this.pageHeader1 = new AntdUI.PageHeader();
             this.panel2 = new AntdUI.Panel();
@@ -81,6 +81,13 @@
             this.btn_settings = new AntdUI.Button();
             this.btn_openPomo = new AntdUI.Button();
             this.tabs_modifySet.SuspendLayout();
+            this.tb_addSubjClass.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.panel12.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.panel13.SuspendLayout();
+            this.panel14.SuspendLayout();
             this.tb_addToDo.SuspendLayout();
             this.panel7.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -90,13 +97,6 @@
             this.panel8.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel9.SuspendLayout();
-            this.tb_addSubjClass.SuspendLayout();
-            this.panel10.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
-            this.panel12.SuspendLayout();
-            this.panel11.SuspendLayout();
-            this.panel13.SuspendLayout();
-            this.panel14.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitter1)).BeginInit();
             this.splitter1.Panel1.SuspendLayout();
@@ -213,8 +213,8 @@
             // 
             // tabs_modifySet
             // 
-            this.tabs_modifySet.Controls.Add(this.tb_addSubjClass);
             this.tabs_modifySet.Controls.Add(this.tb_addToDo);
+            this.tabs_modifySet.Controls.Add(this.tb_addSubjClass);
             this.tabs_modifySet.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tabs_modifySet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabs_modifySet.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
@@ -224,12 +224,187 @@
             this.tabs_modifySet.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.tabs_modifySet.Pages.Add(this.tb_addToDo);
             this.tabs_modifySet.Pages.Add(this.tb_addSubjClass);
-            this.tabs_modifySet.SelectedIndex = 1;
-            this.tabs_modifySet.Size = new System.Drawing.Size(390, 517);
-            this.tabs_modifySet.Style = styleLine2;
+            this.tabs_modifySet.Size = new System.Drawing.Size(390, 520);
+            this.tabs_modifySet.Style = styleLine1;
             this.tabs_modifySet.TabIndex = 19;
             this.tabs_modifySet.Text = "tabs1";
             this.tabs_modifySet.SelectedIndexChanged += new AntdUI.IntEventHandler(this.tabs_modifySet_SelectedIndexChanged);
+            // 
+            // tb_addSubjClass
+            // 
+            this.tb_addSubjClass.Controls.Add(this.panel10);
+            this.tb_addSubjClass.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_addSubjClass.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.tb_addSubjClass.Location = new System.Drawing.Point(12, 42);
+            this.tb_addSubjClass.Name = "tb_addSubjClass";
+            this.tb_addSubjClass.Size = new System.Drawing.Size(378, 478);
+            this.tb_addSubjClass.TabIndex = 1;
+            this.tb_addSubjClass.Text = "更改科目與類別";
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.flowLayoutPanel2);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel10.Location = new System.Drawing.Point(0, 0);
+            this.panel10.Name = "panel10";
+            this.panel10.Radius = 10;
+            this.panel10.Shadow = 5;
+            this.panel10.Size = new System.Drawing.Size(378, 478);
+            this.panel10.TabIndex = 50;
+            this.panel10.Text = "panel10";
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.AutoScroll = true;
+            this.flowLayoutPanel2.BackColor = System.Drawing.Color.Transparent;
+            this.flowLayoutPanel2.Controls.Add(this.panel12);
+            this.flowLayoutPanel2.Controls.Add(this.panel11);
+            this.flowLayoutPanel2.Controls.Add(this.panel13);
+            this.flowLayoutPanel2.Controls.Add(this.panel14);
+            this.flowLayoutPanel2.Controls.Add(this.lbl_tabModfiyMes);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(5, 5);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(368, 468);
+            this.flowLayoutPanel2.TabIndex = 49;
+            // 
+            // panel12
+            // 
+            this.panel12.Back = System.Drawing.Color.Transparent;
+            this.panel12.Controls.Add(this.label9);
+            this.panel12.Location = new System.Drawing.Point(3, 3);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(64, 39);
+            this.panel12.TabIndex = 50;
+            this.panel12.Text = "panel12";
+            // 
+            // label9
+            // 
+            this.label9.AutoSizeMode = AntdUI.TAutoSize.Auto;
+            this.label9.BackColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(16, 13);
+            this.label9.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(42, 28);
+            this.label9.TabIndex = 46;
+            this.label9.Text = "科目";
+            // 
+            // panel11
+            // 
+            this.panel11.Back = System.Drawing.Color.Transparent;
+            this.panel11.Controls.Add(this.select_controlSubject);
+            this.panel11.Controls.Add(this.btn_addSubj);
+            this.panel11.Controls.Add(this.btn_delSubj);
+            this.panel11.Location = new System.Drawing.Point(73, 3);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(282, 99);
+            this.panel11.TabIndex = 49;
+            this.panel11.Text = "panel11";
+            // 
+            // select_controlSubject
+            // 
+            this.select_controlSubject.Location = new System.Drawing.Point(3, 9);
+            this.select_controlSubject.Name = "select_controlSubject";
+            this.select_controlSubject.Size = new System.Drawing.Size(276, 37);
+            this.select_controlSubject.TabIndex = 44;
+            this.select_controlSubject.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cb_controlSubject_KeyDown);
+            // 
+            // btn_addSubj
+            // 
+            this.btn_addSubj.DefaultBack = System.Drawing.SystemColors.AppWorkspace;
+            this.btn_addSubj.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.btn_addSubj.Location = new System.Drawing.Point(107, 52);
+            this.btn_addSubj.Name = "btn_addSubj";
+            this.btn_addSubj.Size = new System.Drawing.Size(83, 43);
+            this.btn_addSubj.TabIndex = 39;
+            this.btn_addSubj.Text = "新增";
+            this.btn_addSubj.Click += new System.EventHandler(this.btn_addSubj_Click);
+            // 
+            // btn_delSubj
+            // 
+            this.btn_delSubj.DefaultBack = System.Drawing.SystemColors.AppWorkspace;
+            this.btn_delSubj.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.btn_delSubj.Location = new System.Drawing.Point(196, 52);
+            this.btn_delSubj.Name = "btn_delSubj";
+            this.btn_delSubj.Size = new System.Drawing.Size(83, 43);
+            this.btn_delSubj.TabIndex = 38;
+            this.btn_delSubj.Text = "刪除";
+            this.btn_delSubj.Click += new System.EventHandler(this.btn_delSubj_Click);
+            // 
+            // panel13
+            // 
+            this.panel13.Back = System.Drawing.Color.Transparent;
+            this.panel13.Controls.Add(this.label10);
+            this.panel13.Location = new System.Drawing.Point(3, 108);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(64, 39);
+            this.panel13.TabIndex = 51;
+            this.panel13.Text = "panel13";
+            // 
+            // label10
+            // 
+            this.label10.AutoSizeMode = AntdUI.TAutoSize.Auto;
+            this.label10.BackColor = System.Drawing.Color.White;
+            this.label10.Location = new System.Drawing.Point(16, 13);
+            this.label10.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(42, 28);
+            this.label10.TabIndex = 47;
+            this.label10.Text = "類別";
+            // 
+            // panel14
+            // 
+            this.panel14.Back = System.Drawing.Color.Transparent;
+            this.panel14.Controls.Add(this.select_controlClass);
+            this.panel14.Controls.Add(this.btn_delClass);
+            this.panel14.Controls.Add(this.btn_addClass);
+            this.panel14.Location = new System.Drawing.Point(73, 108);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(282, 99);
+            this.panel14.TabIndex = 52;
+            this.panel14.Text = "panel14";
+            // 
+            // select_controlClass
+            // 
+            this.select_controlClass.Location = new System.Drawing.Point(3, 9);
+            this.select_controlClass.Name = "select_controlClass";
+            this.select_controlClass.Size = new System.Drawing.Size(276, 37);
+            this.select_controlClass.TabIndex = 43;
+            this.select_controlClass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cb_controlClass_KeyDown);
+            // 
+            // btn_delClass
+            // 
+            this.btn_delClass.DefaultBack = System.Drawing.SystemColors.AppWorkspace;
+            this.btn_delClass.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.btn_delClass.Location = new System.Drawing.Point(196, 52);
+            this.btn_delClass.Name = "btn_delClass";
+            this.btn_delClass.Size = new System.Drawing.Size(83, 43);
+            this.btn_delClass.TabIndex = 40;
+            this.btn_delClass.Text = "刪除";
+            this.btn_delClass.Click += new System.EventHandler(this.btn_delClass_Click);
+            // 
+            // btn_addClass
+            // 
+            this.btn_addClass.DefaultBack = System.Drawing.SystemColors.AppWorkspace;
+            this.btn_addClass.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
+            this.btn_addClass.Location = new System.Drawing.Point(107, 54);
+            this.btn_addClass.Name = "btn_addClass";
+            this.btn_addClass.Size = new System.Drawing.Size(83, 43);
+            this.btn_addClass.TabIndex = 41;
+            this.btn_addClass.Text = "新增";
+            this.btn_addClass.Click += new System.EventHandler(this.btn_addClass_Click);
+            // 
+            // lbl_tabModfiyMes
+            // 
+            this.lbl_tabModfiyMes.AutoSizeMode = AntdUI.TAutoSize.Auto;
+            this.lbl_tabModfiyMes.BackColor = System.Drawing.Color.White;
+            this.lbl_tabModfiyMes.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_tabModfiyMes.Location = new System.Drawing.Point(3, 213);
+            this.lbl_tabModfiyMes.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
+            this.lbl_tabModfiyMes.Name = "lbl_tabModfiyMes";
+            this.lbl_tabModfiyMes.Size = new System.Drawing.Size(26, 20);
+            this.lbl_tabModfiyMes.TabIndex = 48;
+            this.lbl_tabModfiyMes.Text = "abc";
             // 
             // tb_addToDo
             // 
@@ -239,7 +414,7 @@
             this.tb_addToDo.Location = new System.Drawing.Point(12, 42);
             this.tb_addToDo.MinimumSize = new System.Drawing.Size(300, 0);
             this.tb_addToDo.Name = "tb_addToDo";
-            this.tb_addToDo.Size = new System.Drawing.Size(378, 475);
+            this.tb_addToDo.Size = new System.Drawing.Size(378, 478);
             this.tb_addToDo.TabIndex = 0;
             this.tb_addToDo.Text = "新增任務";
             // 
@@ -253,7 +428,7 @@
             this.panel7.Name = "panel7";
             this.panel7.Radius = 10;
             this.panel7.Shadow = 5;
-            this.panel7.Size = new System.Drawing.Size(378, 475);
+            this.panel7.Size = new System.Drawing.Size(378, 478);
             this.panel7.TabIndex = 0;
             this.panel7.Text = "panel7";
             // 
@@ -271,7 +446,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(5, 5);
             this.flowLayoutPanel1.MinimumSize = new System.Drawing.Size(290, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(368, 465);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(368, 468);
             this.flowLayoutPanel1.TabIndex = 34;
             // 
             // panel3
@@ -436,182 +611,6 @@
             this.panel9.TabIndex = 39;
             this.panel9.Text = "panel9";
             // 
-            // tb_addSubjClass
-            // 
-            this.tb_addSubjClass.Controls.Add(this.panel10);
-            this.tb_addSubjClass.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_addSubjClass.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
-            this.tb_addSubjClass.Location = new System.Drawing.Point(12, 42);
-            this.tb_addSubjClass.Name = "tb_addSubjClass";
-            this.tb_addSubjClass.Size = new System.Drawing.Size(378, 475);
-            this.tb_addSubjClass.TabIndex = 1;
-            this.tb_addSubjClass.Text = "更改科目與類別";
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.flowLayoutPanel2);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(0, 0);
-            this.panel10.Name = "panel10";
-            this.panel10.Radius = 10;
-            this.panel10.Shadow = 5;
-            this.panel10.Size = new System.Drawing.Size(378, 475);
-            this.panel10.TabIndex = 50;
-            this.panel10.Text = "panel10";
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.AutoScroll = true;
-            this.flowLayoutPanel2.BackColor = System.Drawing.Color.Transparent;
-            this.flowLayoutPanel2.Controls.Add(this.panel12);
-            this.flowLayoutPanel2.Controls.Add(this.panel11);
-            this.flowLayoutPanel2.Controls.Add(this.panel13);
-            this.flowLayoutPanel2.Controls.Add(this.panel14);
-            this.flowLayoutPanel2.Controls.Add(this.lbl_tabModfiyMes);
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(5, 5);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(368, 465);
-            this.flowLayoutPanel2.TabIndex = 49;
-            // 
-            // panel12
-            // 
-            this.panel12.Back = System.Drawing.Color.Transparent;
-            this.panel12.Controls.Add(this.label9);
-            this.panel12.Location = new System.Drawing.Point(3, 3);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(64, 39);
-            this.panel12.TabIndex = 50;
-            this.panel12.Text = "panel12";
-            // 
-            // label9
-            // 
-            this.label9.AutoSizeMode = AntdUI.TAutoSize.Auto;
-            this.label9.BackColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(16, 13);
-            this.label9.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(42, 28);
-            this.label9.TabIndex = 46;
-            this.label9.Text = "科目";
-            // 
-            // panel11
-            // 
-            this.panel11.Back = System.Drawing.Color.Transparent;
-            this.panel11.Controls.Add(this.select_controlSubject);
-            this.panel11.Controls.Add(this.btn_addSubj);
-            this.panel11.Controls.Add(this.btn_delSubj);
-            this.panel11.Location = new System.Drawing.Point(73, 3);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(282, 99);
-            this.panel11.TabIndex = 49;
-            this.panel11.Text = "panel11";
-            // 
-            // select_controlSubject
-            // 
-            this.select_controlSubject.Location = new System.Drawing.Point(3, 9);
-            this.select_controlSubject.Name = "select_controlSubject";
-            this.select_controlSubject.Size = new System.Drawing.Size(276, 37);
-            this.select_controlSubject.TabIndex = 44;
-            this.select_controlSubject.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cb_controlSubject_KeyDown);
-            // 
-            // btn_addSubj
-            // 
-            this.btn_addSubj.DefaultBack = System.Drawing.SystemColors.AppWorkspace;
-            this.btn_addSubj.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
-            this.btn_addSubj.Location = new System.Drawing.Point(107, 52);
-            this.btn_addSubj.Name = "btn_addSubj";
-            this.btn_addSubj.Size = new System.Drawing.Size(83, 43);
-            this.btn_addSubj.TabIndex = 39;
-            this.btn_addSubj.Text = "新增";
-            this.btn_addSubj.Click += new System.EventHandler(this.btn_addSubj_Click);
-            // 
-            // btn_delSubj
-            // 
-            this.btn_delSubj.DefaultBack = System.Drawing.SystemColors.AppWorkspace;
-            this.btn_delSubj.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
-            this.btn_delSubj.Location = new System.Drawing.Point(196, 52);
-            this.btn_delSubj.Name = "btn_delSubj";
-            this.btn_delSubj.Size = new System.Drawing.Size(83, 43);
-            this.btn_delSubj.TabIndex = 38;
-            this.btn_delSubj.Text = "刪除";
-            this.btn_delSubj.Click += new System.EventHandler(this.btn_delSubj_Click);
-            // 
-            // panel13
-            // 
-            this.panel13.Back = System.Drawing.Color.Transparent;
-            this.panel13.Controls.Add(this.label10);
-            this.panel13.Location = new System.Drawing.Point(3, 108);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(64, 39);
-            this.panel13.TabIndex = 51;
-            this.panel13.Text = "panel13";
-            // 
-            // label10
-            // 
-            this.label10.AutoSizeMode = AntdUI.TAutoSize.Auto;
-            this.label10.BackColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(16, 13);
-            this.label10.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(42, 28);
-            this.label10.TabIndex = 47;
-            this.label10.Text = "類別";
-            // 
-            // panel14
-            // 
-            this.panel14.Back = System.Drawing.Color.Transparent;
-            this.panel14.Controls.Add(this.select_controlClass);
-            this.panel14.Controls.Add(this.btn_delClass);
-            this.panel14.Controls.Add(this.btn_addClass);
-            this.panel14.Location = new System.Drawing.Point(73, 108);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(282, 99);
-            this.panel14.TabIndex = 52;
-            this.panel14.Text = "panel14";
-            // 
-            // select_controlClass
-            // 
-            this.select_controlClass.Location = new System.Drawing.Point(3, 9);
-            this.select_controlClass.Name = "select_controlClass";
-            this.select_controlClass.Size = new System.Drawing.Size(276, 37);
-            this.select_controlClass.TabIndex = 43;
-            this.select_controlClass.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cb_controlClass_KeyDown);
-            // 
-            // btn_delClass
-            // 
-            this.btn_delClass.DefaultBack = System.Drawing.SystemColors.AppWorkspace;
-            this.btn_delClass.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
-            this.btn_delClass.Location = new System.Drawing.Point(196, 52);
-            this.btn_delClass.Name = "btn_delClass";
-            this.btn_delClass.Size = new System.Drawing.Size(83, 43);
-            this.btn_delClass.TabIndex = 40;
-            this.btn_delClass.Text = "刪除";
-            this.btn_delClass.Click += new System.EventHandler(this.btn_delClass_Click);
-            // 
-            // btn_addClass
-            // 
-            this.btn_addClass.DefaultBack = System.Drawing.SystemColors.AppWorkspace;
-            this.btn_addClass.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
-            this.btn_addClass.Location = new System.Drawing.Point(107, 54);
-            this.btn_addClass.Name = "btn_addClass";
-            this.btn_addClass.Size = new System.Drawing.Size(83, 43);
-            this.btn_addClass.TabIndex = 41;
-            this.btn_addClass.Text = "新增";
-            this.btn_addClass.Click += new System.EventHandler(this.btn_addClass_Click);
-            // 
-            // lbl_tabModfiyMes
-            // 
-            this.lbl_tabModfiyMes.AutoSizeMode = AntdUI.TAutoSize.Auto;
-            this.lbl_tabModfiyMes.BackColor = System.Drawing.Color.White;
-            this.lbl_tabModfiyMes.Font = new System.Drawing.Font("微軟正黑體", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_tabModfiyMes.Location = new System.Drawing.Point(3, 213);
-            this.lbl_tabModfiyMes.Margin = new System.Windows.Forms.Padding(3, 3, 3, 1);
-            this.lbl_tabModfiyMes.Name = "lbl_tabModfiyMes";
-            this.lbl_tabModfiyMes.Size = new System.Drawing.Size(26, 20);
-            this.lbl_tabModfiyMes.TabIndex = 48;
-            this.lbl_tabModfiyMes.Text = "abc";
-            // 
             // timer_toopTipShow
             // 
             this.timer_toopTipShow.Interval = 1000;
@@ -686,7 +685,7 @@
             this.splitter2.Panel2.Controls.Add(this.gridPanel1);
             this.splitter2.Size = new System.Drawing.Size(390, 645);
             this.splitter2.SplitterBack = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(244)))), ((int)(((byte)(248)))));
-            this.splitter2.SplitterDistance = 517;
+            this.splitter2.SplitterDistance = 520;
             this.splitter2.SplitterSize = 0;
             this.splitter2.SplitterWidth = 1;
             this.splitter2.TabIndex = 22;
@@ -701,7 +700,7 @@
             this.gridPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.gridPanel1.Name = "gridPanel1";
             this.gridPanel1.Padding = new System.Windows.Forms.Padding(12, 0, 0, 12);
-            this.gridPanel1.Size = new System.Drawing.Size(390, 127);
+            this.gridPanel1.Size = new System.Drawing.Size(390, 124);
             this.gridPanel1.Span = "40% ;\r\n40% 50%";
             this.gridPanel1.TabIndex = 0;
             this.gridPanel1.Text = "gridPanel1";
@@ -710,9 +709,9 @@
             // 
             this.lbl_debug.AutoSize = true;
             this.lbl_debug.Font = new System.Drawing.Font("更紗黑體 Mono TC Nerd", 8F);
-            this.lbl_debug.Location = new System.Drawing.Point(166, 58);
+            this.lbl_debug.Location = new System.Drawing.Point(166, 56);
             this.lbl_debug.Name = "lbl_debug";
-            this.lbl_debug.Size = new System.Drawing.Size(183, 58);
+            this.lbl_debug.Size = new System.Drawing.Size(183, 56);
             this.lbl_debug.TabIndex = 22;
             this.lbl_debug.Text = "Debug Mode Enable";
             this.lbl_debug.Visible = false;
@@ -720,9 +719,9 @@
             // btn_settings
             // 
             this.btn_settings.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
-            this.btn_settings.Location = new System.Drawing.Point(15, 61);
+            this.btn_settings.Location = new System.Drawing.Point(15, 59);
             this.btn_settings.Name = "btn_settings";
-            this.btn_settings.Size = new System.Drawing.Size(145, 52);
+            this.btn_settings.Size = new System.Drawing.Size(145, 50);
             this.btn_settings.TabIndex = 24;
             this.btn_settings.Text = "設定";
             this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
@@ -732,7 +731,7 @@
             this.btn_openPomo.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.btn_openPomo.Location = new System.Drawing.Point(15, 3);
             this.btn_openPomo.Name = "btn_openPomo";
-            this.btn_openPomo.Size = new System.Drawing.Size(145, 52);
+            this.btn_openPomo.Size = new System.Drawing.Size(145, 50);
             this.btn_openPomo.TabIndex = 23;
             this.btn_openPomo.Text = "開啟番茄鐘";
             this.btn_openPomo.Click += new System.EventHandler(this.btn_openPomo_Click);
@@ -751,6 +750,16 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabs_modifySet.ResumeLayout(false);
+            this.tb_addSubjClass.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
+            this.panel11.ResumeLayout(false);
+            this.panel13.ResumeLayout(false);
+            this.panel13.PerformLayout();
+            this.panel14.ResumeLayout(false);
             this.tb_addToDo.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
@@ -765,16 +774,6 @@
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel9.ResumeLayout(false);
-            this.tb_addSubjClass.ResumeLayout(false);
-            this.panel10.ResumeLayout(false);
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
-            this.panel12.ResumeLayout(false);
-            this.panel12.PerformLayout();
-            this.panel11.ResumeLayout(false);
-            this.panel13.ResumeLayout(false);
-            this.panel13.PerformLayout();
-            this.panel14.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.splitter1.Panel1.ResumeLayout(false);
             this.splitter1.Panel2.ResumeLayout(false);

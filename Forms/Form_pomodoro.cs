@@ -56,15 +56,14 @@ namespace project
         {
             timer_count.Interval /= rate;
             this.rate = rate;
-            lbl_debug.Visible = true;
             lbl_debug.Text = "Debug 模式開啟\n\r";
         }
 
         private void initPomoTime()
         {
             inputN_focus.Value = modeSet[1] / 60;
-            inputN_longBreak.Value = modeSet[2] / 60;
-            inputN_shortBreak.Value = modeSet[3] / 60;
+            inputN_shortBreak.Value = modeSet[2] / 60;
+            inputN_longBreak.Value = modeSet[3] / 60;
             inputN_loopTimes.Value = loopTimes;
             currentloop = 0;
             currentMode = 0;
@@ -250,6 +249,27 @@ namespace project
                 e.SuppressKeyPress = true;
                 jsonManager.Save_loopTime(loopTimes);
             }
+        }
+
+        private void btn_hiddenSet_Click(object sender, EventArgs e)
+        {
+            if (!flowLayoutPanel1.Visible)
+            {
+                flowLayoutPanel1.Visible = true;
+                btn_hiddenSet.Text = "隱藏設定";
+                btn_hiddenSet.Location = new Point(677, 542);
+            }
+            else
+            {
+                flowLayoutPanel1.Visible = false;
+                btn_hiddenSet.Text = "顯示設定";
+                btn_hiddenSet.Location = new Point(677, 542);
+            }
+        }
+
+        private void btn_save_Click(object sender, EventArgs e)
+        {
+            jsonManager.Save_modeSet(this.modeSet);
         }
     }
 }
