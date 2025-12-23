@@ -10,7 +10,8 @@ namespace project.util
 {
     internal class backColorSet
     {
-        static public void SetPanelBackItemColor(AntdUI.Panel panel)
+
+        public static void SetPanelBackItemColor(AntdUI.Panel panel)
         {
             Color color = (Color)panel.Back;
             foreach (Control Item in panel.Controls)
@@ -18,21 +19,21 @@ namespace project.util
                 if (Item is AntdUI.Label)
                 {
                     AntdUI.Label item = (AntdUI.Label)Item;
-                    item.BackColor = color;
+                    item.BackColor = Color.Transparent;
                 }
                 if (Item is AntdUI.Switch)
                 {
                     AntdUI.Switch item = (AntdUI.Switch)Item;
-                    item.BackColor = color;
+                    item.BackColor = Color.Transparent;
                 }
                 if (Item is AntdUI.Tooltip)
                 {
                     AntdUI.Tooltip item = (AntdUI.Tooltip)Item;
-                    item.BackColor = color;
+                    item.BackColor = Color.Transparent;
                 }
             }
         }
-        static public void SetPanelBackItemColor(AntdUI.Panel panel, Color color)
+        public static void SetPanelBackItemColor(AntdUI.Panel panel, Color color)
         {
             foreach (Control Item in panel.Controls)
             {
@@ -53,5 +54,17 @@ namespace project.util
                 }
             }
         }
-    }
+
+        public static void SetButtonHoverColor(AntdUI.Button button)
+        {
+            var baseColor = (Color)button.DefaultBack;
+            const int delta = 10;
+
+            button.BackHover = Color.FromArgb(
+                Math.Max(0, baseColor.R - delta),
+                Math.Max(0, baseColor.G - delta),
+                Math.Max(0, baseColor.B - delta)
+            );
+        }
+    };
 }
