@@ -36,7 +36,7 @@ namespace project
 
         public JsonManager jsonManager = new JsonManager();
 
-        private static bool debug = true;
+        private static bool debug = false;
 
         private ushort showPanel;
         private ushort showRangeMode;
@@ -53,13 +53,12 @@ namespace project
             //this.Resizable = false;
             if (debug)
             {
-                lbl_debug.Visible = true;
                 lbl_debug.Text = "Debug 模式開啟\n\r";
                 lbl_tabModfiyMes.Text = "tabModfiyMes";
             }
             else
             {
-                lbl_debug.Visible = false;
+                lbl_debug.Text = "";
                 lbl_tabModfiyMes.Text = "";
             }
 
@@ -206,7 +205,7 @@ namespace project
             //StackPanel new_stackPanel = new StackPanel();
             for (int i = showPanel - 1; i >= 0; i--)
             {
-                lbl_debug.Text += $"初始化 FL_Panel {i}\n";
+                //lbl_debug.Text += $"初始化 FL_Panel {i}\n";
                 AntdUI.StackPanel task_panel = new AntdUI.StackPanel();
                 task_panel.Vertical =true;
                 task_panel.AutoScroll = true;
@@ -380,10 +379,10 @@ namespace project
                 {
                     AddSelectIndex(select_subject, select_subject.Text);
                     tableSubject.Add(select_subject.Text);
-                    lbl_debug.Text += "select_subject：\n";
+                    //lbl_debug.Text += "select_subject：\n";
                     foreach (var item in select_subject.Items)
                     {
-                        lbl_debug.Text += item.ToString() + "\n";
+                        //lbl_debug.Text += item.ToString() + "\n";
                     }
                     this.jsonManager.Save_table_subject(tableSubject);
                 }
@@ -391,10 +390,10 @@ namespace project
                 {
                     AddSelectIndex(select_classification, select_classification.Text);
                     tableSubject.Add(select_classification.Text);
-                    lbl_debug.Text += "select_classification：\n";
+                    //lbl_debug.Text += "select_classification：\n";
                     foreach (var item in select_classification.Items)
                     {
-                        lbl_debug.Text += item.ToString() + "\n";
+                        //lbl_debug.Text += item.ToString() + "\n";
                     }
                     this.jsonManager.Save_tableClassification(tableClassification);
                 }
@@ -424,7 +423,7 @@ namespace project
                 jsonManager.add_tableToDoTask(new_toDoTask);
 
                 // add to table
-                lbl_debug.Text = "";
+                //lbl_debug.Text = "";
                 int dayDiff = (dateTime.Date - DateTime.Today).Days;
                 if (!new_toDoTask.finish)
                 {
