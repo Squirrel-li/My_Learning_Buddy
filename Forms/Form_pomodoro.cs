@@ -29,6 +29,7 @@ namespace project
 
         private int currentloop = 0;
         private int currentMode = 0; // 0: idle, 1: work, 2: short break, 3: long break
+        private List<DateTime> tableFinish;
 
         public JsonManager jsonManager = new JsonManager();
 
@@ -42,8 +43,9 @@ namespace project
             this.debug = debug;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Form_pomodoro_Load(object sender, EventArgs e)
         {
+            initBackColor();
             initPara();
             initPomoTime();
             if (debug)
@@ -52,26 +54,57 @@ namespace project
             }
         }
 
-        void debug_init(int rate)
+        void initBackColor()
+        {
+            pageHeader.BackColor = ThemeColor.BackPrimary;
+
+            progress_pomo.BackColor = ThemeColor.BackPrimary;
+
+            gridPanel_bottomBody.BackColor = ThemeColor.BackPrimary;
+
+            gridPanel_pomoButton.BackColor = ThemeColor.BackPrimary;
+            btn_control.DefaultBack = ThemeColor.BackButtonAccent;
+            btn_control.ForeColor = ThemeColor.BackInput;
+
+            btn_stop.DefaultBack = ThemeColor.BackPrimary;
+            btn_stop.BorderWidth = 2;
+            btn_stop.DefaultBorderColor = ThemeColor.BackBorder;
+            btn_stop.ForeColor = ThemeColor.TextSecondary;
+
+            gridPanel_set.BackColor = ThemeColor.BackPrimary;
+            inputN_shortBreak.BackColor = ThemeColor.BackInput;
+            inputN_focus.BackColor = ThemeColor.BackInput;
+            inputN_longBreak.BackColor = ThemeColor.BackInput;
+            inputN_loopTimes.BackColor = ThemeColor.BackInput;
+            /*
+            lbl_debug;
+            label1;
+            label2;
+            label3;
+            label4;
+            label5;*/
+        }
+
+
+        private void debug_init(int rate)
         {
             timer_count.Interval /= rate;
             this.rate = rate;
-            lbl_debug.Visible = true;
             lbl_debug.Text = "Debug 模式開啟\n\r";
         }
 
         private void initPomoTime()
         {
             inputN_focus.Value = modeSet[1] / 60;
-            inputN_longBreak.Value = modeSet[2] / 60;
-            inputN_shortBreak.Value = modeSet[3] / 60;
+            inputN_shortBreak.Value = modeSet[2] / 60;
+            inputN_longBreak.Value = modeSet[3] / 60;
             inputN_loopTimes.Value = loopTimes;
             currentloop = 0;
             currentMode = 0;
             currentSecond = modeSet[1];
-            progress1.Value = 1f;
+            progress_pomo.Value = 1f;
 
-            UpdateProgress(this.progress1);
+            UpdateProgress(this.progress_pomo);
         }
 
         private void initPara()
@@ -79,6 +112,7 @@ namespace project
             modeSet = jsonManager.Get_modeSet();
             loopTimes = jsonManager.Get_loopTime();
             autoStart = jsonManager.Get_autoStart();
+            tableFinish = jsonManager.Get_tableFinish();
         }
 
         private void timer_count_Tick(object sender, EventArgs e)
@@ -90,10 +124,13 @@ namespace project
                 btn_control.Text = "開始";
                 if (currentMode == 1) // work -> break
                 {
-                    timer_count.Stop();
-                    if (!autoStart[1])
+                    if (!autoStart[0])
                     {
-                        timer_count.Enabled = false;
+                        timer_count.Stop();
+                    }
+                    else
+                    {
+                        timer_count.Start();
                     }
                     if (currentloop > 0)
                     {
@@ -104,16 +141,33 @@ namespace project
                     {
                         currentMode = 3; // long break
                         currentloop = loopTimes;
+                        tableFinish = jsonManager.Get_tableFinish();
+                        tableFinish.Add(DateTime.Now);
+                        jsonManager.Save_tableFinish(tableFinish);
                     }
                 }
                 else if (currentMode == 2)
                 {
-                    timer_count.Start();
+                    if (!autoStart[1])
+                    {
+                        timer_count.Stop();
+                    }
+                    else
+                    {
+                        timer_count.Start();
+                    }
                     currentMode = 1;
                 }
                 else if (currentMode == 3)
                 {
-                    timer_count.Start();
+                    if (!autoStart[1])
+                    {
+                        timer_count.Stop();
+                    }
+                    else
+                    {
+                        timer_count.Start();
+                    }
                     currentMode = 1;
                 }
                 else // currentMode 超出範圍
@@ -123,7 +177,7 @@ namespace project
                 lbl_debug.Text = $"Mode: {currentMode.ToString()}\ncurrentloop: {currentloop.ToString()}";
                 currentSecond = modeSet[currentMode];
             }
-            UpdateProgress(this.progress1);
+            UpdateProgress(this.progress_pomo);
         }
 
         private void btn_control_Click(object sender, EventArgs e)
@@ -161,26 +215,50 @@ namespace project
             {
                 targetProgress.Value = (float)currentSecond / (float)modeSet[currentMode];
             }
-            if (targetProgress.Value < 0.50f)
+            if (currentMode == 1)
             {
-                targetProgress.Fill = Interpolate(Color.LightGreen, Color.LightSalmon, targetProgress.Value / 0.50f);
+                targetProgress.Fill = GetCurrentTimeColor(targetProgress.Value);
             }
-            else
+            else if (currentMode == 2)
             {
-                targetProgress.Fill = Interpolate(Color.LightSalmon, Color.LightSeaGreen, (targetProgress.Value - 0.50f) / 0.50f);
+                targetProgress.Fill = ColorTranslator.FromHtml("#93B5C6");
+            }
+            else if (currentMode == 3)
+            {
+                targetProgress.Fill = ColorTranslator.FromHtml("#9E94A8");
             }
             int Min = currentSecond / 60;
             int Sec = currentSecond % 60;
             targetProgress.Text = $"{Min.ToString("00")} : {Sec.ToString("00")}";
         }
 
-        private Color Interpolate(Color c1, Color c2, float t)
+        private Color GetCurrentTimeColor(double percentage)
         {
-            return Color.FromArgb(
-                (int)(c1.R + (c2.R - c1.R) * t),
-                (int)(c1.G + (c2.G - c1.G) * t),
-                (int)(c1.B + (c2.B - c1.B) * t)
-            );
+            Color colorStart = System.Drawing.ColorTranslator.FromHtml("#9CAF88"); // 100% 抹茶綠
+            Color colorMid = System.Drawing.ColorTranslator.FromHtml("#E6C87F"); // 50%  蜂蜜黃
+            Color colorEnd = System.Drawing.ColorTranslator.FromHtml("#D67D65"); // 0%   陶瓦紅
+
+            if (percentage >= 0.5)
+            {
+                float map = (float)((percentage - 0.5) * 2);
+                return LerpColor(colorMid, colorStart, map);
+            }
+            else
+            {
+                float map = (float)(percentage * 2);
+                return LerpColor(colorEnd, colorMid, map);
+            }
+        }
+        private Color LerpColor(Color start, Color end, float amount)
+        {
+            float sr = start.R, sg = start.G, sb = start.B;
+            float er = end.R, eg = end.G, eb = end.B;
+
+            byte r = (byte)(sr + (er - sr) * amount);
+            byte g = (byte)(sg + (eg - sg) * amount);
+            byte b = (byte)(sb + (eb - sb) * amount);
+
+            return Color.FromArgb(r, g, b);
         }
 
         private void btn_stop_Click(object sender, EventArgs e)
@@ -198,7 +276,7 @@ namespace project
                 if (currentMode == 0 || currentMode == 1)
                 {
                     currentSecond = modeSet[1];
-                    UpdateProgress(this.progress1);
+                    UpdateProgress(this.progress_pomo);
                 }
                 e.Handled = true;
                 e.SuppressKeyPress = true;
@@ -215,7 +293,7 @@ namespace project
                 if (currentMode == 2)
                 {
                     currentSecond = modeSet[2];
-                    UpdateProgress(this.progress1);
+                    UpdateProgress(this.progress_pomo);
                 }
                 e.Handled = true;
                 e.SuppressKeyPress = true;
@@ -232,7 +310,7 @@ namespace project
                 if (currentMode == 3)
                 {
                     currentSecond = modeSet[3];
-                    UpdateProgress(this.progress1);
+                    UpdateProgress(this.progress_pomo);
                 }
                 e.Handled = true;
                 e.SuppressKeyPress = true;

@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 
@@ -35,7 +36,11 @@ namespace project
 
         public JsonManager jsonManager = new JsonManager();
 
-        private static bool debug = false;
+        private static bool debug = true;
+
+        private ushort showPanel;
+        private ushort showRangeMode;
+        private int[] tableShowRange;
 
         public Form_mainPage()
         {
@@ -44,6 +49,7 @@ namespace project
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            initBackColor();
             //this.Resizable = false;
             if (debug)
             {
@@ -53,6 +59,7 @@ namespace project
             }
             else
             {
+                lbl_debug.Visible = false;
                 lbl_tabModfiyMes.Text = "";
             }
 
@@ -60,18 +67,102 @@ namespace project
             InitTables();
 
             // Init panel data
-            ushort panelNum = 5;
-            InitCalendarPanel(panelNum);
+            showPanel = jsonManager.Get_showPanel();
+            showRangeMode = jsonManager.Get_showRangeMode();
+
+            InitCalendarPanel(showPanel);
             // Load TO-DO Task data
             loadToDoTask();
 
             initSelectColor();
-            select_subject.SelectedIndex = 0;
-            select_classification.SelectedIndex = 0;
+            select_subject.Text = tableSubject[0];
+            select_classification.Text = tableClassification[0];
 
             dateTimeP_select.Value = DateTime.Now;
             //backColorSet.SetPanelBackItemColor(panel_Task);
             //backColorSet.SetPanelBackItemColor(panel_modeify);
+        }
+        
+        void initBackColor()
+        {
+            foreach (Control ctrl in this.Controls)
+            {
+                ctrl.BackColor = ThemeColor.BackPrimary;
+            }
+            pageHeader.BackColor = ThemeColor.BackHeader;
+            pageHeader.ColorScheme = TAMode.Dark;
+            panel_body.Back = ThemeColor.BackBorder;
+            
+            splitter_sideAndCalendar.SplitterBack = ThemeColor.BackPrimary;
+            splitter_addAndButton.SplitterBack = ThemeColor.BackPrimary;
+
+            tabs_modifySet.BackColor = ThemeColor.BackPrimary;
+
+            tb_addToDo.BackColor = ThemeColor.BackPrimary;
+            panel_side1.Back = ThemeColor.BackSurface;
+            //panel_side1.ShadowColor = ColorTranslator.FromHtml("#423832");
+            //panel_side1.ShadowOpacity = 20;
+            FLPanel_side1.BackColor = Color.Transparent;
+            input_taskDescribe.BackColor = ThemeColor.BackInput;
+            select_subject.BackColor = ThemeColor.BackInput;
+            select_classification.BackColor = ThemeColor.BackInput;
+            tooltip_subject.BackColor = ThemeColor.BackSurface;
+            tooltip_class.BackColor = ThemeColor.BackSurface;
+            dateTimeP_select.BackColor = ThemeColor.BackInput;
+            select_selectColor.BackColor = ThemeColor.BackInput;
+            btn_addTask.DefaultBack = ThemeColor.BackButtonAccent;
+            btn_addTask.ForeColor = ThemeColor.BackInput;
+            panel_sideTabClass.BackColor = ThemeColor.BackSurface;
+            panel_sideTabSubject.BackColor = ThemeColor.BackSurface;
+            panel_sideTabDeadline.BackColor = ThemeColor.BackSurface;
+            panel_sideTabDescript.BackColor = ThemeColor.BackSurface;
+            panel_sideTabColor.BackColor = ThemeColor.BackSurface;
+            panel_sideTabAddTask.BackColor = ThemeColor.BackSurface;
+
+            tb_addSubjClass.BackColor = ThemeColor.BackPrimary;
+            panel_side2.Back = ThemeColor.BackSurface;
+            //panel_side2.ShadowColor = ColorTranslator.FromHtml("#423832");
+            //panel_side2.ShadowOpacity = 20;
+            FLPanel_side2.BackColor = Color.Transparent;
+            panel_sideTabSubjectLabel.BackColor = ThemeColor.BackSurface;
+            panel_sideTabClassLabel.BackColor = ThemeColor.BackSurface;
+            panel_sideTabClassControl.BackColor = ThemeColor.BackSurface;
+            panel_sideTabSubjectControl.BackColor = ThemeColor.BackSurface;
+            select_controlSubject.BackColor = ThemeColor.BackInput;
+            select_controlClass.BackColor = ThemeColor.BackInput;
+            btn_addSubj.DefaultBack = ThemeColor.BackButtonAccent;
+            btn_addSubj.ForeColor = ThemeColor.BackInput;
+            btn_delSubj.DefaultBack = ThemeColor.BackSurface;
+            btn_delSubj.BorderWidth = 2;
+            btn_delSubj.DefaultBorderColor = ThemeColor.BackBorder;
+            btn_delSubj.ForeColor = ThemeColor.TextSecondary;
+            btn_addClass.DefaultBack = ThemeColor.BackButtonAccent;
+            btn_addClass.ForeColor = ThemeColor.BackInput;
+            btn_delClass.DefaultBack = ThemeColor.BackSurface;
+            btn_delClass.BorderWidth = 2;
+            btn_delClass.DefaultBorderColor = ThemeColor.BackBorder;
+            btn_delClass.ForeColor = ThemeColor.TextSecondary;
+
+            gridPanel_funButton.BackColor = ThemeColor.BackPrimary;
+            btn_settings.DefaultBack = ThemeColor.BackPrimary;
+            btn_settings.DefaultBorderColor = ThemeColor.BackBorder;
+            btn_settings.ForeColor = ThemeColor.TextSecondary;
+            btn_openPomo.DefaultBack = ThemeColor.BackPrimary;
+            btn_openPomo.DefaultBorderColor = ThemeColor.BackBorder;
+            btn_openPomo.ForeColor = ThemeColor.TextSecondary;
+
+            gridpanel_calendar.Back = ThemeColor.BackPrimary;/*
+
+
+            label1;
+            label3;
+            label2;
+            label4;
+            label6;
+            label9;
+            Label10;
+            lbl_tabModfiyMes;
+            lbl_debug;*/
         }
 
         private void InitTables()
@@ -99,36 +190,43 @@ namespace project
 
             initSelectIndex(this.select_subject, tableSubject);
             initSelectIndex(this.select_classification, tableClassification);
+            tableShowRange = new int[] { 7, 30, 60, -1 };
         }
 
-        private void InitCalendarPanel(ushort panelNum)
+        private void InitCalendarPanel(ushort showPanel)
         {
             String settingsText = "";
-            for (int i = 0; i < panelNum; i++)
+            for (int i = 0; i < showPanel; i++)
             {
-                settingsText += $"{100/panelNum}% ";
+                settingsText += $"{100/showPanel}% ";
             }
             gridpanel_calendar.Span = settingsText;
 
 
             //StackPanel new_stackPanel = new StackPanel();
-            for (int i = panelNum - 1; i >= 0; i--)
+            for (int i = showPanel - 1; i >= 0; i--)
             {
                 lbl_debug.Text += $"初始化 FL_Panel {i}\n";
                 AntdUI.StackPanel task_panel = new AntdUI.StackPanel();
                 task_panel.Vertical =true;
                 task_panel.AutoScroll = true;
                 task_panel.Tag = $"FL_{i}";
+                task_panel.BorderStyle = DashStyle.Solid;
+                task_panel.BorderWidth = 5;
+                task_panel.Dock = DockStyle.Fill;
+                task_panel.Back = ThemeColor.BackPrimary;
+                task_panel.Radius = 10;
+                task_panel.Margin = new Padding(2, 2, 2, 2);
                 AntdUI.Label fl_label = new AntdUI.Label();
                 if (i < tableFLPanelText.Count - 1)
                 {
                     fl_label.Text = tableFLPanelText[i];
                 }
-                else if (i < panelNum - 1)
+                else if (i < showPanel - 1)
                 {
                     fl_label.Text = $"{i} 天後";
                 }
-                else if (i == panelNum - 1)
+                else if (i == showPanel - 1)
                 {
                     fl_label.Text = "更久以後";
                 }
@@ -137,25 +235,17 @@ namespace project
                 fl_label.Margin = new Padding(0, 10, 0, 0);
                 fl_label.TextAlign = ContentAlignment.MiddleCenter;
                 fl_label.Dock = DockStyle.Top;
+                fl_label.ForeColor = ThemeColor.TextSecondary;
 
                 AntdUI.Panel ContainerStackPanel = new AntdUI.Panel();
                 ContainerStackPanel.Tag = "Container";
-                //ContainerStackPanel.Vertical = true;
                 ContainerStackPanel.Margin = new Padding(0, 0, 0, 0);
                 ContainerStackPanel.Padding = new Padding(0, 0, 0, 0);
                 ContainerStackPanel.Radius = 20;
-                ContainerStackPanel.Back = Color.Transparent;
-                ContainerStackPanel.BackColor = Color.Transparent;
-                task_panel.Back = Color.Transparent;
-
-                task_panel.Radius = 10;
-                task_panel.Margin = new Padding(2, 2, 2, 2);
+                ContainerStackPanel.Back = ThemeColor.BackPrimary;
+                ContainerStackPanel.BackColor = ThemeColor.BackPrimary;
 
                 gridpanel_calendar.Controls.Add(ContainerStackPanel);
-                //task_panel.Height = ContainerStackPanel.Height - fl_label.Height - 12;
-                task_panel.BorderStyle = DashStyle.Solid;
-                task_panel.BorderWidth = 2;
-                task_panel.Dock = DockStyle.Fill;
 
                 ContainerStackPanel.Controls.Add(task_panel);
                 ContainerStackPanel.Controls.Add(fl_label);
@@ -165,9 +255,9 @@ namespace project
         private void initSelectIndex(AntdUI.Select selectInput, List<String> table)
         {
             selectInput.Items.Clear();
-            foreach (String classification in table) 
+            foreach (String element in table) 
             {
-                AddSelectIndex(selectInput, classification);
+                AddSelectIndex(selectInput, element);
             }
         }
 
@@ -193,25 +283,28 @@ namespace project
         private void loadToDoTask()
         {
             this.tableToDoTask = jsonManager.Get_tableToDoTask();
-
             foreach (var toDoTask in this.tableToDoTask)
             {
                 AntdUI.StackPanel targetPanel = null;
                 int dayDiff = (toDoTask.deadline.Date - DateTime.Today).Days;
-                if (0 > dayDiff && !toDoTask.finish)
+                showRangeMode = jsonManager.Get_showRangeMode();
+                if (tableShowRange[showRangeMode] - 1 >= dayDiff || tableShowRange[showRangeMode] == -1)
                 {
-                    targetPanel = find_pnaelinlanel(this.gridpanel_calendar, "FL_0") ?? throw new Exception("cant find panel");
-                    toDoTask.add_to_panel(targetPanel);
-                }
-                else if (panelNum - 1 > dayDiff && dayDiff >= 0)
-                {
-                    targetPanel = find_pnaelinlanel(this.gridpanel_calendar, $"FL_{dayDiff}") ?? throw new Exception("cant find panel");
-                    toDoTask.add_to_panel(targetPanel);
-                }
-                else if (dayDiff >= panelNum - 1)
-                {
-                    targetPanel = find_pnaelinlanel(this.gridpanel_calendar, $"FL_{panelNum - 1}") ?? throw new Exception("cant find panel");
-                    toDoTask.add_to_panel(targetPanel);
+                    if (0 > dayDiff && !toDoTask.finish)
+                    {
+                        targetPanel = find_pnaelinlanel(this.gridpanel_calendar, "FL_0") ?? throw new Exception("cant find panel");
+                        toDoTask.add_to_panel(targetPanel);
+                    }
+                    else if (panelNum - 1 > dayDiff && dayDiff >= 0)
+                    {
+                        targetPanel = find_pnaelinlanel(this.gridpanel_calendar, $"FL_{dayDiff}") ?? throw new Exception("cant find panel");
+                        toDoTask.add_to_panel(targetPanel);
+                    }
+                    else if (dayDiff >= panelNum - 1)
+                    {
+                        targetPanel = find_pnaelinlanel(this.gridpanel_calendar, $"FL_{panelNum - 1}") ?? throw new Exception("cant find panel");
+                        toDoTask.add_to_panel(targetPanel);
+                    }
                 }
             }
         }
@@ -336,20 +429,24 @@ namespace project
                 if (!new_toDoTask.finish)
                 {
                     StackPanel targetPanel;
-                    if (0 > dayDiff)
+                    showRangeMode = jsonManager.Get_showRangeMode();
+                    if (tableShowRange[showRangeMode] - 1 >= dayDiff || tableShowRange[showRangeMode] == -1)
                     {
-                        targetPanel = find_pnaelinlanel(this.gridpanel_calendar, "FL_0") ?? throw new Exception("cant find panel");
-                        new_toDoTask.add_to_panel(targetPanel);
-                    }
-                    else if (panelNum - 1 > dayDiff && dayDiff >= 0)
-                    {
-                        targetPanel = find_pnaelinlanel(this.gridpanel_calendar, $"FL_{dayDiff}") ?? throw new Exception($"cant find panel tag:{dayDiff}");
-                        new_toDoTask.add_to_panel(targetPanel);
-                    }
-                    else if (dayDiff >= panelNum - 1)
-                    {
-                        targetPanel = find_pnaelinlanel(this.gridpanel_calendar, $"FL_{panelNum - 1}") ?? throw new Exception("cant find panel");
-                        new_toDoTask.add_to_panel(targetPanel);
+                        if (0 > dayDiff && !new_toDoTask.finish)
+                        {
+                            targetPanel = find_pnaelinlanel(this.gridpanel_calendar, "FL_0") ?? throw new Exception("cant find panel");
+                            new_toDoTask.add_to_panel(targetPanel);
+                        }
+                        else if (panelNum - 1 > dayDiff && dayDiff >= 0)
+                        {
+                            targetPanel = find_pnaelinlanel(this.gridpanel_calendar, $"FL_{dayDiff}") ?? throw new Exception("cant find panel");
+                            new_toDoTask.add_to_panel(targetPanel);
+                        }
+                        else if (dayDiff >= panelNum - 1)
+                        {
+                            targetPanel = find_pnaelinlanel(this.gridpanel_calendar, $"FL_{panelNum - 1}") ?? throw new Exception("cant find panel");
+                            new_toDoTask.add_to_panel(targetPanel);
+                        }
                     }
                 }
             }
@@ -491,12 +588,12 @@ namespace project
         {
             From_settings new_form = new From_settings();
             new_form.ShowDialog();
-        }
-
-        private void btn_debugPage_Click(object sender, EventArgs e)
-        {
-            Form_Debug new_form = new Form_Debug();
-            new_form.ShowDialog();
+            
+            gridpanel_calendar.Controls.Clear();
+            JsonManager jsonManager = new JsonManager();
+            panelNum = jsonManager.Get_showPanel();
+            InitCalendarPanel(panelNum);
+            loadToDoTask();
         }
 
         private void cb_controlSubject_KeyDown(object sender, KeyEventArgs e)

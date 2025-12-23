@@ -41,6 +41,9 @@ namespace project.Component
             public int[] modeSet { get; set; }
             public int loopTimes { get; set; }
             public bool[] autoStart { get; set; }
+            public ushort showPanel { get; set; }
+            public ushort showRangeMode { get; set; }
+            public List<DateTime> tableFinish { get; set; }
         }
 
         private void json_init()
@@ -49,13 +52,16 @@ namespace project.Component
             {
                 jsonStructure default_json = new jsonStructure()
                 {
-                    tableSubject = new List<string> { "科目一", "科目二", "科目三" },
+                    tableSubject = new List<string> { "視窗程式設計", "計算機結構", "應用軟體設計實習" },
                     tableClassification = new List<string> { "考試", "報告", "作業", "期末專題" },
-                    tableFLPanelText = new List<string> { "今日活動", "明日活動", "久遠以後" },
+                    tableFLPanelText = new List<string> { "今日活動", "明日活動", "未來計畫" },
                     tableToDoTask = new List<ToDoTask>(),
                     modeSet = new int[] { 0, 20 * 60, 5 * 60, 10 * 60 },
                     loopTimes = 2,
-                    autoStart = new bool[] { false, false }
+                    autoStart = new bool[] { false, false },
+                    showPanel = 5,
+                    showRangeMode = 0,
+                    tableFinish = new List<DateTime>()
                 };
                 string jsonString = JsonSerializer.Serialize(default_json, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
                 System.IO.File.WriteAllText(this.filePath, jsonString);
@@ -72,6 +78,13 @@ namespace project.Component
             string jsonFormFile = File.ReadAllText(filePath);
             jsonStructure jsonData = JsonSerializer.Deserialize<jsonStructure>(jsonFormFile);
             jsonData.tableSubject.Sort();
+            foreach (string subject in jsonData.tableSubject)
+            {
+                if (subject == string.Empty)
+                {
+                    jsonData.tableSubject.Remove(subject);
+                }
+            }
             return jsonData.tableSubject;
         }
 
@@ -84,6 +97,13 @@ namespace project.Component
             string jsonFormFile = File.ReadAllText(filePath);
             jsonStructure jsonData = JsonSerializer.Deserialize<jsonStructure>(jsonFormFile);
             jsonData.tableClassification.Sort();
+            foreach (string subject in jsonData.tableClassification)
+            {
+                if (subject == string.Empty)
+                {
+                    jsonData.tableClassification.Remove(subject);
+                }
+            }
             return jsonData.tableClassification;
         }
 
@@ -119,6 +139,39 @@ namespace project.Component
             string jsonFormFile = File.ReadAllText(filePath);
             jsonStructure jsonData = JsonSerializer.Deserialize<jsonStructure>(jsonFormFile);
             return jsonData.autoStart;
+        }
+
+        public ushort Get_showPanel()
+        {
+            if (!System.IO.File.Exists(this.filePath))
+            {
+                json_init();
+            }
+            string jsonFormFile = File.ReadAllText(filePath);
+            jsonStructure jsonData = JsonSerializer.Deserialize<jsonStructure>(jsonFormFile);
+            return jsonData.showPanel;
+        }
+
+        public ushort Get_showRangeMode()
+        {
+            if (!System.IO.File.Exists(this.filePath))
+            {
+                json_init();
+            }
+            string jsonFormFile = File.ReadAllText(filePath);
+            jsonStructure jsonData = JsonSerializer.Deserialize<jsonStructure>(jsonFormFile);
+            return jsonData.showRangeMode;
+        }
+
+        public List<DateTime> Get_tableFinish()
+        {
+            if (!System.IO.File.Exists(this.filePath))
+            {
+                json_init();
+            }
+            string jsonFormFile = File.ReadAllText(filePath);
+            jsonStructure jsonData = JsonSerializer.Deserialize<jsonStructure>(jsonFormFile);
+            return jsonData.tableFinish;
         }
 
         public void Save_table_subject(List<string> table_subject)
@@ -185,6 +238,45 @@ namespace project.Component
             string jsonFormFile = File.ReadAllText(filePath);
             jsonStructure jsonData = JsonSerializer.Deserialize<jsonStructure>(jsonFormFile);
             jsonData.autoStart = autoStart;
+            string jsonString = JsonSerializer.Serialize(jsonData, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+            System.IO.File.WriteAllText(this.filePath, jsonString);
+        }
+
+        public void Save_showPanel(ushort showPanel)
+        {
+            if (!System.IO.File.Exists(this.filePath))
+            {
+                json_init();
+            }
+            string jsonFormFile = File.ReadAllText(filePath);
+            jsonStructure jsonData = JsonSerializer.Deserialize<jsonStructure>(jsonFormFile);
+            jsonData.showPanel = showPanel;
+            string jsonString = JsonSerializer.Serialize(jsonData, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+            System.IO.File.WriteAllText(this.filePath, jsonString);
+        }
+
+        public void Save_showRangeMode(ushort showRangeMode)
+        {
+            if (!System.IO.File.Exists(this.filePath))
+            {
+                json_init();
+            }
+            string jsonFormFile = File.ReadAllText(filePath);
+            jsonStructure jsonData = JsonSerializer.Deserialize<jsonStructure>(jsonFormFile);
+            jsonData.showRangeMode = showRangeMode;
+            string jsonString = JsonSerializer.Serialize(jsonData, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+            System.IO.File.WriteAllText(this.filePath, jsonString);
+        }
+
+        public void Save_tableFinish(List<DateTime> tableFinish)
+        {
+            if (!System.IO.File.Exists(this.filePath))
+            {
+                json_init();
+            }
+            string jsonFormFile = File.ReadAllText(filePath);
+            jsonStructure jsonData = JsonSerializer.Deserialize<jsonStructure>(jsonFormFile);
+            jsonData.tableFinish = tableFinish;
             string jsonString = JsonSerializer.Serialize(jsonData, new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
             System.IO.File.WriteAllText(this.filePath, jsonString);
         }

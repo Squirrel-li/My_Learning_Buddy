@@ -52,7 +52,7 @@ namespace project.Component
             this.contain_StackPanel = contain_StackPanel;
             this.task = task;
             this.Height = 165;
-            this.Margin = new Padding(0, 0, 0, 0);
+            this.Margin = new Padding(2, 2, 2, 2);
             //this.Span = "100%; 100%; 100%; 100%";
             this.Vertical = true;
         }
@@ -72,6 +72,8 @@ namespace project.Component
             this.Controls.Add(SelectClassification);
             this.Controls.Add(deadlineLabel);
             this.Controls.Add(PanelContainerSubject);
+            this.Back = ThemeColor.BackPrimary;
+            this.BackColor = ThemeColor.BackPrimary;
 
             PanelContainerSubject.Padding = new Padding(0, 0, 0, 0);
             PanelContainerSubject.Margin = new Padding(5, 3, 5, 0);
@@ -112,11 +114,22 @@ namespace project.Component
             SelectSubject.BackColor = ParseHex(task.themeColor);
             SelectSubject.ShowIcon = false;
             SelectSubject.List = true;
-            SelectSubject.ReadOnly = true;
+            SelectSubject.WheelModifyEnabled = false;
             SelectSubject.BorderWidth = 0;
             SelectSubject.Size = new Size(contain_StackPanel.Width - 8 - 45, PanelContainerSubject.Height - 2);
             SelectSubject.Dock = DockStyle.Fill;
             SelectSubject.Location = new Point(0, 0);
+            foreach (var item in jsonManager.Get_table_subject())
+            {
+                SelectSubject.Items.Add(item);
+            }
+            SelectSubject.SelectedIndexChanged += (s, e) =>
+            {
+                JsonManager jsonManager = new JsonManager();
+                int id = jsonManager.Find_ToDoTask_Id(task);
+                this.task.subject = SelectSubject.Text;
+                jsonManager.Update_tableToDoTask(id, task);
+            };
 
             checkboxFinish.Margin = new Padding(0, 0, 0, 0);
             checkboxFinish.Text = "";
@@ -168,7 +181,14 @@ namespace project.Component
             deadlineLabel.JoinMode = AntdUI.TJoinMode.TB;
             deadlineLabel.BackColor = ParseHex(task.themeColor);
             deadlineLabel.ShowIcon = false;
-            deadlineLabel.ReadOnly = true;
+            deadlineLabel.Format = "yyyy/MM/dd HH:mm";
+            deadlineLabel.ValueChanged += (s, e) =>
+            {
+                JsonManager jsonManager = new JsonManager();
+                int id = jsonManager.Find_ToDoTask_Id(task);
+                this.task.deadline = deadlineLabel.Value?? throw new Exception("dateTimeP_select.Value is null");
+                jsonManager.Update_tableToDoTask(id, task);
+            };
 
             SelectClassification.Margin = new Padding(0, 0, 0, 0);
             SelectClassification.Text = task.classification;
@@ -178,7 +198,18 @@ namespace project.Component
             SelectClassification.BackColor = ParseHex(task.themeColor);
             SelectClassification.ShowIcon = false;
             SelectClassification.List = true;
-            SelectClassification.ReadOnly = true;
+            SelectClassification.WheelModifyEnabled = false;
+            foreach (var item in jsonManager.Get_tableClassification())
+            {
+                SelectClassification.Items.Add(item);
+            }
+            SelectClassification.SelectedIndexChanged += (s, e) =>
+            {
+                JsonManager jsonManager = new JsonManager();
+                int id = jsonManager.Find_ToDoTask_Id(task);
+                this.task.classification = SelectClassification.Text;
+                jsonManager.Update_tableToDoTask(id, task);
+            };
 
             inputTaskDescribe.Margin = new Padding(0, 0, 0, 0);
             inputTaskDescribe.Font = new Font("Segoe UI", 10, FontStyle.Regular);
@@ -187,7 +218,13 @@ namespace project.Component
             inputTaskDescribe.Multiline = true;
             inputTaskDescribe.AutoScroll = true;
             inputTaskDescribe.BackColor = ParseHex(task.themeColor);
-            inputTaskDescribe.ReadOnly = true;
+            inputTaskDescribe.TextChanged += (s, e) =>
+            {
+                JsonManager jsonManager = new JsonManager();
+                int id = jsonManager.Find_ToDoTask_Id(task);
+                this.task.taskDescribe = inputTaskDescribe.Text;
+                jsonManager.Update_tableToDoTask(id, task);
+            };
 
             if (task.taskDescribe == "")
                 inputTaskDescribe.Text = "(無描述)";
@@ -205,8 +242,8 @@ namespace project.Component
                 inputTaskDescribe.BackColor = Color.LightGreen;
                 SplitterPanelContainer.SplitterBack = Color.LightGreen;
             }
-
             contain_StackPanel.Controls.Add(this);
+            this.BringToFront();
         }
 
         private Color ParseHex(string hex)
