@@ -54,9 +54,6 @@
             this.select_controlSubject = new AntdUI.SelectMultiple();
             this.btn_addSubj = new AntdUI.Button();
             this.btn_delSubj = new AntdUI.Button();
-            this.tb_display = new AntdUI.TabPage();
-            this.panel_show = new AntdUI.Panel();
-            this.lbl_total = new AntdUI.Label();
             this.tb_pomo = new AntdUI.TabPage();
             this.gridPanel_setPomo = new AntdUI.GridPanel();
             this.panel_setPomoAuto = new AntdUI.Panel();
@@ -75,6 +72,9 @@
             this.label9 = new AntdUI.Label();
             this.inputN_loopTimes = new AntdUI.InputNumber();
             this.label10 = new AntdUI.Label();
+            this.tb_display = new AntdUI.TabPage();
+            this.panel_show = new AntdUI.Panel();
+            this.lbl_total = new AntdUI.Label();
             this.pageHeader = new AntdUI.PageHeader();
             this.tabs.SuspendLayout();
             this.tb_task.SuspendLayout();
@@ -82,33 +82,32 @@
             this.panel_setTaskFinish.SuspendLayout();
             this.gridPanell_setTaskFinishButton.SuspendLayout();
             this.panel_setTaskSelect.SuspendLayout();
-            this.tb_display.SuspendLayout();
-            this.panel_show.SuspendLayout();
             this.tb_pomo.SuspendLayout();
             this.gridPanel_setPomo.SuspendLayout();
             this.panel_setPomoAuto.SuspendLayout();
             this.panel_setPomoTime.SuspendLayout();
+            this.tb_display.SuspendLayout();
+            this.panel_show.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabs
             // 
             this.tabs.Alignment = System.Windows.Forms.TabAlignment.Left;
+            this.tabs.Controls.Add(this.tb_display);
             this.tabs.Controls.Add(this.tb_task);
             this.tabs.Controls.Add(this.tb_pomo);
-            this.tabs.Controls.Add(this.tb_display);
             this.tabs.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tabs.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabs.Fill = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(156)))), ((int)(((byte)(109)))));
             this.tabs.FillActive = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(156)))), ((int)(((byte)(109)))));
             this.tabs.FillHover = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(130)))), ((int)(((byte)(121)))));
-            this.tabs.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.tabs.Font = new System.Drawing.Font("微軟正黑體", 18F);
             this.tabs.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(130)))), ((int)(((byte)(121)))));
             this.tabs.Location = new System.Drawing.Point(0, 54);
             this.tabs.Name = "tabs";
             this.tabs.Pages.Add(this.tb_display);
             this.tabs.Pages.Add(this.tb_task);
             this.tabs.Pages.Add(this.tb_pomo);
-            this.tabs.SelectedIndex = 1;
             this.tabs.Size = new System.Drawing.Size(800, 452);
             this.tabs.Style = styleLine1;
             this.tabs.TabIndex = 6;
@@ -121,9 +120,9 @@
             this.tb_task.Controls.Add(this.gridPanel_setTask);
             this.tb_task.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_task.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
-            this.tb_task.Location = new System.Drawing.Point(117, 0);
+            this.tb_task.Location = new System.Drawing.Point(142, 0);
             this.tb_task.Name = "tb_task";
-            this.tb_task.Size = new System.Drawing.Size(683, 452);
+            this.tb_task.Size = new System.Drawing.Size(658, 452);
             this.tb_task.TabIndex = 1;
             this.tb_task.Text = "任務設定";
             // 
@@ -134,7 +133,7 @@
             this.gridPanel_setTask.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridPanel_setTask.Location = new System.Drawing.Point(0, 0);
             this.gridPanel_setTask.Name = "gridPanel_setTask";
-            this.gridPanel_setTask.Size = new System.Drawing.Size(683, 452);
+            this.gridPanel_setTask.Size = new System.Drawing.Size(658, 452);
             this.gridPanel_setTask.Span = "60% 40%";
             this.gridPanel_setTask.TabIndex = 1;
             this.gridPanel_setTask.Text = "gridPanel2";
@@ -147,10 +146,10 @@
             this.panel_setTaskFinish.Controls.Add(this.label4);
             this.panel_setTaskFinish.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel_setTaskFinish.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_setTaskFinish.Location = new System.Drawing.Point(413, 3);
+            this.panel_setTaskFinish.Location = new System.Drawing.Point(398, 3);
             this.panel_setTaskFinish.Name = "panel_setTaskFinish";
             this.panel_setTaskFinish.Shadow = 10;
-            this.panel_setTaskFinish.Size = new System.Drawing.Size(267, 446);
+            this.panel_setTaskFinish.Size = new System.Drawing.Size(257, 446);
             this.panel_setTaskFinish.TabIndex = 78;
             this.panel_setTaskFinish.Text = "panel3";
             // 
@@ -161,7 +160,7 @@
             this.stackPanel_FinishTask.Dock = System.Windows.Forms.DockStyle.Fill;
             this.stackPanel_FinishTask.Location = new System.Drawing.Point(10, 40);
             this.stackPanel_FinishTask.Name = "stackPanel_FinishTask";
-            this.stackPanel_FinishTask.Size = new System.Drawing.Size(247, 315);
+            this.stackPanel_FinishTask.Size = new System.Drawing.Size(237, 315);
             this.stackPanel_FinishTask.TabIndex = 0;
             this.stackPanel_FinishTask.Text = "stackPanel1";
             this.stackPanel_FinishTask.Vertical = true;
@@ -174,7 +173,7 @@
             this.gridPanell_setTaskFinishButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.gridPanell_setTaskFinishButton.Location = new System.Drawing.Point(10, 355);
             this.gridPanell_setTaskFinishButton.Name = "gridPanell_setTaskFinishButton";
-            this.gridPanell_setTaskFinishButton.Size = new System.Drawing.Size(247, 81);
+            this.gridPanell_setTaskFinishButton.Size = new System.Drawing.Size(237, 81);
             this.gridPanell_setTaskFinishButton.Span = "33% 33% 34%";
             this.gridPanell_setTaskFinishButton.TabIndex = 84;
             this.gridPanell_setTaskFinishButton.Text = "gridPanel3";
@@ -182,10 +181,10 @@
             // btn_saveToDoTask
             // 
             this.btn_saveToDoTask.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
-            this.btn_saveToDoTask.Location = new System.Drawing.Point(164, 1);
+            this.btn_saveToDoTask.Location = new System.Drawing.Point(157, 1);
             this.btn_saveToDoTask.Margin = new System.Windows.Forms.Padding(1);
             this.btn_saveToDoTask.Name = "btn_saveToDoTask";
-            this.btn_saveToDoTask.Size = new System.Drawing.Size(82, 79);
+            this.btn_saveToDoTask.Size = new System.Drawing.Size(79, 79);
             this.btn_saveToDoTask.TabIndex = 65;
             this.btn_saveToDoTask.Text = "儲存";
             this.btn_saveToDoTask.Click += new System.EventHandler(this.btn_saveToDoTask_Click);
@@ -193,10 +192,10 @@
             // btn_clearAllTask
             // 
             this.btn_clearAllTask.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
-            this.btn_clearAllTask.Location = new System.Drawing.Point(83, 1);
+            this.btn_clearAllTask.Location = new System.Drawing.Point(79, 1);
             this.btn_clearAllTask.Margin = new System.Windows.Forms.Padding(1);
             this.btn_clearAllTask.Name = "btn_clearAllTask";
-            this.btn_clearAllTask.Size = new System.Drawing.Size(80, 79);
+            this.btn_clearAllTask.Size = new System.Drawing.Size(76, 79);
             this.btn_clearAllTask.TabIndex = 65;
             this.btn_clearAllTask.Text = "清除\r\n全部";
             this.btn_clearAllTask.Click += new System.EventHandler(this.btn_clearAllTask_Click);
@@ -207,7 +206,7 @@
             this.btn_clearFinish.Location = new System.Drawing.Point(1, 1);
             this.btn_clearFinish.Margin = new System.Windows.Forms.Padding(1);
             this.btn_clearFinish.Name = "btn_clearFinish";
-            this.btn_clearFinish.Size = new System.Drawing.Size(80, 79);
+            this.btn_clearFinish.Size = new System.Drawing.Size(76, 79);
             this.btn_clearFinish.TabIndex = 66;
             this.btn_clearFinish.Text = "清除\r\n完成";
             this.btn_clearFinish.Click += new System.EventHandler(this.btn_clearFinish_Click);
@@ -218,7 +217,7 @@
             this.label4.Dock = System.Windows.Forms.DockStyle.Top;
             this.label4.Location = new System.Drawing.Point(10, 10);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(247, 30);
+            this.label4.Size = new System.Drawing.Size(237, 30);
             this.label4.TabIndex = 1;
             this.label4.Text = "已完成的 To-Do List";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -245,7 +244,7 @@
             this.panel_setTaskSelect.Location = new System.Drawing.Point(3, 3);
             this.panel_setTaskSelect.Name = "panel_setTaskSelect";
             this.panel_setTaskSelect.Shadow = 10;
-            this.panel_setTaskSelect.Size = new System.Drawing.Size(404, 446);
+            this.panel_setTaskSelect.Size = new System.Drawing.Size(389, 446);
             this.panel_setTaskSelect.TabIndex = 70;
             this.panel_setTaskSelect.Text = "panel4";
             // 
@@ -261,10 +260,11 @@
             // 
             // select_range
             // 
+            this.select_range.Font = new System.Drawing.Font("微軟正黑體", 18F);
             this.select_range.List = true;
             this.select_range.Location = new System.Drawing.Point(125, 63);
             this.select_range.Name = "select_range";
-            this.select_range.Size = new System.Drawing.Size(135, 44);
+            this.select_range.Size = new System.Drawing.Size(143, 47);
             this.select_range.TabIndex = 83;
             this.select_range.SelectedIndexChanged += new AntdUI.IntEventHandler(this.select_range_SelectedIndexChanged);
             // 
@@ -322,10 +322,11 @@
             // 
             // select_panelNum
             // 
+            this.select_panelNum.Font = new System.Drawing.Font("微軟正黑體", 18F);
             this.select_panelNum.List = true;
             this.select_panelNum.Location = new System.Drawing.Point(125, 13);
             this.select_panelNum.Name = "select_panelNum";
-            this.select_panelNum.Size = new System.Drawing.Size(135, 44);
+            this.select_panelNum.Size = new System.Drawing.Size(143, 47);
             this.select_panelNum.TabIndex = 82;
             this.select_panelNum.SelectedIndexChanged += new AntdUI.IntEventHandler(this.select_panelNum_SelectedIndexChanged);
             // 
@@ -353,16 +354,18 @@
             // 
             // select_controlClass
             // 
-            this.select_controlClass.Location = new System.Drawing.Point(71, 237);
+            this.select_controlClass.Font = new System.Drawing.Font("微軟正黑體", 18F);
+            this.select_controlClass.Location = new System.Drawing.Point(70, 233);
             this.select_controlClass.Name = "select_controlClass";
-            this.select_controlClass.Size = new System.Drawing.Size(142, 37);
+            this.select_controlClass.Size = new System.Drawing.Size(143, 47);
             this.select_controlClass.TabIndex = 60;
             // 
             // select_controlSubject
             // 
+            this.select_controlSubject.Font = new System.Drawing.Font("微軟正黑體", 18F);
             this.select_controlSubject.Location = new System.Drawing.Point(71, 128);
             this.select_controlSubject.Name = "select_controlSubject";
-            this.select_controlSubject.Size = new System.Drawing.Size(142, 37);
+            this.select_controlSubject.Size = new System.Drawing.Size(143, 47);
             this.select_controlSubject.TabIndex = 61;
             // 
             // btn_addSubj
@@ -385,49 +388,14 @@
             this.btn_delSubj.Text = "刪除";
             this.btn_delSubj.Click += new System.EventHandler(this.btn_delSubj_Click);
             // 
-            // tb_display
-            // 
-            this.tb_display.Controls.Add(this.panel_show);
-            this.tb_display.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tb_display.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
-            this.tb_display.Location = new System.Drawing.Point(117, 0);
-            this.tb_display.Name = "tb_display";
-            this.tb_display.Size = new System.Drawing.Size(683, 452);
-            this.tb_display.TabIndex = 0;
-            this.tb_display.Text = "統計";
-            // 
-            // panel_show
-            // 
-            this.panel_show.Back = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.panel_show.Controls.Add(this.lbl_total);
-            this.panel_show.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.panel_show.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_show.Location = new System.Drawing.Point(0, 0);
-            this.panel_show.Name = "panel_show";
-            this.panel_show.Shadow = 10;
-            this.panel_show.Size = new System.Drawing.Size(683, 452);
-            this.panel_show.TabIndex = 78;
-            this.panel_show.Text = "panel5";
-            // 
-            // lbl_total
-            // 
-            this.lbl_total.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_total.Font = new System.Drawing.Font("微軟正黑體", 20F);
-            this.lbl_total.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(56)))), ((int)(((byte)(50)))));
-            this.lbl_total.Location = new System.Drawing.Point(20, 20);
-            this.lbl_total.Name = "lbl_total";
-            this.lbl_total.Size = new System.Drawing.Size(372, 323);
-            this.lbl_total.TabIndex = 0;
-            this.lbl_total.Text = "今日已完成 N 項任務，\r\n本週已完成 N 項任務。\r\n\r\n今日已完成 N 個番茄鐘循環，\r\n本週已完成 N 個番茄鐘循環。\r\n";
-            // 
             // tb_pomo
             // 
             this.tb_pomo.Controls.Add(this.gridPanel_setPomo);
             this.tb_pomo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tb_pomo.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
-            this.tb_pomo.Location = new System.Drawing.Point(117, 0);
+            this.tb_pomo.Location = new System.Drawing.Point(142, 0);
             this.tb_pomo.Name = "tb_pomo";
-            this.tb_pomo.Size = new System.Drawing.Size(683, 452);
+            this.tb_pomo.Size = new System.Drawing.Size(658, 452);
             this.tb_pomo.TabIndex = 2;
             this.tb_pomo.Text = "番茄鐘設定";
             // 
@@ -438,7 +406,7 @@
             this.gridPanel_setPomo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridPanel_setPomo.Location = new System.Drawing.Point(0, 0);
             this.gridPanel_setPomo.Name = "gridPanel_setPomo";
-            this.gridPanel_setPomo.Size = new System.Drawing.Size(683, 452);
+            this.gridPanel_setPomo.Size = new System.Drawing.Size(658, 452);
             this.gridPanel_setPomo.Span = "50% 50%";
             this.gridPanel_setPomo.TabIndex = 0;
             this.gridPanel_setPomo.Text = "gridPanel1";
@@ -453,10 +421,10 @@
             this.panel_setPomoAuto.Controls.Add(this.switch_autoBreak);
             this.panel_setPomoAuto.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.panel_setPomoAuto.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_setPomoAuto.Location = new System.Drawing.Point(345, 3);
+            this.panel_setPomoAuto.Location = new System.Drawing.Point(332, 3);
             this.panel_setPomoAuto.Name = "panel_setPomoAuto";
             this.panel_setPomoAuto.Shadow = 10;
-            this.panel_setPomoAuto.Size = new System.Drawing.Size(336, 446);
+            this.panel_setPomoAuto.Size = new System.Drawing.Size(323, 446);
             this.panel_setPomoAuto.TabIndex = 78;
             this.panel_setPomoAuto.Text = "panel1";
             // 
@@ -527,7 +495,7 @@
             this.panel_setPomoTime.Location = new System.Drawing.Point(3, 3);
             this.panel_setPomoTime.Name = "panel_setPomoTime";
             this.panel_setPomoTime.Shadow = 10;
-            this.panel_setPomoTime.Size = new System.Drawing.Size(336, 446);
+            this.panel_setPomoTime.Size = new System.Drawing.Size(323, 446);
             this.panel_setPomoTime.TabIndex = 70;
             this.panel_setPomoTime.Text = "panel2";
             // 
@@ -622,6 +590,41 @@
             this.label10.TabIndex = 77;
             this.label10.Text = "長短休息間隔(次)";
             // 
+            // tb_display
+            // 
+            this.tb_display.Controls.Add(this.panel_show);
+            this.tb_display.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tb_display.Font = new System.Drawing.Font("微軟正黑體", 14.25F);
+            this.tb_display.Location = new System.Drawing.Point(142, 0);
+            this.tb_display.Name = "tb_display";
+            this.tb_display.Size = new System.Drawing.Size(658, 452);
+            this.tb_display.TabIndex = 0;
+            this.tb_display.Text = "統計";
+            // 
+            // panel_show
+            // 
+            this.panel_show.Back = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.panel_show.Controls.Add(this.lbl_total);
+            this.panel_show.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.panel_show.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_show.Location = new System.Drawing.Point(0, 0);
+            this.panel_show.Name = "panel_show";
+            this.panel_show.Shadow = 10;
+            this.panel_show.Size = new System.Drawing.Size(658, 452);
+            this.panel_show.TabIndex = 78;
+            this.panel_show.Text = "panel5";
+            // 
+            // lbl_total
+            // 
+            this.lbl_total.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_total.Font = new System.Drawing.Font("微軟正黑體", 20F);
+            this.lbl_total.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(56)))), ((int)(((byte)(50)))));
+            this.lbl_total.Location = new System.Drawing.Point(20, 20);
+            this.lbl_total.Name = "lbl_total";
+            this.lbl_total.Size = new System.Drawing.Size(372, 323);
+            this.lbl_total.TabIndex = 0;
+            this.lbl_total.Text = "今日已完成 N 項任務，\r\n本週已完成 N 項任務。\r\n\r\n今日已完成 N 個番茄鐘循環，\r\n本週已完成 N 個番茄鐘循環。\r\n";
+            // 
             // pageHeader
             // 
             this.pageHeader.Dock = System.Windows.Forms.DockStyle.Top;
@@ -652,12 +655,12 @@
             this.gridPanell_setTaskFinishButton.ResumeLayout(false);
             this.panel_setTaskSelect.ResumeLayout(false);
             this.panel_setTaskSelect.PerformLayout();
-            this.tb_display.ResumeLayout(false);
-            this.panel_show.ResumeLayout(false);
             this.tb_pomo.ResumeLayout(false);
             this.gridPanel_setPomo.ResumeLayout(false);
             this.panel_setPomoAuto.ResumeLayout(false);
             this.panel_setPomoTime.ResumeLayout(false);
+            this.tb_display.ResumeLayout(false);
+            this.panel_show.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

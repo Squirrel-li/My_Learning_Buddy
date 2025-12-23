@@ -228,10 +228,15 @@ namespace project
         {
             if (tabs.SelectedIndex == 0)
             {
-                tb_display.Font = new Font("微軟正黑體", 14.25f, FontStyle.Bold);
+                tb_display.Font = new Font("微軟正黑體", 18f, FontStyle.Bold);
+                tb_task.Font = new Font("微軟正黑體", 18f, FontStyle.Regular);
+                tb_pomo.Font = new Font("微軟正黑體", 18f, FontStyle.Regular);
             }
             if (tabs.SelectedIndex == 1)
             {
+                tb_display.Font = new Font("微軟正黑體", 18f, FontStyle.Regular);
+                tb_task.Font = new Font("微軟正黑體", 18f, FontStyle.Bold);
+                tb_pomo.Font = new Font("微軟正黑體", 18f, FontStyle.Regular);
                 this.tableToDoTask = jsonManager.Get_tableToDoTask();
 
                 foreach (var toDoTask in this.tableToDoTask)
@@ -242,6 +247,12 @@ namespace project
                         toDoTask.add_to_panel(stackPanel_FinishTask);
                     }
                 }
+            }
+            if (tabs.SelectedIndex == 2)
+            {
+                tb_display.Font = new Font("微軟正黑體", 18f, FontStyle.Regular);
+                tb_task.Font = new Font("微軟正黑體", 18f, FontStyle.Regular);
+                tb_pomo.Font = new Font("微軟正黑體", 18f, FontStyle.Bold);
             }
         }
 
