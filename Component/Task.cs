@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,12 +17,21 @@ namespace project.Component
 {
     public class ToDoTask
     {
-        public ToDoTask() { }
-        public ToDoTask(String subject, String classification, String task_describe, DateTime deadline, String themeColor)
+        public ToDoTask()
+        {
+            this.subject = "subject";
+            this.classification = "classification";
+            this.taskDescribe = "taskDescribe";
+            this.deadline = DateTime.Now;
+            this.themeColor = "#FDFFB6";
+
+            this.finish = false;
+        }
+        public ToDoTask(String subject, String classification, String taskDescribe, DateTime deadline, String themeColor)
         {
             this.subject = subject;
             this.classification = classification;
-            this.taskDescribe = task_describe;
+            this.taskDescribe = taskDescribe;
             this.deadline = deadline;
             this.themeColor = themeColor;
 
@@ -46,7 +56,7 @@ namespace project.Component
     {
         JsonManager jsonManager = new JsonManager();
         private AntdUI.StackPanel contain_StackPanel;
-        private ToDoTask task;
+        public ToDoTask task;
         public PanelTASK(AntdUI.StackPanel contain_StackPanel, ToDoTask task)
         {
             this.contain_StackPanel = contain_StackPanel;
@@ -55,6 +65,15 @@ namespace project.Component
             this.Margin = new Padding(2, 2, 2, 2);
             //this.Span = "100%; 100%; 100%; 100%";
             this.Vertical = true;
+        }
+        public PanelTASK()
+        {
+            this.Vertical = true;
+            this.Size = new Size(210, 170);
+            this.Margin = new Padding(2, 2, 2, 2);
+            this.task = new ToDoTask();
+            this.contain_StackPanel = null;
+            add_to_panel();
         }
         public void add_to_panel()
         {
@@ -116,7 +135,14 @@ namespace project.Component
             SelectSubject.List = true;
             SelectSubject.WheelModifyEnabled = false;
             SelectSubject.BorderWidth = 0;
-            SelectSubject.Size = new Size(contain_StackPanel.Width - 8 - 45, PanelContainerSubject.Height - 2);
+            if (contain_StackPanel != null)
+            {
+                SelectSubject.Size = new Size(contain_StackPanel.Width - 8 - 45, PanelContainerSubject.Height - 2);
+            }
+            else
+            {
+                SelectSubject.Size = new Size(190 - 8 - 45, PanelContainerSubject.Height - 2);
+            }
             SelectSubject.Dock = DockStyle.Fill;
             SelectSubject.Location = new Point(0, 0);
             foreach (var item in jsonManager.Get_table_subject())
@@ -242,7 +268,10 @@ namespace project.Component
                 inputTaskDescribe.BackColor = Color.LightGreen;
                 SplitterPanelContainer.SplitterBack = Color.LightGreen;
             }
-            contain_StackPanel.Controls.Add(this);
+            if (contain_StackPanel != null)
+            {
+                contain_StackPanel.Controls.Add(this);
+            }
             this.BringToFront();
         }
 

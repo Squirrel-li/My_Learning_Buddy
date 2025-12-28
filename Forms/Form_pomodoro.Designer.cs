@@ -297,24 +297,24 @@
 
         #endregion
 
-        private System.Windows.Forms.Timer timer_count;
+        private AntdUI.PageHeader pageHeader;
         private AntdUI.Progress progress_pomo;
         private AntdUI.Button btn_control;
-        private AntdUI.Label lbl_debug;
         private AntdUI.Button btn_stop;
         private AntdUI.InputNumber inputN_shortBreak;
-        private AntdUI.Label label1;
-        private AntdUI.Label label2;
         private AntdUI.InputNumber inputN_focus;
-        private AntdUI.Label label3;
         private AntdUI.InputNumber inputN_longBreak;
-        private AntdUI.Label label4;
         private AntdUI.InputNumber inputN_loopTimes;
-        private AntdUI.PageHeader pageHeader;
         private AntdUI.GridPanel gridPanel_bottomBody;
         private AntdUI.GridPanel gridPanel_pomoButton;
         private AntdUI.GridPanel gridPanel_set;
+        private AntdUI.Label label1;
+        private AntdUI.Label label2;
+        private AntdUI.Label label3;
+        private AntdUI.Label label4;
         private AntdUI.Label label5;
+        private AntdUI.Label lbl_debug;
+        private System.Windows.Forms.Timer timer_count;
     }
 }
 

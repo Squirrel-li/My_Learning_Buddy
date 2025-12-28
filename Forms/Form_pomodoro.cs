@@ -29,6 +29,7 @@ namespace project
 
         private int currentloop = 0;
         private int currentMode = 0; // 0: idle, 1: work, 2: short break, 3: long break
+        private String[] modeName = new string[] { "閒置", "專注中", "短休息", "長休息" };
         private List<DateTime> tableFinish;
 
         public JsonManager jsonManager = new JsonManager();
@@ -52,6 +53,8 @@ namespace project
             {
                 debug_init(20);
             }
+            timer_count.Interval /= 15;
+            this.rate = 15;
         }
 
         void initBackColor()
@@ -229,7 +232,8 @@ namespace project
             }
             int Min = currentSecond / 60;
             int Sec = currentSecond % 60;
-            targetProgress.Text = $"{Min.ToString("00")} : {Sec.ToString("00")}";
+            targetProgress.Text = $"{modeName[currentMode]}\n\r";
+            targetProgress.Text += $"{Min.ToString("00")} : {Sec.ToString("00")}";
         }
 
         private Color GetCurrentTimeColor(double percentage)

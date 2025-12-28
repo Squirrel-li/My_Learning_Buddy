@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            AntdUI.Tabs.StyleLine styleLine1 = new AntdUI.Tabs.StyleLine();
+            AntdUI.Tabs.StyleLine styleLine2 = new AntdUI.Tabs.StyleLine();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_mainPage));
             this.select_selectColor = new AntdUI.Select();
             this.dateTimeP_select = new AntdUI.DatePicker();
@@ -214,7 +214,7 @@
             // 
             this.tabs_modifySet.Controls.Add(this.tb_addToDo);
             this.tabs_modifySet.Controls.Add(this.tb_addSubjClass);
-            this.tabs_modifySet.Cursor = System.Windows.Forms.Cursors.Default;
+            this.tabs_modifySet.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tabs_modifySet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabs_modifySet.Fill = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(156)))), ((int)(((byte)(109)))));
             this.tabs_modifySet.FillActive = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(156)))), ((int)(((byte)(109)))));
@@ -227,8 +227,8 @@
             this.tabs_modifySet.Padding = new System.Windows.Forms.Padding(12, 0, 0, 0);
             this.tabs_modifySet.Pages.Add(this.tb_addToDo);
             this.tabs_modifySet.Pages.Add(this.tb_addSubjClass);
-            this.tabs_modifySet.Size = new System.Drawing.Size(390, 544);
-            this.tabs_modifySet.Style = styleLine1;
+            this.tabs_modifySet.Size = new System.Drawing.Size(390, 533);
+            this.tabs_modifySet.Style = styleLine2;
             this.tabs_modifySet.TabIndex = 19;
             this.tabs_modifySet.Text = "tabs1";
             this.tabs_modifySet.SelectedIndexChanged += new AntdUI.IntEventHandler(this.tabs_modifySet_SelectedIndexChanged);
@@ -241,7 +241,7 @@
             this.tb_addToDo.Location = new System.Drawing.Point(12, 42);
             this.tb_addToDo.MinimumSize = new System.Drawing.Size(300, 0);
             this.tb_addToDo.Name = "tb_addToDo";
-            this.tb_addToDo.Size = new System.Drawing.Size(378, 502);
+            this.tb_addToDo.Size = new System.Drawing.Size(378, 491);
             this.tb_addToDo.TabIndex = 0;
             this.tb_addToDo.Text = "新增任務";
             // 
@@ -259,7 +259,7 @@
             this.panel_side1.ShadowOpacity = 0.4F;
             this.panel_side1.ShadowOpacityAnimation = true;
             this.panel_side1.ShadowOpacityHover = 0.5F;
-            this.panel_side1.Size = new System.Drawing.Size(378, 502);
+            this.panel_side1.Size = new System.Drawing.Size(378, 491);
             this.panel_side1.TabIndex = 0;
             this.panel_side1.Text = "panel7";
             // 
@@ -277,7 +277,7 @@
             this.FLPanel_side1.Location = new System.Drawing.Point(5, 5);
             this.FLPanel_side1.MinimumSize = new System.Drawing.Size(290, 0);
             this.FLPanel_side1.Name = "FLPanel_side1";
-            this.FLPanel_side1.Size = new System.Drawing.Size(368, 492);
+            this.FLPanel_side1.Size = new System.Drawing.Size(368, 481);
             this.FLPanel_side1.TabIndex = 34;
             // 
             // panel_sideTabSubject
@@ -454,7 +454,7 @@
             this.tb_addSubjClass.Font = new System.Drawing.Font("微軟正黑體", 15.75F);
             this.tb_addSubjClass.Location = new System.Drawing.Point(12, 42);
             this.tb_addSubjClass.Name = "tb_addSubjClass";
-            this.tb_addSubjClass.Size = new System.Drawing.Size(378, 502);
+            this.tb_addSubjClass.Size = new System.Drawing.Size(378, 491);
             this.tb_addSubjClass.TabIndex = 1;
             this.tb_addSubjClass.Text = "更改科目與類別";
             // 
@@ -470,7 +470,7 @@
             this.panel_side2.ShadowOpacity = 0.4F;
             this.panel_side2.ShadowOpacityAnimation = true;
             this.panel_side2.ShadowOpacityHover = 0.5F;
-            this.panel_side2.Size = new System.Drawing.Size(378, 502);
+            this.panel_side2.Size = new System.Drawing.Size(378, 491);
             this.panel_side2.TabIndex = 50;
             this.panel_side2.Text = "panel10";
             // 
@@ -486,7 +486,7 @@
             this.FLPanel_side2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FLPanel_side2.Location = new System.Drawing.Point(5, 5);
             this.FLPanel_side2.Name = "FLPanel_side2";
-            this.FLPanel_side2.Size = new System.Drawing.Size(368, 492);
+            this.FLPanel_side2.Size = new System.Drawing.Size(368, 481);
             this.FLPanel_side2.TabIndex = 49;
             // 
             // panel_sideTabSubjectLabel
@@ -706,7 +706,7 @@
             this.splitter_addAndButton.Panel2.Controls.Add(this.gridPanel_funButton);
             this.splitter_addAndButton.Size = new System.Drawing.Size(390, 645);
             this.splitter_addAndButton.SplitterBack = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(244)))), ((int)(((byte)(248)))));
-            this.splitter_addAndButton.SplitterDistance = 544;
+            this.splitter_addAndButton.SplitterDistance = 533;
             this.splitter_addAndButton.SplitterSize = 0;
             this.splitter_addAndButton.SplitterWidth = 1;
             this.splitter_addAndButton.TabIndex = 22;
@@ -720,16 +720,16 @@
             this.gridPanel_funButton.Location = new System.Drawing.Point(0, 0);
             this.gridPanel_funButton.Name = "gridPanel_funButton";
             this.gridPanel_funButton.Padding = new System.Windows.Forms.Padding(12, 0, 0, 12);
-            this.gridPanel_funButton.Size = new System.Drawing.Size(390, 100);
+            this.gridPanel_funButton.Size = new System.Drawing.Size(390, 111);
             this.gridPanel_funButton.Span = "40% ;\r\n40% 50%";
             this.gridPanel_funButton.TabIndex = 0;
             this.gridPanel_funButton.Text = "gridPanel1";
             // 
             // lbl_debug
             // 
-            this.lbl_debug.Location = new System.Drawing.Point(166, 47);
+            this.lbl_debug.Location = new System.Drawing.Point(166, 53);
             this.lbl_debug.Name = "lbl_debug";
-            this.lbl_debug.Size = new System.Drawing.Size(183, 38);
+            this.lbl_debug.Size = new System.Drawing.Size(183, 44);
             this.lbl_debug.TabIndex = 25;
             this.lbl_debug.Text = "label5";
             // 
@@ -737,10 +737,10 @@
             // 
             this.btn_settings.BorderWidth = 2F;
             this.btn_settings.Font = new System.Drawing.Font("微軟正黑體", 18F, System.Drawing.FontStyle.Bold);
-            this.btn_settings.Location = new System.Drawing.Point(12, 44);
+            this.btn_settings.Location = new System.Drawing.Point(12, 50);
             this.btn_settings.Margin = new System.Windows.Forms.Padding(0);
             this.btn_settings.Name = "btn_settings";
-            this.btn_settings.Size = new System.Drawing.Size(151, 44);
+            this.btn_settings.Size = new System.Drawing.Size(151, 50);
             this.btn_settings.TabIndex = 24;
             this.btn_settings.Text = "設定";
             this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
@@ -752,7 +752,7 @@
             this.btn_openPomo.Location = new System.Drawing.Point(12, 0);
             this.btn_openPomo.Margin = new System.Windows.Forms.Padding(0);
             this.btn_openPomo.Name = "btn_openPomo";
-            this.btn_openPomo.Size = new System.Drawing.Size(151, 44);
+            this.btn_openPomo.Size = new System.Drawing.Size(151, 50);
             this.btn_openPomo.TabIndex = 23;
             this.btn_openPomo.Text = "開啟番茄鐘";
             this.btn_openPomo.Click += new System.EventHandler(this.btn_openPomo_Click);
@@ -766,9 +766,10 @@
             this.Controls.Add(this.panel_body);
             this.Controls.Add(this.pageHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1200, 700);
             this.Name = "Form_mainPage";
-            this.Text = "Form1";
+            this.Text = "My Learning Buddy";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabs_modifySet.ResumeLayout(false);
             this.tb_addToDo.ResumeLayout(false);

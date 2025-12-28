@@ -49,7 +49,6 @@ namespace project
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            initBackColor();
             //this.Resizable = false;
             if (debug)
             {
@@ -61,6 +60,7 @@ namespace project
                 lbl_debug.Text = "";
                 lbl_tabModfiyMes.Text = "";
             }
+            initBackColor();
 
             // Init Tables and combobox data
             InitTables();
@@ -151,8 +151,6 @@ namespace project
             btn_openPomo.ForeColor = ThemeColor.TextSecondary;
 
             gridpanel_calendar.Back = ThemeColor.BackPrimary;/*
-
-
             label1;
             label3;
             label2;
@@ -580,7 +578,7 @@ namespace project
         private void btn_openPomo_Click(object sender, EventArgs e)
         {
             Form_pomodoro new_form = new Form_pomodoro(debug);
-            new_form.ShowDialog();
+            new_form.Show();
         }
 
         private void btn_settings_Click(object sender, EventArgs e)

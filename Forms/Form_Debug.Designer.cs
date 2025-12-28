@@ -52,13 +52,13 @@
             this.select2 = new AntdUI.Select();
             this.panel1 = new AntdUI.Panel();
             this.stackPanel5 = new AntdUI.StackPanel();
-            this.button1 = new AntdUI.Button();
-            this.label1 = new AntdUI.Label();
-            this.stackPanel6 = new AntdUI.StackPanel();
-            this.stackPanel7 = new AntdUI.StackPanel();
-            this.button2 = new AntdUI.Button();
             this.stackPanel8 = new AntdUI.StackPanel();
             this.button3 = new AntdUI.Button();
+            this.stackPanel7 = new AntdUI.StackPanel();
+            this.button2 = new AntdUI.Button();
+            this.stackPanel6 = new AntdUI.StackPanel();
+            this.button1 = new AntdUI.Button();
+            this.label1 = new AntdUI.Label();
             this.stackPanel3.SuspendLayout();
             this.stackPanel2.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -68,9 +68,9 @@
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
             this.stackPanel5.SuspendLayout();
-            this.stackPanel6.SuspendLayout();
-            this.stackPanel7.SuspendLayout();
             this.stackPanel8.SuspendLayout();
+            this.stackPanel7.SuspendLayout();
+            this.stackPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // stackPanel3
@@ -387,37 +387,28 @@
             this.stackPanel5.Text = "stackPanel5";
             this.stackPanel5.Vertical = true;
             // 
-            // button1
+            // stackPanel8
             // 
-            this.button1.Location = new System.Drawing.Point(0, 0);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(285, 43);
-            this.button1.TabIndex = 35;
-            this.button1.Text = "button1";
+            this.stackPanel8.Back = System.Drawing.SystemColors.ActiveBorder;
+            this.stackPanel8.BackColor = System.Drawing.Color.Transparent;
+            this.stackPanel8.Controls.Add(this.button3);
+            this.stackPanel8.Location = new System.Drawing.Point(10, 282);
+            this.stackPanel8.Margin = new System.Windows.Forms.Padding(10);
+            this.stackPanel8.Name = "stackPanel8";
+            this.stackPanel8.Radius = 20;
+            this.stackPanel8.Size = new System.Drawing.Size(285, 116);
+            this.stackPanel8.TabIndex = 38;
+            this.stackPanel8.Text = "stackPanel8";
+            this.stackPanel8.Vertical = true;
             // 
-            // label1
+            // button3
             // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(305, 40);
-            this.label1.TabIndex = 35;
-            this.label1.Text = "label1";
-            // 
-            // stackPanel6
-            // 
-            this.stackPanel6.Back = System.Drawing.SystemColors.ActiveBorder;
-            this.stackPanel6.BackColor = System.Drawing.Color.Transparent;
-            this.stackPanel6.Controls.Add(this.button1);
-            this.stackPanel6.Location = new System.Drawing.Point(10, 10);
-            this.stackPanel6.Margin = new System.Windows.Forms.Padding(10);
-            this.stackPanel6.Name = "stackPanel6";
-            this.stackPanel6.Radius = 20;
-            this.stackPanel6.Size = new System.Drawing.Size(285, 116);
-            this.stackPanel6.TabIndex = 36;
-            this.stackPanel6.Text = "stackPanel6";
-            this.stackPanel6.Vertical = true;
+            this.button3.Location = new System.Drawing.Point(0, 0);
+            this.button3.Margin = new System.Windows.Forms.Padding(0);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(285, 43);
+            this.button3.TabIndex = 35;
+            this.button3.Text = "button3";
             // 
             // stackPanel7
             // 
@@ -442,28 +433,37 @@
             this.button2.TabIndex = 35;
             this.button2.Text = "button2";
             // 
-            // stackPanel8
+            // stackPanel6
             // 
-            this.stackPanel8.Back = System.Drawing.SystemColors.ActiveBorder;
-            this.stackPanel8.BackColor = System.Drawing.Color.Transparent;
-            this.stackPanel8.Controls.Add(this.button3);
-            this.stackPanel8.Location = new System.Drawing.Point(10, 282);
-            this.stackPanel8.Margin = new System.Windows.Forms.Padding(10);
-            this.stackPanel8.Name = "stackPanel8";
-            this.stackPanel8.Radius = 20;
-            this.stackPanel8.Size = new System.Drawing.Size(285, 116);
-            this.stackPanel8.TabIndex = 38;
-            this.stackPanel8.Text = "stackPanel8";
-            this.stackPanel8.Vertical = true;
+            this.stackPanel6.Back = System.Drawing.SystemColors.ActiveBorder;
+            this.stackPanel6.BackColor = System.Drawing.Color.Transparent;
+            this.stackPanel6.Controls.Add(this.button1);
+            this.stackPanel6.Location = new System.Drawing.Point(10, 10);
+            this.stackPanel6.Margin = new System.Windows.Forms.Padding(10);
+            this.stackPanel6.Name = "stackPanel6";
+            this.stackPanel6.Radius = 20;
+            this.stackPanel6.Size = new System.Drawing.Size(285, 116);
+            this.stackPanel6.TabIndex = 36;
+            this.stackPanel6.Text = "stackPanel6";
+            this.stackPanel6.Vertical = true;
             // 
-            // button3
+            // button1
             // 
-            this.button3.Location = new System.Drawing.Point(0, 0);
-            this.button3.Margin = new System.Windows.Forms.Padding(0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(285, 43);
-            this.button3.TabIndex = 35;
-            this.button3.Text = "button3";
+            this.button1.Location = new System.Drawing.Point(0, 0);
+            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(285, 43);
+            this.button1.TabIndex = 35;
+            this.button1.Text = "button1";
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(305, 40);
+            this.label1.TabIndex = 35;
+            this.label1.Text = "label1";
             // 
             // Form_Debug
             // 
@@ -486,9 +486,9 @@
             this.panel4.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.stackPanel5.ResumeLayout(false);
-            this.stackPanel6.ResumeLayout(false);
-            this.stackPanel7.ResumeLayout(false);
             this.stackPanel8.ResumeLayout(false);
+            this.stackPanel7.ResumeLayout(false);
+            this.stackPanel6.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
