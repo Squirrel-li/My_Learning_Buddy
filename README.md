@@ -5,7 +5,7 @@ It combines a Pomodoro timer, a to-do list manager, and useful study statistics 
 
 ---
 
-## 🚀 Features
+## Features
 
 ### **1. Pomodoro Timer**
 - Adjustable focus, short break, and long break durations  
@@ -28,7 +28,7 @@ It combines a Pomodoro timer, a to-do list manager, and useful study statistics 
 
 ---
 
-## 🏗 Project Structure
+## Project Structure
 This structure is not yet complete and is currently in the initial testing phase.
 ```
 /MyLearnBuddy
@@ -49,7 +49,7 @@ This structure is not yet complete and is currently in the initial testing phase
 
 ---
 
-## 👥 Team Responsibilities
+## Team Responsibilities
 
 ### **李松澔 – To‑Do + setting**
 - Implements TodoManager and task models
@@ -68,7 +68,7 @@ This structure is not yet complete and is currently in the initial testing phase
 
 ---
 
-## 📦 Installation & Usage
+## Installation & Usage
 
 ### **Requirements**
 - Windows 10 / 11  
@@ -89,7 +89,7 @@ git clone https://github.com/Squirrel-li/My_Learning_Buddy
 
 ---
 
-## ❤️ Credits
+## Credits
 Developed by a 3‑person team for coursework.
 
 |  姓名  |   學號    |          e-mail         |
